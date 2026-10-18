@@ -79,6 +79,8 @@ def build_input(post, channel_name, channel_id):
         "text": post["text"].strip(),
         "channelId": channel_id,
         "schedulingType": "automatic",
+        "needsApproval": False,
+        "assets": assets,
     }
     when = post.get("when", "queue")
     if when == "queue":
@@ -86,8 +88,6 @@ def build_input(post, channel_name, channel_id):
     else:
         inp["mode"] = "customScheduled"
         inp["dueAt"] = to_utc(when)
-    if assets:
-        inp["assets"] = assets
     meta = (post.get("metadata") or {}).get(channel_name)
     if meta:
         inp["metadata"] = {channel_name: meta}
@@ -139,9 +139,26 @@ def main():
     a = ap.parse_args()
 
     if a.introspect:
-        q = """{ a: __type(name:"CreatePostInput"){ inputFields{ name type{ name kind ofType{ name kind } } } }
-                 b: __type(name:"PostInputMetaData"){ inputFields{ name type{ name ofType{ name } } } } }"""
-        print(json.dumps(gql(q), indent=2))
+        names = ["CreatePostInput", "InstagramPostMetadataInput", "FacebookPostMetadataInput",
+                 "TikTokPostMetadataInput", "ShareMode", "SchedulingType"]
+        for n in names:
+            q = """query($n:String!){ __type(name:$n){ kind enumValues{ name }
+                   inputFields{ name defaultValue type{ name kind ofType{ name kind ofType{ name } } } } } }"""
+            t = gql(q, {"n": n})["__type"]
+            if not t:
+                print(f"{n}: not found")
+                continue
+            if t.get("enumValues"):
+                print(f"{n}: " + ", ".join(e["name"] for e in t["enumValues"]))
+                continue
+            print(n)
+            for f in t["inputFields"]:
+                ty = f["type"]
+                parts = []
+                while ty:
+                    parts.append(ty.get("name") or ty.get("kind"))
+                    ty = ty.get("ofType")
+                print(f"  {f['name']}: {'/'.join(p for p in parts if p)} default={f['defaultValue']}")
         return
     if a.channels:
         orgs = gql("{ account { organizations { id name } } }")["account"]["organizations"]
