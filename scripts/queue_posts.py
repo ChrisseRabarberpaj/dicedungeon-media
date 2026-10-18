@@ -90,7 +90,8 @@ def build_input(post, channel_name, channel_id):
         inp["dueAt"] = to_utc(when)
     has_video = any(list(a)[0] == "video" for a in assets)
     defaults = {
-        "instagram": {"type": "reel" if has_video else "post", "shouldShareToFeed": True},
+        "instagram": {"type": "reel" if has_video else ("carousel" if len(assets) > 1 else "post"),
+                      "shouldShareToFeed": True},
         "facebook": {"type": "reel" if has_video else "post"},
     }
     meta = {**defaults.get(channel_name, {}), **((post.get("metadata") or {}).get(channel_name) or {})}
