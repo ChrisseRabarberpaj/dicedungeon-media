@@ -1,7 +1,7 @@
 name: Queue approved posts in Buffer
 
 # Manual only: nothing reaches Buffer until someone presses "Run workflow"
-# (or runs `gh workflow run queue-posts.yml`). Dry run is the default.
+# (or runs `gh workflow run queue-posts.yml`). dry-run is the default.
 on:
   workflow_dispatch:
     inputs:
@@ -9,10 +9,11 @@ on:
         description: "Post id to send (blank = every approved post)"
         required: false
         default: ""
-      dry_run:
-        description: "Dry run (print, send nothing)"
-        type: boolean
-        default: true
+      action:
+        description: "dry-run = print only, send = queue in Buffer, inspect = list channels + schema (read-only)"
+        type: choice
+        options: [dry-run, send, inspect]
+        default: dry-run
 
 permissions:
   contents: write
@@ -32,14 +33,19 @@ jobs:
         env:
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           POST_ID: ${{ inputs.post }}
-          DRY_RUN: ${{ inputs.dry_run }}
+          ACTION: ${{ inputs.action }}
         run: |
+          if [ "$ACTION" = "inspect" ]; then
+            python scripts/queue_posts.py --channels
+            python scripts/queue_posts.py --introspect
+            exit 0
+          fi
           args=()
           if [ -n "$POST_ID" ]; then args+=(--post "$POST_ID"); fi
-          if [ "$DRY_RUN" = "true" ]; then args+=(--dry-run); fi
+          if [ "$ACTION" = "dry-run" ]; then args+=(--dry-run); fi
           python scripts/queue_posts.py "${args[@]}"
       - name: Record queued ids
-        if: ${{ inputs.dry_run == false }}
+        if: ${{ inputs.action == 'send' }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898273+github-actions[bot]@users.noreply.github.com"

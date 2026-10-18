@@ -144,8 +144,16 @@ def main():
         print(json.dumps(gql(q), indent=2))
         return
     if a.channels:
-        q = "{ account { organizations { id channels { id name service } } } }"
-        print(json.dumps(gql(q), indent=2))
+        orgs = gql("{ account { organizations { id name } } }")["account"]["organizations"]
+        for o in orgs:
+            q = "query($id: OrganizationId!){ channels(input:{organizationId:$id}){ id name service } }"
+            try:
+                ch = gql(q, {"id": o["id"]})["channels"]
+            except RuntimeError:
+                ch = gql("{ channels(input:{organizationId:\"%s\"}){ id name service } }" % o["id"])["channels"]
+            print(f"org {o['name']} ({o['id']})")
+            for c in ch:
+                print(f"  {c['service']:<10} {c['id']}  {c['name']}")
         return
 
     with open(os.path.join(ROOT, "config", "channels.yml")) as fh:
