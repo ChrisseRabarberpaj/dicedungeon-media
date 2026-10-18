@@ -4,11 +4,9 @@ approved: false
 channels:
 - instagram
 - facebook
-- tiktok
 when: '2026-10-20T18:00:00+03:00'
-media_note: 'Trailer: DiceDungeon_Trailer_2026_final.mp4 (81 MB, Drive ''Chrisse DiceDungeon 2026''). Waiting for the file to land on the Desktop so it can be pushed here.'
 media:
-- media/posts/000b-trailer.mp4
+- media/posts/000b-trailer-short.mp4
 text: |
   Helsingin ainoa pelihuone, joka vaihtaa maailmaa napin painalluksella. / A private game room in Helsinki that changes world at the tap of a button. 10 seats, 50 games, a Game Master if you want one. Caloniuksenkatu 9. dicedungeon.fi
 
