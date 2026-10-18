@@ -4,10 +4,9 @@ approved: false
 channels:
 - instagram
 - facebook
-- tiktok
 when: '2026-11-06T18:00:00+02:00'
-media_note: 'Photo: chandelier and table'
-media: []
+media:
+- media/posts/06-subscription.jpg
 text: |
   100 €/kk, yksi 6 tunnin ilta joka kuukausi. / Running a campaign? The subscription gives you one 6-hour session every month for 100 € instead of 200. Six-month commitment, booking code by email, any free slot in the calendar. dicedungeon.fi
 

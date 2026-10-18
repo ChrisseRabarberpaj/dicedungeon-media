@@ -6,10 +6,11 @@ channels:
 - facebook
 - tiktok
 when: '2026-11-09T18:00:00+02:00'
-media_note: 'Clip: combat scene, red light, drums (room audio only)'
-media: []
+media_note: 'Cut from the long trailer (69-81 s): sound, storm, fire. Replace with a real combat clip later.'
+media:
+- media/posts/07-sound.mp4
 text: |
-  Taistelu alkaa. / Combat. The room knows before the players do. Room audio only, no music added.
+  Myrsky, takkatuli vai hiljainen musiikki? / A storm outside, a fire at your side, soft music over the table. The room's surround sound plays whatever your story needs.
 
   #dicedungeon #helsinki #dnd #ttrpg #lautapelit #roolipelit #boardgames #pikkujoulut
 queued: {}

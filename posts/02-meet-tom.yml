@@ -4,10 +4,10 @@ approved: false
 channels:
 - instagram
 - facebook
-- tiktok
 when: '2026-10-28T18:00:00+02:00'
-media_note: 'Photo: Tom, from Promo Rolepeddlers'
-media: []
+media_note: Team-page cutout; may already be in the Meet-the-GMs carousel on Instagram. Swap for a session photo of Tom if you have one.
+media:
+- media/posts/02-meet-tom.jpg
 text: |
   Tapaa Tom. / Meet Tom, one of our Game Masters from Rolepeddlers. Screenwriter by day, ten-plus years running tables by night: D&D, Call of Cthulhu, Star Wars, in Swedish, English or Finnish. Your character's backstory will end up in the story whether you planned it or not.
 

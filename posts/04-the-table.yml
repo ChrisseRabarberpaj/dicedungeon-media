@@ -4,10 +4,11 @@ approved: false
 channels:
 - instagram
 - facebook
-- tiktok
 when: '2026-11-02T18:00:00+02:00'
-media_note: 'Carousel: table edge LEDs, velvet, cup holders, side tables'
-media: []
+media:
+- media/posts/04-the-table-1.jpg
+- media/posts/04-the-table-2.jpg
+- media/posts/04-the-table-3.jpg
 text: |
   Pöytä on tehty tätä huonetta varten. / The table was commissioned for this room: 2.5 m of velvet, LED edge lighting, magnetic side tables and cup holders. Eight sit comfortably, ten if you like each other.
 

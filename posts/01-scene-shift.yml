@@ -6,8 +6,9 @@ channels:
 - facebook
 - tiktok
 when: '2026-10-26T18:00:00+02:00'
-media_note: 'Clip: dashboard tap, tavern to dungeon (cut from Feb rushes, 9:16, 8-15 s)'
-media: []
+media_note: Cut from the long trailer (54-70 s). Replace with a fresh Sunday clip if you make one.
+media:
+- media/posts/01-scene-shift.mp4
 text: |
   Yksi napautus ja huone vaihtaa maailmaa. / One tap on the dashboard and the room changes world. Lights, sound, everything. This is where your next game night happens. Caloniuksenkatu 9, Helsinki. Book at dicedungeon.fi
 

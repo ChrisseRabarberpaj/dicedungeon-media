@@ -4,10 +4,9 @@ approved: false
 channels:
 - instagram
 - facebook
-- tiktok
 when: '2026-11-18T18:00:00+02:00'
-media_note: 'Photo: character sheets and dice on velvet'
-media: []
+media:
+- media/posts/11-first-timers.jpg
 text: |
   Et ole koskaan pelannut? Ei haittaa. / Never played D&D? That's what the GM is for. You turn up, you get a character, you play. Three hours later you know whether you're a wizard or a rogue.
 

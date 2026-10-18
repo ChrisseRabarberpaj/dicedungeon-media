@@ -4,10 +4,9 @@ approved: false
 channels:
 - instagram
 - facebook
-- tiktok
 when: '2026-11-20T18:00:00+02:00'
-media_note: 'Photo: window, evening light'
-media: []
+media:
+- media/posts/12-december.jpg
 text: |
   Joulukuun viikonloput täyttyvät. / December weekends are filling up. Free slots are in the booking calendar at dicedungeon.fi. Pikkujoulu packages by email: booking@talecraftgames.com
 
