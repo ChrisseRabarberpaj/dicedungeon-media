@@ -1,0 +1,15 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+id: 000a-comeback
+approved: false
+channels:
+- instagram
+- facebook
+- tiktok
+when: '2026-10-19T18:00:00+03:00'
+media:
+- media/posts/000a-comeback.jpg
+text: |
+  Miksi hiljaisuus? / Why the radio silence? I became a dad. Since then it's been not sleeping, surviving, and barely keeping the sky from falling. But we're back in business and better than ever. Or exactly as good as before, which was already pretty dope. Book a night: dicedungeon.fi
+
+  #dicedungeon #helsinki #dnd #ttrpg #lautapelit #roolipelit #boardgames #pikkujoulut
+queued: {}

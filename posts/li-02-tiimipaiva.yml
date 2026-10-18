@@ -1,0 +1,11 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+id: li-02-tiimipaiva
+approved: false
+channels:
+- linkedin
+when: '2026-11-03T09:00:00+02:00'
+media_note: 'Photo: GM at the head of the table. Post manually on LinkedIn.'
+media: []
+text: |
+  Mitä 5 tunnin tiimipäivä Dice Dungeonissa sisältää: Game Master soittaa etukäteen ja räätälöi tarinan tiimille, hahmot odottavat pöydällä, ensimmäinen tunti on opettelua ja naurua, loput neljä yhteistä ongelmanratkaisua. Lopuksi tiimi tietää, kuka on se joka hyppää ensin ja kuka laskee riskit. Kysy tarjous: booking@talecraftgames.com
+queued: {}

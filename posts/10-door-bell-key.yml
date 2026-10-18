@@ -1,0 +1,15 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+id: 10-door-bell-key
+approved: false
+channels:
+- instagram
+- facebook
+- tiktok
+when: '2026-11-16T18:00:00+02:00'
+media_note: 'Photo: door, bell, key (needs the one-visit shoot)'
+media: []
+text: |
+  Soita kelloa, saat avaimen. / Ring the bell, get the tour, get the key. After that the room is yours for the night.
+
+  #dicedungeon #helsinki #dnd #ttrpg #lautapelit #roolipelit #boardgames #pikkujoulut
+queued: {}

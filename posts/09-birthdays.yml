@@ -1,0 +1,15 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+id: 09-birthdays
+approved: false
+channels:
+- instagram
+- facebook
+- tiktok
+when: '2026-11-13T18:00:00+02:00'
+media_note: 'Photo: table set for ten'
+media: []
+text: |
+  Synttärit ilman baarijonoa. / Birthday coming up? The room is yours for the evening: your games or ours, your playlist on the surround sound, nobody else in the room. 200 € for 6 hours split ten ways is 20 € each. dicedungeon.fi
+
+  #dicedungeon #helsinki #dnd #ttrpg #lautapelit #roolipelit #boardgames #pikkujoulut
+queued: {}

@@ -1,0 +1,15 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+id: 02-meet-tom
+approved: false
+channels:
+- instagram
+- facebook
+- tiktok
+when: '2026-10-28T18:00:00+02:00'
+media_note: 'Photo: Tom, from Promo Rolepeddlers'
+media: []
+text: |
+  Tapaa Tom. / Meet Tom, one of our Game Masters from Rolepeddlers. Screenwriter by day, ten-plus years running tables by night: D&D, Call of Cthulhu, Star Wars, in Swedish, English or Finnish. Your character's backstory will end up in the story whether you planned it or not.
+
+  #dicedungeon #helsinki #dnd #ttrpg #lautapelit #roolipelit #boardgames #pikkujoulut
+queued: {}

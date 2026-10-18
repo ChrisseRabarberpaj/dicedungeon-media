@@ -1,0 +1,11 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+id: li-01-pikkujoulut
+approved: false
+channels:
+- linkedin
+when: '2026-10-27T09:00:00+02:00'
+media_note: 'Photo: table from above. Post manually on LinkedIn (no Buffer channel).'
+media: []
+text: |
+  Pikkujoulut, joita tiimi oikeasti odottaa. Dice Dungeon on yksityinen pelihuone Töölössä: oma Game Master vetää 5 tunnin seikkailun, valot ja äänet elävät tarinan mukana, 8-10 hengen tiimille 600 €. Ei luottamusharjoituksia, ei keilahallia. Marraskuun perjantait täyttyvät, ota yhteyttä: booking@talecraftgames.com
+queued: {}

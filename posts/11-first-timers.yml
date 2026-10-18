@@ -1,0 +1,15 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+id: 11-first-timers
+approved: false
+channels:
+- instagram
+- facebook
+- tiktok
+when: '2026-11-18T18:00:00+02:00'
+media_note: 'Photo: character sheets and dice on velvet'
+media: []
+text: |
+  Et ole koskaan pelannut? Ei haittaa. / Never played D&D? That's what the GM is for. You turn up, you get a character, you play. Three hours later you know whether you're a wizard or a rogue.
+
+  #dicedungeon #helsinki #dnd #ttrpg #lautapelit #roolipelit #boardgames #pikkujoulut
+queued: {}

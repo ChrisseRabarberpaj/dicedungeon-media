@@ -1,0 +1,15 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+id: 07-combat
+approved: false
+channels:
+- instagram
+- facebook
+- tiktok
+when: '2026-11-09T18:00:00+02:00'
+media_note: 'Clip: combat scene, red light, drums (room audio only)'
+media: []
+text: |
+  Taistelu alkaa. / Combat. The room knows before the players do. Room audio only, no music added.
+
+  #dicedungeon #helsinki #dnd #ttrpg #lautapelit #roolipelit #boardgames #pikkujoulut
+queued: {}

@@ -1,0 +1,15 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+id: 08-meet-chris
+approved: false
+channels:
+- instagram
+- facebook
+- tiktok
+when: '2026-11-11T18:00:00+02:00'
+media_note: 'Photo: Chris, from Promo Rolepeddlers'
+media: []
+text: |
+  Tapaa Chris. / Meet Chris: archaeologist turned social worker, ten-plus years at the table, worlds built from folklore and ancient languages, and puns. Many puns. D&D, Mörk Borg, Monster of the Week, one-page RPGs, in English or Finnish. All ages welcome.
+
+  #dicedungeon #helsinki #dnd #ttrpg #lautapelit #roolipelit #boardgames #pikkujoulut
+queued: {}

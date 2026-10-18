@@ -1,0 +1,15 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+id: 01-scene-shift
+approved: false
+channels:
+- instagram
+- facebook
+- tiktok
+when: '2026-10-26T18:00:00+02:00'
+media_note: 'Clip: dashboard tap, tavern to dungeon (cut from Feb rushes, 9:16, 8-15 s)'
+media: []
+text: |
+  Yksi napautus ja huone vaihtaa maailmaa. / One tap on the dashboard and the room changes world. Lights, sound, everything. This is where your next game night happens. Caloniuksenkatu 9, Helsinki. Book at dicedungeon.fi
+
+  #dicedungeon #helsinki #dnd #ttrpg #lautapelit #roolipelit #boardgames #pikkujoulut
+queued: {}

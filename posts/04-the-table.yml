@@ -1,0 +1,15 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+id: 04-the-table
+approved: false
+channels:
+- instagram
+- facebook
+- tiktok
+when: '2026-11-02T18:00:00+02:00'
+media_note: 'Carousel: table edge LEDs, velvet, cup holders, side tables'
+media: []
+text: |
+  Pöytä on tehty tätä huonetta varten. / The table was commissioned for this room: 2.5 m of velvet, LED edge lighting, magnetic side tables and cup holders. Eight sit comfortably, ten if you like each other.
+
+  #dicedungeon #helsinki #dnd #ttrpg #lautapelit #roolipelit #boardgames #pikkujoulut
+queued: {}
