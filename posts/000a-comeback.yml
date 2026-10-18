@@ -4,7 +4,6 @@ approved: false
 channels:
 - instagram
 - facebook
-- tiktok
 when: '2026-10-19T18:00:00+03:00'
 media:
 - media/posts/000a-comeback.jpg
@@ -15,4 +14,3 @@ text: |
 queued:
   instagram: draft:6ad43318ae173d6e00e3263b
   facebook: draft:6ad433180b0d72757a049b09
-  tiktok: draft:6ad43318ae173d6e00e32659
