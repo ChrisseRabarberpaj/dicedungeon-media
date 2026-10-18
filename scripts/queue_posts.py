@@ -88,7 +88,12 @@ def build_input(post, channel_name, channel_id):
     else:
         inp["mode"] = "customScheduled"
         inp["dueAt"] = to_utc(when)
-    meta = (post.get("metadata") or {}).get(channel_name)
+    has_video = any(list(a)[0] == "video" for a in assets)
+    defaults = {
+        "instagram": {"type": "reel" if has_video else "post", "shouldShareToFeed": True},
+        "facebook": {"type": "reel" if has_video else "post"},
+    }
+    meta = {**defaults.get(channel_name, {}), **((post.get("metadata") or {}).get(channel_name) or {})}
     if meta:
         inp["metadata"] = {channel_name: meta}
     return inp
