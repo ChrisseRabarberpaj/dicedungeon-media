@@ -218,6 +218,21 @@ def main():
                 else:
                     print(f"ERROR {post['id']} -> {name}: {res.get('message')}")
                 continue
+            if not a.draft and not a.dry_run and prev.startswith("draft:"):
+                # promote the approved Buffer draft to a scheduled post
+                inp = build_input(post, name, channels[name])
+                inp.pop("channelId"); inp.pop("needsApproval", None)
+                inp["id"] = prev.split(":", 1)[1]
+                inp["saveToDraft"] = False
+                res = gql(EDIT, {"input": inp})["editPost"]
+                if "post" in res:
+                    post["queued"][name] = inp["id"]
+                    save(post)
+                    print(f"scheduled {post['id']} -> {name}: {inp['id']} due {res['post'].get('dueAt')}")
+                    sent += 1
+                else:
+                    print(f"ERROR {post['id']} -> {name}: {res.get('message')}")
+                continue
             if name in post["queued"]:
                 print(f"skip {post['id']} -> {name}: already queued ({post['queued'][name]})")
                 continue
