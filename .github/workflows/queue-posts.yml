@@ -10,9 +10,9 @@ on:
         required: false
         default: ""
       action:
-        description: "dry-run = print only, draft = Buffer drafts to preview (nothing publishes), send = queue approved posts, inspect = list channels (read-only)"
+        description: "dry-run = print only, draft = Buffer drafts to preview (nothing publishes), send = queue approved posts, update = push file edits to posts already in Buffer, inspect = list channels (read-only)"
         type: choice
-        options: [dry-run, draft, send, inspect]
+        options: [dry-run, draft, send, update, inspect]
         default: dry-run
 
 permissions:
@@ -44,6 +44,7 @@ jobs:
           if [ -n "$POST_ID" ]; then args+=(--post "$POST_ID"); fi
           if [ "$ACTION" = "dry-run" ]; then args+=(--dry-run); fi
           if [ "$ACTION" = "draft" ]; then args+=(--draft); fi
+          if [ "$ACTION" = "update" ]; then args+=(--update); fi
           python scripts/queue_posts.py "${args[@]}"
       - name: Record queued ids
         if: ${{ inputs.action == 'send' || inputs.action == 'draft' }}

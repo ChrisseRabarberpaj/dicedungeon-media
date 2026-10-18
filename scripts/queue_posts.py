@@ -147,6 +147,7 @@ def save(post):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--update", action="store_true", help="push file changes to posts already scheduled in Buffer")
     ap.add_argument("--draft", action="store_true", help="create Buffer drafts (nothing publishes); ignores approved:")
     ap.add_argument("--post")
     ap.add_argument("--introspect", action="store_true")
@@ -214,6 +215,22 @@ def main():
                 res = gql(EDIT, {"input": inp})["editPost"]
                 if "post" in res:
                     print(f"updated draft {post['id']} -> {name}: {inp['id']}")
+                    sent += 1
+                else:
+                    print(f"ERROR {post['id']} -> {name}: {res.get('message')}")
+                continue
+            if a.update:
+                if not prev:
+                    print(f"skip {post['id']} -> {name}: not in Buffer yet")
+                    continue
+                inp = build_input(post, name, channels[name])
+                inp.pop("channelId"); inp.pop("needsApproval", None)
+                inp["id"] = prev.split(":", 1)[-1]
+                if prev.startswith("draft:"):
+                    inp["saveToDraft"] = True
+                res = gql(EDIT, {"input": inp})["editPost"]
+                if "post" in res:
+                    print(f"updated {post['id']} -> {name}: {inp['id']} due {res['post'].get('dueAt')}")
                     sent += 1
                 else:
                     print(f"ERROR {post['id']} -> {name}: {res.get('message')}")
