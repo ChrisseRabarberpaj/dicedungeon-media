@@ -140,7 +140,7 @@ def main():
 
     if a.introspect:
         names = ["CreatePostInput", "InstagramPostMetadataInput", "FacebookPostMetadataInput",
-                 "TikTokPostMetadataInput", "ShareMode", "SchedulingType"]
+                 "TikTokPostMetadataInput", "ShareMode", "SchedulingType", "PostType", "PostTypeFacebook"]
         for n in names:
             q = """query($n:String!){ __type(name:$n){ kind enumValues{ name }
                    inputFields{ name defaultValue type{ name kind ofType{ name kind ofType{ name } } } } } }"""
