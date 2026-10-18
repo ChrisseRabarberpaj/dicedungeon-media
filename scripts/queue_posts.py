@@ -138,6 +138,7 @@ def save(post):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--draft", action="store_true", help="create Buffer drafts (nothing publishes); ignores approved:")
     ap.add_argument("--post")
     ap.add_argument("--introspect", action="store_true")
     ap.add_argument("--channels", action="store_true")
@@ -183,7 +184,7 @@ def main():
 
     sent = 0
     for post in load_posts(a.post):
-        if not post.get("approved"):
+        if not post.get("approved") and not a.draft:
             print(f"skip {post['id']}: not approved")
             continue
         if not post.get("queued"):
@@ -200,12 +201,14 @@ def main():
                 print(f"skip {post['id']} -> {name}: no channel id in config/channels.yml")
                 continue
             inp = build_input(post, name, cid)
+            if a.draft:
+                inp["saveToDraft"] = True
             if a.dry_run:
                 print(f"DRY {post['id']} -> {name}:\n{json.dumps(inp, indent=2, ensure_ascii=False)}")
                 continue
             res = gql(CREATE, {"input": inp})["createPost"]
             if "post" in res:
-                post["queued"][name] = res["post"]["id"]
+                post["queued"][name] = ("draft:" if a.draft else "") + res["post"]["id"]
                 print(f"queued {post['id']} -> {name}: {res['post']['id']} due {res['post'].get('dueAt')}")
                 sent += 1
                 save(post)

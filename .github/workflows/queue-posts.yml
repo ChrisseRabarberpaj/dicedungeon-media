@@ -10,9 +10,9 @@ on:
         required: false
         default: ""
       action:
-        description: "dry-run = print only, send = queue in Buffer, inspect = list channels + schema (read-only)"
+        description: "dry-run = print only, draft = Buffer drafts to preview (nothing publishes), send = queue approved posts, inspect = list channels (read-only)"
         type: choice
-        options: [dry-run, send, inspect]
+        options: [dry-run, draft, send, inspect]
         default: dry-run
 
 permissions:
@@ -43,9 +43,10 @@ jobs:
           args=()
           if [ -n "$POST_ID" ]; then args+=(--post "$POST_ID"); fi
           if [ "$ACTION" = "dry-run" ]; then args+=(--dry-run); fi
+          if [ "$ACTION" = "draft" ]; then args+=(--draft); fi
           python scripts/queue_posts.py "${args[@]}"
       - name: Record queued ids
-        if: ${{ inputs.action == 'send' }}
+        if: ${{ inputs.action == 'send' || inputs.action == 'draft' }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898273+github-actions[bot]@users.noreply.github.com"
