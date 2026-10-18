@@ -2,9 +2,9 @@
 id: 000b-trailer
 approved: false
 channels:
-- instagram
 - facebook
 when: '2026-10-20T18:00:00+03:00'
+media_note: Short trailer already on Instagram, so Facebook only. Old Instagram draft in Buffer can be deleted.
 media:
 - media/posts/000b-trailer-short.mp4
 text: |

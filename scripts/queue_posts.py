@@ -99,6 +99,15 @@ def build_input(post, channel_name, channel_id):
     return inp
 
 
+EDIT = """
+mutation EditPost($input: EditPostInput!) {
+  editPost(input: $input) {
+    ... on PostActionSuccess { post { id dueAt } }
+    ... on MutationError { message }
+  }
+}
+"""
+
 CREATE = """
 mutation CreatePost($input: CreatePostInput!) {
   createPost(input: $input) {
@@ -195,6 +204,20 @@ def main():
             print(f"skip {post['id']}: Instagram/TikTok need media, none set")
             continue
         for name in post["channels"]:
+            prev = post["queued"].get(name, "")
+            if a.draft and prev.startswith("draft:"):
+                # update the existing Buffer draft in place instead of making a new one
+                inp = build_input(post, name, channels[name])
+                inp.pop("channelId"); inp.pop("needsApproval", None)
+                inp["id"] = prev.split(":", 1)[1]
+                inp["saveToDraft"] = True
+                res = gql(EDIT, {"input": inp})["editPost"]
+                if "post" in res:
+                    print(f"updated draft {post['id']} -> {name}: {inp['id']}")
+                    sent += 1
+                else:
+                    print(f"ERROR {post['id']} -> {name}: {res.get('message')}")
+                continue
             if name in post["queued"]:
                 print(f"skip {post['id']} -> {name}: already queued ({post['queued'][name]})")
                 continue
