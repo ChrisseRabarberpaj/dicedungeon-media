@@ -1,6 +1,6 @@
 # Set approved: true (or tell Claude 'go') to let the workflow queue it.
 id: 000c-trailer-tiktok
-approved: false
+approved: true
 channels:
 - tiktok
 when: '2026-10-20T18:00:00+03:00'
