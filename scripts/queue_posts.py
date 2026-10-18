@@ -145,7 +145,9 @@ def main():
     a = ap.parse_args()
 
     if a.introspect:
-        names = ["CreatePostInput", "InstagramPostMetadataInput", "FacebookPostMetadataInput",
+        ms = gql("{ __schema { mutationType { fields { name args { name type { name ofType { name } } } } } } }")
+        print("Mutations: " + ", ".join(f["name"] for f in ms["__schema"]["mutationType"]["fields"]))
+        names = ["EditPostInput", "UpdatePostInput", "CreatePostInput", "InstagramPostMetadataInput", "FacebookPostMetadataInput",
                  "TikTokPostMetadataInput", "ShareMode", "SchedulingType", "PostType", "PostTypeFacebook"]
         for n in names:
             q = """query($n:String!){ __type(name:$n){ kind enumValues{ name }
