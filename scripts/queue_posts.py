@@ -197,7 +197,7 @@ def main():
 
     sent = 0
     for post in load_posts(a.post):
-        if not post.get("approved") and not a.draft:
+        if not post.get("approved") and not (a.draft or a.update):
             print(f"skip {post['id']}: not approved")
             continue
         if not post.get("queued"):
