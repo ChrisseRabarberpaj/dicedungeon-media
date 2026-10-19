@@ -227,8 +227,7 @@ def main():
                 inp = build_input(post, name, channels[name])
                 inp.pop("channelId"); inp.pop("needsApproval", None)
                 inp["id"] = prev.split(":", 1)[-1]
-                if prev.startswith("draft:"):
-                    inp["saveToDraft"] = True
+                # no saveToDraft: keep whatever state the post has in Buffer (draft or scheduled)
                 res = gql(EDIT, {"input": inp})["editPost"]
                 if "post" in res:
                     print(f"updated {post['id']} -> {name}: {inp['id']} due {res['post'].get('dueAt')}")
