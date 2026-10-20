@@ -6,9 +6,14 @@ channels:
 - facebook
 when: '2026-11-20T18:00:00+02:00'
 media:
-- media/posts/12-december.jpg
+- media/posts/12-december-c1.jpg
+- media/posts/12-december-c2.jpg
+- media/posts/12-december-c3.jpg
+- media/posts/12-december-c4.jpg
+- media/posts/12-december-c5.jpg
+- media/posts/12-december-c6.jpg
 text: |
-  Joulukuun viikonloput täyttyvät. / December weekends are filling up. Free slots are in the booking calendar at dicedungeon.fi. Pikkujoulu packages by email: booking@talecraftgames.com
+  Joulukuun viikonloput täyttyvät. / December weekends are filling up. Free slots are in the booking calendar at dicedungeon.fi. Pikkujoulu nights with a Game Master by email: booking@talecraftgames.com
 
   #dicedungeon #helsinki #dnd #ttrpg #lautapelit #roolipelit #boardgames #pikkujoulut
 queued:
