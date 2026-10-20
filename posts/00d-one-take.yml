@@ -1,0 +1,14 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+id: 00d-one-take
+approved: false
+channels:
+- instagram
+- facebook
+- tiktok
+when: '2026-10-21T18:00:00+03:00'
+media:
+- media/posts/00d-one-take.mp4
+text: |
+  Yksi otto, ei leikkauksia. / One take, no cuts. The lights and music in the Dice Dungeon change with one tap on the tablet: tavern, night, battle, forest. A private game room in Töölö, Helsinki. Book at dicedungeon.fi
+
+  #dicedungeon #helsinki #dnd #ttrpg #lautapelit #roolipelit #boardgames #pikkujoulut

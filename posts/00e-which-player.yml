@@ -1,0 +1,19 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+id: 00e-which-player
+approved: false
+channels:
+- instagram
+- facebook
+when: '2026-10-23T18:00:00+03:00'
+media:
+- media/posts/00e-which-player-c1.jpg
+- media/posts/00e-which-player-c2.jpg
+- media/posts/00e-which-player-c3.jpg
+- media/posts/00e-which-player-c4.jpg
+- media/posts/00e-which-player-c5.jpg
+- media/posts/00e-which-player-c6.jpg
+- media/posts/00e-which-player-c7.jpg
+text: |
+  Kuka sinä olet pöydän ääressä? / Which player are you? The rules lawyer, the snack keeper, the one who talks to every NPC, the dice blamer or the one who laughs at everything. Tag your group and tell us who's who. dicedungeon.fi
+
+  #dicedungeon #helsinki #dnd #ttrpg #lautapelit #roolipelit #boardgames
