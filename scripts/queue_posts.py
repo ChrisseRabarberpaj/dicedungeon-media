@@ -153,6 +153,7 @@ def main():
     ap.add_argument("--post")
     ap.add_argument("--introspect", action="store_true")
     ap.add_argument("--channels", action="store_true")
+    ap.add_argument("--status", action="store_true", help="show Buffer status of posts already sent to Buffer")
     a = ap.parse_args()
 
     if a.introspect:
@@ -178,6 +179,24 @@ def main():
                     parts.append(ty.get("name") or ty.get("kind"))
                     ty = ty.get("ofType")
                 print(f"  {f['name']}: {'/'.join(p for p in parts if p)} default={f['defaultValue']}")
+        return
+    if a.status:
+        t = gql("""{ q: __type(name:"Query"){ fields{ name args{ name type{ name ofType{ name } } } } }
+                     p: __type(name:"Post"){ fields{ name type{ name kind ofType{ name } } } } }""")
+        print("Query fields:", [(f["name"], [x["name"] for x in f["args"]]) for f in t["q"]["fields"]])
+        print("Post fields:", [f["name"] for f in t["p"]["fields"]])
+        wanted = [f["name"] for f in t["p"]["fields"] if f["name"] in
+                  ("id", "status", "dueAt", "sentAt", "error", "externalLink", "channelService", "via")]
+        scal = [w for w in wanted if w != "error"]
+        for post in load_posts(a.post):
+            for name, pid in (post.get("queued") or {}).items():
+                pid = pid.split(":", 1)[-1]
+                q = "query($id: PostId!){ post(input:{id:$id}){ %s %s } }" % (
+                    " ".join(scal), "error { message }" if "error" in wanted else "")
+                try:
+                    print(post["id"], name, json.dumps(gql(q, {"id": pid})["post"], ensure_ascii=False))
+                except Exception as e:
+                    print(post["id"], name, "ERR", str(e)[:300])
         return
     if a.channels:
         orgs = gql("{ account { organizations { id name } } }")["account"]["organizations"]
