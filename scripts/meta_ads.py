@@ -142,10 +142,19 @@ def check():
     summary(lines)
 
 
+def ended(c):
+    st = c.get("stop_time")
+    return bool(st) and dt.datetime.strptime(st, "%Y-%m-%dT%H:%M:%S%z") < dt.datetime.now(dt.timezone.utc)
+
+
+def live_status(c):
+    return "ENDED" if c["effective_status"] == "ACTIVE" and ended(c) else c["effective_status"]
+
+
 def campaign_table():
     known = known_campaign_ids()
     rows = ["| Campaign | Status | Effective | Budget | In ads/ |", "|---|---|---|---|---|"]
-    for c in get_all(f"{act()}/campaigns", {"fields": "id,name,status,effective_status,daily_budget,lifetime_budget", "limit": 100}):
+    for c in get_all(f"{act()}/campaigns", {"fields": "id,name,status,effective_status,daily_budget,lifetime_budget,stop_time", "limit": 100}):
         if c.get("daily_budget"):
             b = f"{int(c['daily_budget']) / 100:.0f}/day"
         elif c.get("lifetime_budget"):
@@ -153,7 +162,7 @@ def campaign_table():
         else:
             b = "ad set level"
         mine = "yes" if c["id"] in known else "**no**"
-        rows.append(f"| {c['name']} | {c['status']} | {c['effective_status']} | {b} | {mine} |")
+        rows.append(f"| {c['name']} | {c['status']} | {live_status(c)} | {b} | {mine} |")
     return "\n".join(rows)
 
 
@@ -181,8 +190,8 @@ def report(days):
             f"{acts.get('link_click', 0)} | {acts.get('post_engagement', 0)} |")
     lines += ["", f"Total spend: {total:.2f} €", ""]
     known = known_campaign_ids()
-    strangers = [c for c in get_all(f"{act()}/campaigns", {"fields": "id,name,effective_status", "limit": 100})
-                 if c["effective_status"] == "ACTIVE" and c["id"] not in known]
+    strangers = [c for c in get_all(f"{act()}/campaigns", {"fields": "id,name,effective_status,stop_time", "limit": 100})
+                 if live_status(c) == "ACTIVE" and c["id"] not in known]
     if strangers:
         lines.append("**Warning: active campaigns not in ads/:** " + ", ".join(c["name"] for c in strangers))
     summary(lines)
