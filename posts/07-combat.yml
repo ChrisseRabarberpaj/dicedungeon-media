@@ -1,6 +1,6 @@
 # Set approved: true (or tell Claude 'go') to let the workflow queue it.
 id: 07-combat
-approved: false
+approved: true
 channels:
 - instagram
 - facebook
