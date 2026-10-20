@@ -16,3 +16,13 @@ Media are served to Buffer from `raw.githubusercontent.com`, which is why this r
 The Buffer key lives only in the repo secret `BUFFER_API_KEY`.
 
 LinkedIn posts (`li-*`) have no Buffer channel; post those by hand.
+
+## Meta ads
+
+Ads live in `ads/*.yml` (template: `ads/_example.yml.txt`). Actions → "Meta ads":
+`check` and `report` only read; `create` builds the campaign, ad set and ad PAUSED;
+`activate` turns one on only if its file says `approved: true`; `pause` always works.
+A report runs every Monday and flags any active campaign that isn't in `ads/`.
+
+The token lives only in the repo secret `META_ACCESS_TOKEN` (a system-user token
+from Talecraft's business portfolio). Account and page ids are in `config/meta.yml`.

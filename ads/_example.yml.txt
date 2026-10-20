@@ -1,0 +1,15 @@
+# Copy to ads/<id>.yml. `create` builds it PAUSED; nothing spends until
+# approved: true and `activate`.
+name: DD Example boost
+approved: false
+objective: OUTCOME_ENGAGEMENT
+optimization_goal: THRUPLAY        # video views; POST_ENGAGEMENT for photo posts
+destination_type: ON_VIDEO         # ON_POST for photo posts
+budget_eur: 20                     # lifetime
+start: '2026-11-02T00:00:00+02:00'
+end: '2026-11-06T23:59:00+02:00'
+fb_post_id: ''                     # the Facebook post to boost
+targeting:
+  radius_km: 25                    # around central Helsinki
+  age_min: 22
+  platforms: [facebook, instagram]

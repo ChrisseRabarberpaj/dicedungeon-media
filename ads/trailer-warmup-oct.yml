@@ -1,0 +1,11 @@
+# Built by hand in Ads Manager on 20 Oct 2026; listed here so reports know it.
+name: DD Trailer warm-up 21-25 Oct
+approved: true
+managed: ads-manager
+budget_eur: 20
+start: '2026-10-21T00:00:00+03:00'
+end: '2026-10-25T23:59:00+03:00'
+ids:
+  campaign: '120248737296430434'
+  adset: '120248737296440434'
+  ad: '120248737296450434'

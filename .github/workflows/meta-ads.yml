@@ -1,0 +1,55 @@
+name: Meta ads
+
+# check and report are read-only. create builds ads PAUSED. activate only works
+# on files with approved: true. Monday mornings a report runs on its own.
+on:
+  schedule:
+    - cron: "0 6 * * 1"   # Monday 09:00 Helsinki summer time, 08:00 winter time
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "check = token and account (read-only), report = last N days (read-only), create = build PAUSED from ads/<id>.yml, pause, activate (needs approved: true)"
+        type: choice
+        options: [check, report, create, pause, activate]
+        default: check
+      ad:
+        description: "Ad file id in ads/ (for create, pause, activate)"
+        required: false
+        default: ""
+      days:
+        description: "Report window in days"
+        required: false
+        default: "7"
+
+permissions:
+  contents: write
+
+concurrency: meta-ads
+
+jobs:
+  meta:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml
+      - name: Run
+        env:
+          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+          ACTION: ${{ inputs.action || 'report' }}
+          AD: ${{ inputs.ad }}
+          DAYS: ${{ inputs.days || '7' }}
+        run: |
+          if [ "$ACTION" = "report" ]; then python scripts/meta_ads.py report --days "$DAYS"
+          elif [ "$ACTION" = "check" ]; then python scripts/meta_ads.py check
+          else python scripts/meta_ads.py "$ACTION" --ad "$AD"; fi
+      - name: Record ids
+        if: ${{ inputs.action == 'create' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898273+github-actions[bot]@users.noreply.github.com"
+          git add ads
+          git diff --cached --quiet || git commit -m "Record Meta ad ids"
+          git push

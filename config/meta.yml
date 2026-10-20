@@ -1,0 +1,5 @@
+# Not secret. The token lives only in the repo secret META_ACCESS_TOKEN.
+api_version: v26.0
+ad_account_id: "748424800872589"   # Talecraft - Ad Account
+business_id: "1659014065051749"
+page_id: ""                        # Dice Dungeon Facebook page; `check` prints it
