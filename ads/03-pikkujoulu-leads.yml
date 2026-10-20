@@ -1,0 +1,34 @@
+# Corporate lead form "Pyydä tarjous". Go given 21 Oct. Needs Lead Ads terms accepted on the Page.
+name: DD Pikkujoulu quote form 30 Oct-20 Nov
+approved: true
+post: 03-pikkujoulut
+creative: link
+link: https://dicedungeon.fi/booking/
+cta: GET_QUOTE
+message: |
+  Pikkujoulut tai tiimipäivä? Pyydä tarjous: 5 tunnin pelinjohtajan vetämä seikkailu yksityisessä huoneessa Töölössä, 600 € koko porukalle. / Pikkujoulu or team day? Ask for a quote.
+objective: OUTCOME_LEADS
+optimization_goal: LEAD_GENERATION
+destination_type: ON_AD
+budget_eur: 30
+start: '2026-10-30T18:30:00+02:00'
+end: '2026-11-20T23:59:00+02:00'
+targeting:
+  radius_km: 25
+  age_min: 28
+  age_max: 60
+  platforms: [facebook, instagram]
+form:
+  name: Pikkujoulu tarjouspyyntö 2026
+  locale: fi_FI
+  privacy_url: https://dicedungeon.fi/privacy-policy
+  intro_title: Pyydä tarjous / Ask for a quote
+  intro_text: Kerro ryhmästä ja toivotusta päivästä, niin lähetämme tarjouksen sähköpostiin. / Tell us about your group and date, and we'll email you an offer.
+  thanks_title: Kiitos! / Thank you!
+  thanks_body: Vastaamme sähköpostilla pian. / We'll reply by email soon.
+  questions:
+    - {type: FULL_NAME}
+    - {type: EMAIL}
+    - {type: COMPANY_NAME}
+    - {type: CUSTOM, key: group_size, label: "Ryhmän koko / Group size"}
+    - {type: CUSTOM, key: date, label: "Toivottu päivä / Preferred date"}

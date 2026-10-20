@@ -1,0 +1,20 @@
+# Ask: pikkujoulu reel as a link ad to the booking page. Go given 21 Oct.
+name: DD Pikkujoulu ask 30 Oct-15 Nov
+approved: true
+post: 03-pikkujoulut
+creative: link
+link: https://dicedungeon.fi/booking/
+cta: BOOK_NOW
+message: |
+  Pikkujoulut 2026: varaa marraskuu nyt. / Pikkujoulu season. A 5-hour Game Master-led adventure for your group in a private room in Töölö, Helsinki. 600 € for the whole group. November Fridays are going.
+objective: OUTCOME_TRAFFIC
+optimization_goal: LANDING_PAGE_VIEWS
+destination_type: WEBSITE
+budget_eur: 40
+start: '2026-10-30T18:30:00+02:00'
+end: '2026-11-15T23:59:00+02:00'
+targeting:
+  radius_km: 25
+  age_min: 25
+  age_max: 55
+  platforms: [facebook, instagram]

@@ -1,0 +1,15 @@
+# Warm up: birthday laughter reel. Go given 21 Oct.
+name: DD Birthdays warm-up 13-16 Nov
+approved: true
+post: 09-birthdays
+creative: boost
+objective: OUTCOME_ENGAGEMENT
+optimization_goal: THRUPLAY
+destination_type: ON_VIDEO
+budget_eur: 20
+start: '2026-11-13T18:30:00+02:00'
+end: '2026-11-16T23:59:00+02:00'
+targeting:
+  radius_km: 25
+  age_min: 22
+  platforms: [facebook, instagram]

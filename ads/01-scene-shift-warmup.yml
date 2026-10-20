@@ -1,0 +1,15 @@
+# Warm up: Monday reel to Helsinki for video views. Go given 21 Oct.
+name: DD Scene shift warm-up 26-29 Oct
+approved: true
+post: 01-scene-shift
+creative: boost
+objective: OUTCOME_ENGAGEMENT
+optimization_goal: THRUPLAY
+destination_type: ON_VIDEO
+budget_eur: 10
+start: '2026-10-26T18:30:00+02:00'
+end: '2026-10-29T23:59:00+02:00'
+targeting:
+  radius_km: 25
+  age_min: 22
+  platforms: [facebook, instagram]

@@ -273,6 +273,32 @@ def list_posts():
     summary(lines)
 
 
+def lead_form(ad, page_id):
+    """Create the ad's instant form once and remember its id."""
+    if ad.get("form_id"):
+        return ad["form_id"]
+    f = ad["form"]
+    r = api("POST", f"{page_id}/leadgen_forms", {
+        "name": f["name"],
+        "locale": f.get("locale", "fi_FI"),
+        "questions": f["questions"],
+        "privacy_policy": {"url": f["privacy_url"], "link_text": f.get("privacy_text", "Tietosuojaseloste")},
+        "context_card": {"title": f["intro_title"], "style": "PARAGRAPH_STYLE", "content": [f["intro_text"]]},
+        "thank_you_page": {"title": f["thanks_title"], "body": f["thanks_body"],
+                           "button_type": "VIEW_WEBSITE", "button_text": "dicedungeon.fi", "website_url": ad["link"]},
+    }, token=page_token(page_id))
+    ad["form_id"] = r["id"]
+    save(ad)
+    print("lead form", r["id"])
+    return r["id"]
+
+
+def cta(ad, page_id):
+    if ad.get("form"):
+        return {"type": ad.get("cta", "GET_QUOTE"), "value": {"lead_gen_form_id": lead_form(ad, page_id)}}
+    return {"type": ad.get("cta", "BOOK_NOW"), "value": {"link": ad["link"]}}
+
+
 def create(ad_id):
     ads = load_ads()
     if ad_id not in ads:
@@ -326,6 +352,7 @@ def create(ad_id):
             "destination_type": ad.get("destination_type", "ON_VIDEO"),
             "bid_strategy": "LOWEST_COST_WITHOUT_CAP",
             "targeting": targeting,
+            **({"promoted_object": {"page_id": page_id}} if ad.get("form") else {}),
         })
         ids["adset"] = r["id"]
         save(ad)
@@ -344,6 +371,8 @@ def create(ad_id):
             story = f"{page_id}_{story}"
         if ad.get("creative", "boost") == "boost":
             spec = {"name": f"{ad['name']} creative", "object_story_id": story}
+            if c.get("instagram_id"):
+                spec["instagram_user_id"] = c["instagram_id"]
         else:
             if not video:
                 sys.exit("link creative needs a video post")
@@ -358,7 +387,7 @@ def create(ad_id):
                         "video_id": str(video),
                         "image_url": thumb,
                         "message": message,
-                        "call_to_action": {"type": ad.get("cta", "BOOK_NOW"), "value": {"link": ad["link"]}},
+                        "call_to_action": cta(ad, page_id),
                     },
                 },
                 "url_tags": f"utm_source=meta&utm_medium=paid&utm_campaign={ad_id}",
