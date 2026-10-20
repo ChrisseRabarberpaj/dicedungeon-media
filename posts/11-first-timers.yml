@@ -4,15 +4,19 @@ approved: false
 channels:
 - instagram
 - facebook
-- tiktok
 when: '2026-11-18T18:00:00+02:00'
 media:
-- media/posts/11-first-timers-v3.mp4
+- media/posts/11-first-time-c1.jpg
+- media/posts/11-first-time-c2.jpg
+- media/posts/11-first-time-c3.jpg
+- media/posts/11-first-time-c4.jpg
+- media/posts/11-first-time-c5.jpg
+- media/posts/11-first-time-c6.jpg
+- media/posts/11-first-time-c7.jpg
 text: |
-  Et ole koskaan pelannut? Ei haittaa. / Never played D&D? That's what the GM is for. You turn up, you get a character, you play. Three hours later you know whether you're a wizard or a rogue.
+  Et ole koskaan pelannut? Ei haittaa. / Never played D&D? Five things to know before your first session. The Game Master explains everything, the dice and sheets are on the table, and it's just your group in the room. Save this for the friend who keeps saying "maybe next time". Book a Game Master night at dicedungeon.fi
 
   #dicedungeon #helsinki #dnd #ttrpg #lautapelit #roolipelit #boardgames #pikkujoulut
 queued:
   instagram: draft:6ad43bca0b0d72757a0633be
   facebook: draft:6ad43bcaae173d6e00e4b326
-  tiktok: draft:6ad6e6a3cba41b01405ccc1b

@@ -1,0 +1,16 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+id: 31-beginner-night
+approved: false
+channels:
+- instagram
+- facebook
+- tiktok
+when: '2027-01-08T18:00:00+02:00'
+media:
+- media/posts/11-first-timers-v3.mp4
+text: |
+  Uusi vuosi, uusi harrastus? / Never played D&D? That's what the Game Master is for. You turn up, you get a character, you play. Three hours later you know whether you're a wizard or a rogue. Book a Game Master night at dicedungeon.fi
+
+  #dicedungeon #helsinki #dnd #ttrpg #lautapelit #roolipelit #boardgames
+queued:
+  tiktok: draft:6ad6e6a3cba41b01405ccc1b
