@@ -1,8 +1,10 @@
 name: Queue approved posts in Buffer
 
-# Manual only: nothing reaches Buffer until someone presses "Run workflow"
-# (or runs `gh workflow run queue-posts.yml`). dry-run is the default.
+# Manual runs default to dry-run. The daily schedule only moves posts that are
+# already approved: true into free Buffer slots (free plan: 10 per channel).
 on:
+  schedule:
+    - cron: "15 5 * * *"   # 08:15 Helsinki summer time, 07:15 winter time
   workflow_dispatch:
     inputs:
       post:
@@ -47,7 +49,7 @@ jobs:
           if [ "$ACTION" = "update" ]; then args+=(--update); fi
           python scripts/queue_posts.py "${args[@]}"
       - name: Record queued ids
-        if: ${{ inputs.action == 'send' || inputs.action == 'draft' }}
+        if: ${{ github.event_name == 'schedule' || inputs.action == 'send' || inputs.action == 'draft' }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898273+github-actions[bot]@users.noreply.github.com"
