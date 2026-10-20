@@ -4,7 +4,6 @@ approved: true
 channels:
 - facebook
 when: '2026-10-20T18:00:00+03:00'
-media_note: Short trailer already on Instagram, so Facebook only. Old Instagram draft in Buffer can be deleted.
 media:
 - media/posts/000b-trailer-short-v2.mp4
 text: |
@@ -12,5 +11,4 @@ text: |
 
   #helsinki #thingstodoinhelsinki #boardgames #dnd #ttrpg #dicedungeon
 queued:
-  instagram: draft:6ad434a3938409f1d0b246c0
   facebook: 6ad434a4ae173d6e00e35ee4
