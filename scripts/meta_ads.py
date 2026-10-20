@@ -197,10 +197,61 @@ def report(days):
     summary(lines)
 
 
-def to_unix(when):
+def to_unix(when, not_before_now=False):
     if isinstance(when, str):
         when = dt.datetime.fromisoformat(when)
-    return int(when.timestamp())
+    t = int(when.timestamp())
+    if not_before_now:
+        t = max(t, int(dt.datetime.now(dt.timezone.utc).timestamp()) + 300)
+    return t
+
+
+def post_text(post_id):
+    with open(os.path.join(ROOT, "posts", f"{post_id}.yml")) as f:
+        return (yaml.safe_load(f) or {}).get("text", "")
+
+
+def norm(t):
+    return " ".join((t or "").split())[:60].lower()
+
+
+def recent_page_content(page_id):
+    posts = api("GET", f"{page_id}/posts", {"fields": "id,message,created_time,attachments{media_type,target{id}}", "limit": 25}).get("data", [])
+    reels = api("GET", f"{page_id}/video_reels", {"fields": "id,description,created_time,post_id", "limit": 25}, soft=True) or {}
+    return posts, reels.get("data", [])
+
+
+def find_published(page_id, post_id):
+    """Find the Facebook post Buffer published for posts/<post_id>.yml by its caption."""
+    key = norm(post_text(post_id))
+    posts, reels = recent_page_content(page_id)
+    for p in posts:
+        if norm(p.get("message")) == key:
+            vid = None
+            for a in (p.get("attachments") or {}).get("data", []):
+                if a.get("media_type") == "video":
+                    vid = (a.get("target") or {}).get("id")
+            return p["id"], vid
+    for r in reels:
+        if norm(r.get("description")) == key:
+            story = r.get("post_id")
+            if story and "_" not in str(story):
+                story = f"{page_id}_{story}"
+            return story, r["id"]
+    return None, None
+
+
+def list_posts():
+    c = cfg()
+    page = api("GET", c["page_id"], {"fields": "name,leadgen_tos_accepted"}, soft=True) or {}
+    lines = [f"## Recent content on {page.get('name')}", f"Lead ads terms accepted: {page.get('leadgen_tos_accepted')}", ""]
+    posts, reels = recent_page_content(c["page_id"])
+    for p in posts:
+        kinds = ",".join(a.get("media_type", "?") for a in (p.get("attachments") or {}).get("data", []))
+        lines.append(f"- post {p['id']} {p['created_time'][:16]} [{kinds}] {norm(p.get('message'))[:50]}")
+    for r in reels:
+        lines.append(f"- reel {r['id']} post {r.get('post_id')} {r['created_time'][:16]} {norm(r.get('description'))[:50]}")
+    summary(lines)
 
 
 def create(ad_id):
@@ -213,6 +264,13 @@ def create(ad_id):
     page_id = ad.get("page_id") or c.get("page_id")
     if not page_id:
         sys.exit("Set page_id in config/meta.yml (run `check` to list it)")
+
+    if ad.get("post") and not ad.get("fb_post_id"):
+        story, video = find_published(page_id, ad["post"])
+        if not story:
+            sys.exit(f"posts/{ad['post']} is not on the Facebook Page yet; nothing created")
+        ad["fb_post_id"], ad["video_id"] = story, video
+        save(ad)
 
     if not ids.get("campaign"):
         r = api("POST", f"{act()}/campaigns", {
@@ -242,7 +300,7 @@ def create(ad_id):
             "campaign_id": ids["campaign"],
             "status": "PAUSED",
             "lifetime_budget": int(round(float(ad["budget_eur"]) * 100)),
-            "start_time": to_unix(ad["start"]),
+            "start_time": to_unix(ad["start"], not_before_now=True),
             "end_time": to_unix(ad["end"]),
             "billing_event": "IMPRESSIONS",
             "optimization_goal": ad.get("optimization_goal", "THRUPLAY"),
@@ -255,9 +313,38 @@ def create(ad_id):
         print("ad set", r["id"])
 
     if not ids.get("ad"):
-        post = str(ad["fb_post_id"])
-        story = post if "_" in post else f"{page_id}_{post}"
-        cr = api("POST", f"{act()}/adcreatives", {"name": f"{ad['name']} creative", "object_story_id": story})
+        story, video = ad.get("fb_post_id"), ad.get("video_id")
+        if not story and ad.get("post"):
+            story, video = find_published(page_id, ad["post"])
+            if not story:
+                sys.exit(f"posts/{ad['post']} is not on the Facebook Page yet; ad set left paused, try again later")
+            ad["fb_post_id"], ad["video_id"] = story, video
+            save(ad)
+        story = str(story)
+        if "_" not in story:
+            story = f"{page_id}_{story}"
+        if ad.get("creative", "boost") == "boost":
+            spec = {"name": f"{ad['name']} creative", "object_story_id": story}
+        else:
+            if not video:
+                sys.exit("link creative needs a video post")
+            thumb = api("GET", str(video), {"fields": "picture"}).get("picture")
+            message = ad.get("message") or post_text(ad["post"]).split("\n\n#")[0].strip()
+            spec = {
+                "name": f"{ad['name']} creative",
+                "object_story_spec": {
+                    "page_id": page_id,
+                    "instagram_user_id": c.get("instagram_id"),
+                    "video_data": {
+                        "video_id": str(video),
+                        "image_url": thumb,
+                        "message": message,
+                        "call_to_action": {"type": ad.get("cta", "BOOK_NOW"), "value": {"link": ad["link"]}},
+                    },
+                },
+                "url_tags": f"utm_source=meta&utm_medium=paid&utm_campaign={ad_id}",
+            }
+        cr = api("POST", f"{act()}/adcreatives", spec)
         r = api("POST", f"{act()}/ads", {
             "name": f"{ad['name']} ad",
             "adset_id": ids["adset"],
@@ -289,7 +376,7 @@ def set_status(ad_id, status):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("action", choices=["check", "report", "create", "pause", "activate"])
+    ap.add_argument("action", choices=["check", "report", "posts", "create", "launch", "pause", "activate"])
     ap.add_argument("--ad", default="")
     ap.add_argument("--days", type=int, default=7)
     a = ap.parse_args()
@@ -297,11 +384,16 @@ def main():
         check()
     elif a.action == "report":
         report(a.days)
+    elif a.action == "posts":
+        list_posts()
     else:
         if not a.ad:
             sys.exit("--ad is required")
         if a.action == "create":
             create(a.ad)
+        elif a.action == "launch":
+            create(a.ad)
+            set_status(a.ad, "ACTIVE")
         else:
             set_status(a.ad, "PAUSED" if a.action == "pause" else "ACTIVE")
 
