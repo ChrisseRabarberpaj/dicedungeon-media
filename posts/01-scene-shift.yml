@@ -6,9 +6,8 @@ channels:
 - facebook
 - tiktok
 when: '2026-10-26T18:00:00+02:00'
-media_note: Cut from the long trailer (54.5-71 s). Replace with a fresh Sunday clip if you make one.
 media:
-- media/posts/01-scene-shift-v2.mp4
+- media/posts/01-scene-shift-v3.mp4
 text: |
   Yksi napautus ja huone vaihtaa maailmaa. / One tap on the dashboard and the room changes world. Lights, sound, everything. This is where your next game night happens. Caloniuksenkatu 9, Helsinki. Book at dicedungeon.fi
 

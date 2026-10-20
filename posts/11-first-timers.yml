@@ -4,9 +4,10 @@ approved: false
 channels:
 - instagram
 - facebook
+- tiktok
 when: '2026-11-18T18:00:00+02:00'
 media:
-- media/posts/11-first-timers.jpg
+- media/posts/11-first-timers-v3.mp4
 text: |
   Et ole koskaan pelannut? Ei haittaa. / Never played D&D? That's what the GM is for. You turn up, you get a character, you play. Three hours later you know whether you're a wizard or a rogue.
 

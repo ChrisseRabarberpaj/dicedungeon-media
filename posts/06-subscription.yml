@@ -4,11 +4,12 @@ approved: false
 channels:
 - instagram
 - facebook
+- tiktok
 when: '2026-11-06T18:00:00+02:00'
 media:
-- media/posts/06-subscription.jpg
+- media/posts/06-subscription-v3.mp4
 text: |
-  100 €/kk, yksi 6 tunnin ilta joka kuukausi. / Running a campaign? The subscription gives you one 6-hour session every month for 100 € instead of 200. Six-month commitment, booking code by email, any free slot in the calendar. dicedungeon.fi
+  100 €/kk, yksi 6 tunnin ilta joka kuukausi. / Running a campaign? The subscription gives you one 6-hour session every month for 100 € instead of 200. Six-month commitment, booking code by email, any free slot in the calendar. Only four spots. dicedungeon.fi
 
   #dicedungeon #helsinki #dnd #ttrpg #lautapelit #roolipelit #boardgames #pikkujoulut
 queued:

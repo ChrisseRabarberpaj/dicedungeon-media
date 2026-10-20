@@ -4,11 +4,14 @@ approved: false
 channels:
 - instagram
 - facebook
+- tiktok
 when: '2026-11-04T18:00:00+02:00'
 media:
-- media/posts/05-game-shelf.jpg
+- media/posts/05-game-shelf-v3.mp4
 text: |
   Yli 50 peliä hyllyssä. / Not only D&D. Fifty-plus board games and a poker set on the shelf, so a group that has never rolled a d20 still has a great night. Pick when you arrive or tell us what you like and we'll have it on the table.
+
+  Koodi SHELF10: -10 % huonevarauksesta 11.11. asti. / Code SHELF10: 10 % off a room booking until 11 Nov, one use per person.
 
   #dicedungeon #helsinki #dnd #ttrpg #lautapelit #roolipelit #boardgames #pikkujoulut
 queued:

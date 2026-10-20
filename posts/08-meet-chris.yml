@@ -4,9 +4,10 @@ approved: false
 channels:
 - instagram
 - facebook
+- tiktok
 when: '2026-11-11T18:00:00+02:00'
 media:
-- media/posts/08-meet-chris.jpg
+- media/posts/08-meet-chris-v3.mp4
 text: |
   Tapaa Chris. / Meet Chris: archaeologist turned social worker, ten-plus years at the table, worlds built from folklore and ancient languages, and puns. Many puns. D&D, Mörk Borg, Monster of the Week, one-page RPGs, in English or Finnish. All ages welcome.
 
