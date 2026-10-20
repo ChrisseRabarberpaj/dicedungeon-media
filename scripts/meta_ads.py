@@ -215,6 +215,15 @@ def page_token(page_id):
     return _PAGE_TOKEN[page_id]
 
 
+_PAGE_TOKEN = {}
+
+
+def page_token(page_id):
+    if page_id not in _PAGE_TOKEN:
+        _PAGE_TOKEN[page_id] = api("GET", str(page_id), {"fields": "access_token"})["access_token"]
+    return _PAGE_TOKEN[page_id]
+
+
 def post_text(post_id):
     with open(os.path.join(ROOT, "posts", f"{post_id}.yml")) as f:
         return (yaml.safe_load(f) or {}).get("text", "")
