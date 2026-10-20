@@ -37,8 +37,8 @@ def cfg():
         return yaml.safe_load(f)
 
 
-def api(method, path, params=None, soft=False):
-    token = os.environ.get("META_ACCESS_TOKEN")
+def api(method, path, params=None, soft=False, token=None):
+    token = token or os.environ.get("META_ACCESS_TOKEN")
     if not token:
         sys.exit("META_ACCESS_TOKEN is not set")
     c = cfg()
@@ -206,6 +206,15 @@ def to_unix(when, not_before_now=False):
     return t
 
 
+_PAGE_TOKEN = {}
+
+
+def page_token(page_id):
+    if page_id not in _PAGE_TOKEN:
+        _PAGE_TOKEN[page_id] = api("GET", str(page_id), {"fields": "access_token"})["access_token"]
+    return _PAGE_TOKEN[page_id]
+
+
 def post_text(post_id):
     with open(os.path.join(ROOT, "posts", f"{post_id}.yml")) as f:
         return (yaml.safe_load(f) or {}).get("text", "")
@@ -216,8 +225,9 @@ def norm(t):
 
 
 def recent_page_content(page_id):
-    posts = api("GET", f"{page_id}/posts", {"fields": "id,message,created_time,attachments{media_type,target{id}}", "limit": 25}).get("data", [])
-    reels = api("GET", f"{page_id}/video_reels", {"fields": "id,description,created_time,post_id", "limit": 25}, soft=True) or {}
+    pt = page_token(page_id)
+    posts = api("GET", f"{page_id}/posts", {"fields": "id,message,created_time,attachments{media_type,target{id}}", "limit": 25}, token=pt).get("data", [])
+    reels = api("GET", f"{page_id}/video_reels", {"fields": "id,description,created_time,post_id", "limit": 25}, soft=True, token=pt) or {}
     return posts, reels.get("data", [])
 
 
@@ -243,7 +253,7 @@ def find_published(page_id, post_id):
 
 def list_posts():
     c = cfg()
-    page = api("GET", c["page_id"], {"fields": "name,leadgen_tos_accepted"}, soft=True) or {}
+    page = api("GET", c["page_id"], {"fields": "name,leadgen_tos_accepted"}, soft=True, token=page_token(c["page_id"])) or {}
     lines = [f"## Recent content on {page.get('name')}", f"Lead ads terms accepted: {page.get('leadgen_tos_accepted')}", ""]
     posts, reels = recent_page_content(c["page_id"])
     for p in posts:
