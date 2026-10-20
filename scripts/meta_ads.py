@@ -37,7 +37,7 @@ def cfg():
         return yaml.safe_load(f)
 
 
-def api(method, path, params=None):
+def api(method, path, params=None, soft=False):
     token = os.environ.get("META_ACCESS_TOKEN")
     if not token:
         sys.exit("META_ACCESS_TOKEN is not set")
@@ -61,6 +61,9 @@ def api(method, path, params=None):
             return json.load(r)
     except urllib.error.HTTPError as e:
         body = e.read().decode(errors="replace")
+        if soft:
+            print(f"(skipped {path}: {body[:200]})")
+            return None
         try:
             err = json.loads(body)["error"]
             msg = err.get("error_user_msg") or err.get("message")
@@ -117,7 +120,7 @@ def known_campaign_ids():
 
 def check():
     me = api("GET", "me", {"fields": "id,name"})
-    a = api("GET", act(), {"fields": "name,account_status,currency,amount_spent,disable_reason,business"})
+    a = api("GET", act(), {"fields": "name,account_status,currency,amount_spent,disable_reason"})
     status = {1: "active", 2: "disabled", 3: "unsettled", 7: "pending review", 9: "in grace period", 101: "closed"}
     lines = [
         "## Meta check",
@@ -129,6 +132,12 @@ def check():
     ]
     for p in get_all(f"{act()}/promote_pages", {"fields": "id,name"}):
         lines.append(f"- {p['name']}: {p['id']}")
+        info = api("GET", p["id"], {"fields": "followers_count,fan_count,instagram_business_account{id,username,followers_count,media_count}"}, soft=True)
+        if info:
+            lines.append(f"  Facebook followers {info.get('followers_count')}, likes {info.get('fan_count')}")
+            ig = info.get("instagram_business_account")
+            if ig:
+                lines.append(f"  Instagram @{ig.get('username')} ({ig['id']}): {ig.get('followers_count')} followers, {ig.get('media_count')} posts")
     lines += ["", campaign_table()]
     summary(lines)
 
