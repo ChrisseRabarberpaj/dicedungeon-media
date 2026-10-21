@@ -1,0 +1,16 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+# Must be published on Facebook before the 03-pikkujoulu-leads ad starts (30 Oct 18:30).
+id: 03b-tiimipaiva
+approved: false
+channels:
+- instagram
+- facebook
+- tiktok
+when: '2026-10-27T18:00:00+02:00'
+media:
+- media/posts/03b-tiimipaiva.mp4
+text: |
+  Tiimipäivä, jota kukaan ei yritä välttää. / Team day idea: a Game Master runs a 5-hour role-playing adventure for your team in our private room in Töölö. Everyone gets a character, nobody needs experience, and the story is built around your group. Up to 10 people, 750 €, invoiced to the company. booking@talecraftgames.com
+
+  #dicedungeon #helsinki #dnd #ttrpg #roolipelit #tiimipäivä #tyhy #pikkujoulut
+queued: {}

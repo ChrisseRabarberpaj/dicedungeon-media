@@ -1,4 +1,4 @@
-# Ask: pikkujoulu reel as a link ad to the booking page. Go given 21 Oct.
+# Ask: pikkujoulu room reel (6 h, 200 €) as a link ad to the booking page. Go given 21 Oct.
 name: DD Pikkujoulu ask 30 Oct-15 Nov
 approved: true
 post: 03-pikkujoulut
@@ -6,7 +6,7 @@ creative: link
 link: https://dicedungeon.fi/booking/
 cta: BOOK_NOW
 message: |
-  Pikkujoulut 2026: varaa marraskuu nyt. / Pikkujoulu season. A 5-hour Game Master-led adventure for your group in a private room in Töölö, Helsinki. 600 € for the whole group. November Fridays are going.
+  Pikkujoulut omalla porukalla: varaa marraskuu nyt. / Pikkujoulu season. A private room in Töölö, Helsinki, yours for 6 hours: games, lights, sound, bring your own food and drinks. 200 € for the whole group. November Fridays are going.
 objective: OUTCOME_TRAFFIC
 optimization_goal: LANDING_PAGE_VIEWS
 destination_type: WEBSITE
