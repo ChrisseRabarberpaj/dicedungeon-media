@@ -1,6 +1,6 @@
 # Set approved: true (or tell Claude 'go') to let the workflow queue it.
 id: 00g-trailer-short-fb
-approved: true
+approved: false
 channels:
 - facebook
 when: '2026-10-24T12:00:00+03:00'
@@ -12,4 +12,4 @@ text: |
 
   #helsinki #lautapelit #roolipelit #dnd #boardgames #dicedungeon
 queued:
-  facebook: 6ad7edbd294af05c91bb858d
+  facebook: draft:6ad7edbd294af05c91bb858d
