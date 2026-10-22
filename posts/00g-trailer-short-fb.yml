@@ -4,9 +4,9 @@ approved: true
 channels:
 - facebook
 when: '2026-10-24T12:00:00+03:00'
-media_note: Short trailer (0:35) on Facebook; the long one is already there (Mar and 20 Oct).
+media_note: Short trailer v2 (0:26.6, ends before the old giveaway text) on Facebook; the long one is already there (Mar and 20 Oct).
 media:
-- media/posts/00f-trailer-short.mp4
+- media/posts/00f-trailer-short-v2.mp4
 text: |
   Helsingin salainen pelihuone 🎲 / Helsinki's hidden game room. A private room for your group in Töölö, where the lights and sound change with the game. Board games, cards or a full role-playing adventure. Book at dicedungeon.fi
 

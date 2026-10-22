@@ -1,0 +1,15 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+# Repost of 00f on TikTok with the trimmed video (00f had the old giveaway text at the end). Go given 22 Oct.
+id: 00h-trailer-short-tiktok
+approved: true
+channels:
+- tiktok
+when: '2026-10-25T18:00:00+02:00'
+media_note: Short trailer v2 (0:26.6), ends on the logo before the old giveaway text.
+media:
+- media/posts/00f-trailer-short-v2.mp4
+text: |
+  Helsingin salainen pelihuone 🎲 / Helsinki's hidden game room. Private room for your group in Töölö, with lights and sound that change with the game. dicedungeon.fi
+
+  #helsinki #lautapelit #roolipelit #dnd #ttrpg #boardgames #thingstodoinhelsinki #dicedungeon
+queued: {}
