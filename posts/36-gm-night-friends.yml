@@ -1,0 +1,17 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+# GM night for friend groups (600 €), cut from the D&D session footage. Go given 22 Oct.
+id: 36-gm-night-friends
+approved: true
+channels:
+- instagram
+- facebook
+- tiktok
+when: '2026-11-03T18:00:00+02:00'
+media_note: 42 GM night friends reel (script version, steady "No experience needed" shot).
+media:
+- media/posts/36-gm-night-friends.mp4
+text: |
+  D&D-ilta kavereiden kanssa, pelinjohtaja hoitaa loput 🎲 / Never played D&D? Bring your friends, we bring the Game Master. Five hours of your own adventure in our private room in Töölö, no experience needed. 600 € for the whole group. dicedungeon.fi
+
+  #dicedungeon #helsinki #dnd #ttrpg #roolipelit #lautapelit #boardgames #thingstodoinhelsinki
+queued: {}

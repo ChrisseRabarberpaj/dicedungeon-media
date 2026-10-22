@@ -12,9 +12,9 @@ on:
         required: false
         default: ""
       action:
-        description: "dry-run = print only, draft = Buffer drafts to preview (nothing publishes), send = queue approved posts, update = push file edits to posts already in Buffer, inspect = list channels (read-only)"
+        description: "dry-run = print only, draft = Buffer drafts to preview (nothing publishes), send = queue approved posts, update = push file edits to posts already in Buffer, unschedule = turn a scheduled post back into a Buffer draft, inspect = list channels (read-only)"
         type: choice
-        options: [dry-run, draft, send, update, inspect, status]
+        options: [dry-run, draft, send, update, unschedule, inspect, status]
         default: dry-run
 
 permissions:
@@ -51,9 +51,13 @@ jobs:
           if [ "$ACTION" = "dry-run" ]; then args+=(--dry-run); fi
           if [ "$ACTION" = "draft" ]; then args+=(--draft); fi
           if [ "$ACTION" = "update" ]; then args+=(--update); fi
+          if [ "$ACTION" = "unschedule" ]; then
+            if [ -z "$POST_ID" ]; then echo "unschedule needs a post id"; exit 1; fi
+            args+=(--unschedule)
+          fi
           python scripts/queue_posts.py "${args[@]}"
       - name: Record queued ids
-        if: ${{ github.event_name == 'schedule' || inputs.action == 'send' || inputs.action == 'draft' }}
+        if: ${{ github.event_name == 'schedule' || inputs.action == 'send' || inputs.action == 'draft' || inputs.action == 'unschedule' }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898273+github-actions[bot]@users.noreply.github.com"

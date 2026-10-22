@@ -150,6 +150,7 @@ def main():
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--update", action="store_true", help="push file changes to posts already scheduled in Buffer")
     ap.add_argument("--draft", action="store_true", help="create Buffer drafts (nothing publishes); ignores approved:")
+    ap.add_argument("--unschedule", action="store_true", help="turn scheduled Buffer posts back into drafts (needs --post); nothing is deleted")
     ap.add_argument("--post")
     ap.add_argument("--introspect", action="store_true")
     ap.add_argument("--channels", action="store_true")
@@ -216,7 +217,7 @@ def main():
 
     sent = 0
     for post in load_posts(a.post):
-        if not post.get("approved") and not (a.draft or a.update):
+        if not post.get("approved") and not (a.draft or a.update or a.unschedule):
             print(f"skip {post['id']}: not approved")
             continue
         if not post.get("queued"):
@@ -226,6 +227,25 @@ def main():
             continue
         for name in post["channels"]:
             prev = post["queued"].get(name, "")
+            if a.unschedule:
+                # pull a scheduled post back to a Buffer draft (nothing is deleted)
+                if not prev or prev.startswith("draft:"):
+                    print(f"skip {post['id']} -> {name}: not scheduled")
+                    continue
+                inp = build_input(post, name, channels[name])
+                inp.pop("channelId"); inp.pop("needsApproval", None)
+                inp["id"] = prev
+                inp["saveToDraft"] = True
+                res = gql(EDIT, {"input": inp})["editPost"]
+                if "post" in res:
+                    post["queued"][name] = "draft:" + prev
+                    post["approved"] = False
+                    save(post)
+                    print(f"unscheduled {post['id']} -> {name}: {prev} is now a Buffer draft")
+                    sent += 1
+                else:
+                    print(f"ERROR {post['id']} -> {name}: {res.get('message')}")
+                continue
             if a.draft and prev.startswith("draft:"):
                 # update the existing Buffer draft in place instead of making a new one
                 inp = build_input(post, name, channels[name])
