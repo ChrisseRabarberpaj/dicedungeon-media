@@ -340,6 +340,9 @@ def create(ad_id):
             "publisher_platforms": t.get("platforms", ["facebook", "instagram"]),
             "targeting_automation": {"advantage_audience": 0},
         }
+        if t.get("custom_audiences"):
+            # warm audiences (video viewers, Instagram engagers, site visitors); Meta reaches anyone in ANY of them
+            targeting["custom_audiences"] = [{"id": str(a)} for a in t["custom_audiences"]]
         r = api("POST", f"{act()}/adsets", {
             "name": f"{ad['name']} ad set",
             "campaign_id": ids["campaign"],

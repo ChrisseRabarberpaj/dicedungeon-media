@@ -15,6 +15,13 @@ start: '2026-10-30T18:30:00+02:00'
 end: '2026-11-15T23:59:00+02:00'
 targeting:
   radius_km: 25
-  age_min: 25
-  age_max: 55
+  age_min: 22
+  age_max: 60
+  # Warm audiences only (anyone in any of these, within 25 km): people who watched 50% of our videos,
+  # Instagram engagers (365 d) and website visitors (30 d). Before launch on 30 Oct, add the
+  # 26 Oct scene-shift reel to "DD video viewers 50% - 365d" in Ads Manager.
+  custom_audiences:
+  - '120248705780640434'   # DD video viewers 50% - 365d
+  - '120248705787660434'   # DD Instagram engagers - 365d
+  - '120248705800350434'   # DD website visitors - 30d
   platforms: [facebook, instagram]
