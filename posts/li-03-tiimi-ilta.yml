@@ -1,0 +1,19 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+id: li-03-tiimi-ilta
+approved: false
+channels:
+- linkedin
+when: '2026-11-10T09:00:00+02:00'
+media_note: 'Photo: wide shot. Post manually on LinkedIn.'
+media: []
+text: |
+  Miltä pelinjohtajan vetämä tiimi-ilta Dice Dungeonissa oikeasti näyttää?
+
+  Ennen iltaa pelinjohtaja soittaa teille. Kuka tiimissä on hiljainen, kuka kilpailuhenkinen, mistä te puhutte kahvipöydässä. Siitä rakennetaan tarina.
+
+  Illalla jokainen saa valmiin hahmon, eikä kenenkään tarvitse osata sääntöjä. Pelinjohtaja vetää viisi tuntia, valot ja äänet vaihtuvat tarinan mukana, ja jossain vaiheessa talouspäällikkö neuvottelee lohikäärmeen kanssa.
+
+  Jälkeenpäin teillä on tarina, josta puhutaan vielä ensi vuoden pikkujouluissa.
+
+  Enintään 7 pelaajaa, Töölössä, suomeksi, ruotsiksi tai englanniksi. booking@talecraftgames.com
+queued: {}
