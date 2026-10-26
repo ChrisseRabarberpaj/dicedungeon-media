@@ -1,0 +1,20 @@
+# Birthdays (room 6 h, 200 €). Replaces the 09-birthdays-warmup views ad. Go given 26 Oct. Book now, pixel-tracked (Amelia events on /booking/).
+name: DD Birthdays book 14 Nov-6 Dec
+approved: true
+post: 09-birthdays
+creative: link
+link: https://dicedungeon.fi/booking/
+cta: BOOK_NOW
+message: |
+  Synttärit ilman baarijonoa: yksityinen pelihuone Töölössä kuudeksi tunniksi, pelit, valot ja äänet, omat eväät mukaan. 200 € koko porukalle. Valitse varauksessa 6 hours. / Birthday coming up? A private games room in Töölö for six hours: games, lights, sound, bring your own food and drinks. 200 € for the whole group. Pick the 6-hour room when you book.
+objective: OUTCOME_TRAFFIC
+optimization_goal: LANDING_PAGE_VIEWS
+destination_type: WEBSITE
+budget_eur: 50
+start: '2026-11-14T18:30:00+02:00'
+end: '2026-12-06T23:59:00+02:00'
+targeting:
+  radius_km: 25
+  age_min: 20
+  age_max: 45
+  platforms: [facebook, instagram]

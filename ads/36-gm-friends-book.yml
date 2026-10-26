@@ -1,0 +1,20 @@
+# GM night with friends (One Shot 600 €). Go given 26 Oct. Book now, pixel-tracked (Amelia events on /booking/).
+name: DD GM night with friends 5-22 Nov
+approved: true
+post: 36-gm-night-friends
+creative: link
+link: https://dicedungeon.fi/booking/
+cta: BOOK_NOW
+message: |
+  D&D-ilta kavereiden kanssa: pelinjohtaja, oma huone Töölössä ja viisi tuntia seikkailua, kokemusta ei tarvita. 600 € koko porukalle, enintään 7 pelaajaa. Valitse varauksessa One Shot. / D&D night with friends: a Game Master, a private room in Töölö and five hours of adventure, no experience needed. 600 € for the whole group, up to 7 players. Pick One Shot when you book.
+objective: OUTCOME_TRAFFIC
+optimization_goal: LANDING_PAGE_VIEWS
+destination_type: WEBSITE
+budget_eur: 60
+start: '2026-11-05T18:30:00+02:00'
+end: '2026-11-22T23:59:00+02:00'
+targeting:
+  radius_km: 25
+  age_min: 20
+  age_max: 45
+  platforms: [facebook, instagram]
