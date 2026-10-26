@@ -425,9 +425,23 @@ def set_status(ad_id, status):
             print(f"{k} {ids[k]} -> {status}")
 
 
+def set_budget(ad_id):
+    ad = load_ads().get(ad_id)
+    if not ad:
+        sys.exit(f"no ads/{ad_id}.yml")
+    adset = (ad.get("ids") or {}).get("adset")
+    cents = int(round(float(ad["budget_eur"]) * 100))
+    if not adset:
+        print(f"{ad_id}: not created yet, budget {cents / 100:.2f} EUR will be used at launch")
+        return
+    api("POST", adset, {"lifetime_budget": cents})
+    got = api("GET", adset, {"fields": "lifetime_budget,effective_status"})
+    print(f"{ad_id}: ad set {adset} lifetime budget now {int(got['lifetime_budget']) / 100:.2f} EUR ({got['effective_status']})")
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("action", choices=["check", "report", "posts", "create", "launch", "pause", "activate"])
+    ap.add_argument("action", choices=["check", "report", "posts", "create", "launch", "pause", "activate", "budget"])
     ap.add_argument("--ad", default="")
     ap.add_argument("--days", type=int, default=7)
     a = ap.parse_args()
@@ -442,6 +456,8 @@ def main():
             sys.exit("--ad is required")
         if a.action == "create":
             create(a.ad)
+        elif a.action == "budget":
+            set_budget(a.ad)
         elif a.action == "launch":
             create(a.ad)
             set_status(a.ad, "ACTIVE")

@@ -10,7 +10,7 @@ message: |
 objective: OUTCOME_LEADS
 optimization_goal: LEAD_GENERATION
 destination_type: ON_AD
-budget_eur: 30
+budget_eur: 75
 start: '2026-10-30T18:30:00+02:00'
 end: '2026-11-20T23:59:00+02:00'
 targeting:

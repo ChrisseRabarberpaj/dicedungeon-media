@@ -10,7 +10,7 @@ on:
       action:
         description: "check / report / posts are read-only. create = build PAUSED from ads/<id>.yml, launch = create + activate (needs approved: true), pause, activate"
         type: choice
-        options: [check, report, posts, create, launch, pause, activate]
+        options: [check, report, posts, create, launch, pause, activate, budget]
         default: check
       ad:
         description: "Ad file id in ads/ (for create, pause, activate)"
