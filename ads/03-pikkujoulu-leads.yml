@@ -1,12 +1,16 @@
-# Corporate lead form on the team day GM reel (posts/03b-tiimipaiva must be live on the Page first). "Pyydä tarjous". Go given 21 Oct. Needs Lead Ads terms accepted on the Page.
 name: DD Pikkujoulu quote form 27 Oct-20 Nov
 approved: true
 post: 03b-tiimipaiva
 creative: link
 link: https://dicedungeon.fi/booking/
 cta: GET_QUOTE
-message: |
-  Pikkujoulut tai tiimipäivä? Pyydä tarjous: 5 tunnin pelinjohtajan vetämä seikkailu yksityisessä huoneessa Töölössä, tarina räätälöidään tiimillenne. 750 € + alv koko porukalle, lasku yritykselle. / Pikkujoulu or team day? A 5-hour Game Master-led adventure tailored to your team, 750 € + VAT for the whole group, invoiced. Ask for a quote.
+message: 'Pikkujoulut tai tiimipäivä? Pyydä tarjous: 5 tunnin pelinjohtajan vetämä
+  seikkailu yksityisessä huoneessa Töölössä, tarina räätälöidään tiimillenne. 750
+  € + alv koko porukalle, lasku yritykselle. / Pikkujoulu or team day? A 5-hour Game
+  Master-led adventure tailored to your team, 750 € + VAT for the whole group, invoiced.
+  Ask for a quote.
+
+  '
 objective: OUTCOME_LEADS
 optimization_goal: LEAD_GENERATION
 destination_type: ON_AD
@@ -17,18 +21,31 @@ targeting:
   radius_km: 25
   age_min: 28
   age_max: 60
-  platforms: [facebook, instagram]
+  platforms:
+  - facebook
+  - instagram
 form:
   name: Pikkujoulu tarjouspyyntö 2026
   locale: fi_FI
   privacy_url: https://dicedungeon.fi/privacy-policy
   intro_title: Pyydä tarjous / Ask for a quote
-  intro_text: Kerro ryhmästä ja toivotusta päivästä, niin lähetämme tarjouksen sähköpostiin. / Tell us about your group and date, and we'll email you an offer.
+  intro_text: Kerro ryhmästä ja toivotusta päivästä, niin lähetämme tarjouksen sähköpostiin.
+    / Tell us about your group and date, and we'll email you an offer.
   thanks_title: Kiitos! / Thank you!
   thanks_body: Vastaamme sähköpostilla pian. / We'll reply by email soon.
   questions:
-    - {type: FULL_NAME}
-    - {type: EMAIL}
-    - {type: COMPANY_NAME}
-    - {type: CUSTOM, key: group_size, label: "Ryhmän koko / Group size"}
-    - {type: CUSTOM, key: date, label: "Toivottu päivä / Preferred date"}
+  - type: FULL_NAME
+  - type: EMAIL
+  - type: COMPANY_NAME
+  - type: CUSTOM
+    key: group_size
+    label: Ryhmän koko / Group size
+  - type: CUSTOM
+    key: date
+    label: Toivottu päivä / Preferred date
+ids:
+  campaign: '120248956998810434'
+  adset: '120248956999880434'
+fb_post_id: '727370017119939_122192959322933048'
+video_id: '1453864943359632'
+form_id: '1451311043801381'
