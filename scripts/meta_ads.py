@@ -173,6 +173,25 @@ def strangers_detail():
     return out
 
 
+def daily(days, match):
+    since = (dt.date.today() - dt.timedelta(days=days)).isoformat()
+    until = dt.date.today().isoformat()
+    rows = get_all(f"{act()}/insights", {
+        "level": "campaign", "time_increment": 1,
+        "fields": "campaign_id,campaign_name,spend,impressions",
+        "time_range": {"since": since, "until": until}, "limit": 500,
+    })
+    lines = [f"## Daily spend {since} to {until}, campaigns matching '{match}'", "", "| Day | Campaign | Spend € | Impr. |", "|---|---|---|---|"]
+    tot = 0.0
+    for r in rows:
+        if match.lower() not in r["campaign_name"].lower() or float(r.get("spend", 0)) == 0:
+            continue
+        tot += float(r["spend"])
+        lines.append(f"| {r['date_start']} | {r['campaign_name'][:40]} {r['campaign_id']} | {float(r['spend']):.2f} | {r.get('impressions')} |")
+    lines += ["", f"Total: {tot:.2f} €"]
+    summary(lines)
+
+
 def report(days):
     since = (dt.date.today() - dt.timedelta(days=days)).isoformat()
     until = (dt.date.today() - dt.timedelta(days=1)).isoformat()
@@ -456,7 +475,7 @@ def set_budget(ad_id):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("action", choices=["check", "report", "posts", "create", "launch", "pause", "activate", "budget"])
+    ap.add_argument("action", choices=["check", "report", "posts", "create", "launch", "pause", "activate", "budget", "daily"])
     ap.add_argument("--ad", default="")
     ap.add_argument("--days", type=int, default=7)
     a = ap.parse_args()
@@ -464,6 +483,8 @@ def main():
         check()
     elif a.action == "report":
         report(a.days)
+    elif a.action == "daily":
+        daily(a.days, a.ad or "")
     elif a.action == "posts":
         list_posts()
     else:

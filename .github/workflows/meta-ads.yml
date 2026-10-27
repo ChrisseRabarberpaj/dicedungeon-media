@@ -10,7 +10,7 @@ on:
       action:
         description: "check / report / posts are read-only. create = build PAUSED from ads/<id>.yml, launch = create + activate (needs approved: true), pause, activate"
         type: choice
-        options: [check, report, posts, create, launch, pause, activate, budget]
+        options: [check, report, posts, create, launch, pause, activate, budget, daily]
         default: check
       ad:
         description: "Ad file id in ads/ (for create, pause, activate)"
@@ -43,6 +43,7 @@ jobs:
           DAYS: ${{ inputs.days || '7' }}
         run: |
           if [ "$ACTION" = "report" ]; then python scripts/meta_ads.py report --days "$DAYS"
+          elif [ "$ACTION" = "daily" ]; then python scripts/meta_ads.py daily --days "$DAYS" --ad "$AD"
           elif [ "$ACTION" = "check" ] || [ "$ACTION" = "posts" ]; then python scripts/meta_ads.py "$ACTION"
           else python scripts/meta_ads.py "$ACTION" --ad "$AD"; fi
       - name: Record ids
