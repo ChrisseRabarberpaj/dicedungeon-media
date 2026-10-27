@@ -171,7 +171,7 @@ def report(days):
     until = (dt.date.today() - dt.timedelta(days=1)).isoformat()
     rows = get_all(f"{act()}/insights", {
         "level": "campaign",
-        "fields": "campaign_id,campaign_name,spend,impressions,reach,frequency,clicks,cpm,actions,video_thruplay_watched_actions",
+        "fields": "campaign_id,campaign_name,spend,impressions,reach,frequency,clicks,cpm,actions,video_thruplay_watched_actions,date_start,date_stop",
         "time_range": {"since": since, "until": until},
         "limit": 100,
     })
@@ -188,7 +188,11 @@ def report(days):
             f"| {r['campaign_name']} | {spend:.2f} | {r.get('reach', 0)} | {r.get('impressions', 0)} | "
             f"{float(r.get('frequency', 0)):.2f} | {float(r.get('cpm', 0)):.2f} | {thru} | "
             f"{acts.get('link_click', 0)} | {acts.get('post_engagement', 0)} |")
-    lines += ["", f"Total spend: {total:.2f} €", ""]
+    lines += ["", f"Total spend: {total:.2f} €", "", "### All actions per campaign", ""]
+    for r in rows:
+        acts = ", ".join(f"{x['action_type']}={x['value']}" for x in r.get("actions", []))
+        lines.append(f"- {r['campaign_name']}: {acts}")
+    lines.append("")
     known = known_campaign_ids()
     strangers = [c for c in get_all(f"{act()}/campaigns", {"fields": "id,name,effective_status,stop_time", "limit": 100})
                  if live_status(c) == "ACTIVE" and c["id"] not in known]
