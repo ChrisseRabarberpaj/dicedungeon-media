@@ -166,6 +166,13 @@ def campaign_table():
     return "\n".join(rows)
 
 
+def strangers_detail():
+    out = ["", "### Campaign details (all, incl. deleted)", ""]
+    for c in get_all(f"{act()}/campaigns", {"fields": "id,name,objective,effective_status,created_time,start_time,stop_time,updated_time", "limit": 100, "filtering": [{"field": "effective_status", "operator": "IN", "value": ["ACTIVE","PAUSED","DELETED","ARCHIVED","CAMPAIGN_PAUSED","ADSET_PAUSED","IN_PROCESS","WITH_ISSUES"]}]}):
+        out.append(f"- {c['id']} {c['name']} {c.get('objective')} {c['effective_status']} created {c.get('created_time')} start {c.get('start_time')} stop {c.get('stop_time')}")
+    return out
+
+
 def report(days):
     since = (dt.date.today() - dt.timedelta(days=days)).isoformat()
     until = (dt.date.today() - dt.timedelta(days=1)).isoformat()
@@ -191,8 +198,12 @@ def report(days):
     lines += ["", f"Total spend: {total:.2f} €", "", "### All actions per campaign", ""]
     for r in rows:
         acts = ", ".join(f"{x['action_type']}={x['value']}" for x in r.get("actions", []))
-        lines.append(f"- {r['campaign_name']}: {acts}")
+        lines.append(f"- {r['campaign_name']} [{r.get('campaign_id')} {r.get('date_start')}..{r.get('date_stop')}]: {acts[:300]}")
     lines.append("")
+    try:
+        lines += strangers_detail()
+    except SystemExit as e:
+        lines.append(f"(details failed: {e})")
     known = known_campaign_ids()
     strangers = [c for c in get_all(f"{act()}/campaigns", {"fields": "id,name,effective_status,stop_time", "limit": 100})
                  if live_status(c) == "ACTIVE" and c["id"] not in known]
