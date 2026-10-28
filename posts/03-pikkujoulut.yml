@@ -4,7 +4,6 @@ approved: true
 channels:
 - instagram
 - facebook
-- tiktok
 when: '2026-10-30T18:00:00+02:00'
 media:
 - media/posts/03-pikkujoulut-room.mp4
@@ -15,4 +14,6 @@ text: |
 queued:
   instagram: 6ad43bc5769b457934a66e2b
   facebook: 6ad43bc5938409f1d0b3c3bd
-  tiktok: 6ad6e6992fcafd0f184c192e
+  tiktok: draft:6ad6e6992fcafd0f184c192e
+manual:
+- tiktok
