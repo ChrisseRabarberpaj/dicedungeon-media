@@ -294,6 +294,22 @@ def find_published(page_id, post_id):
     return None, None
 
 
+def recent_ig_media(limit=50):
+    c = cfg()
+    return api("GET", f"{c['instagram_id']}/media",
+               {"fields": "id,caption,timestamp,media_type,permalink", "limit": limit},
+               token=page_token(c["page_id"])).get("data", [])
+
+
+def find_ig_media(post_id):
+    """Find the Instagram post Buffer published for posts/<post_id>.yml by its caption."""
+    key = norm(post_text(post_id))
+    for m in recent_ig_media():
+        if norm(m.get("caption")) == key:
+            return m["id"]
+    return None
+
+
 def list_posts():
     c = cfg()
     page = api("GET", c["page_id"], {"fields": "name,leadgen_tos_accepted"}, soft=True, token=page_token(c["page_id"])) or {}
@@ -304,6 +320,12 @@ def list_posts():
         lines.append(f"- post {p['id']} {p['created_time'][:16]} [{kinds}] {norm(p.get('message'))[:50]}")
     for r in reels:
         lines.append(f"- reel {r['id']} post {r.get('post_id')} {r['created_time'][:16]} {norm(r.get('description'))[:50]}")
+    lines += ["", "## Recent Instagram posts", ""]
+    try:
+        for m in recent_ig_media(20):
+            lines.append(f"- ig {m['id']} {m['timestamp'][:16]} {m.get('media_type')} {norm(m.get('caption'))[:50]}")
+    except SystemExit as e:
+        lines.append(f"(Instagram media lookup failed: {e})")
     summary(lines)
 
 
@@ -406,10 +428,20 @@ def create(ad_id):
         story = str(story)
         if "_" not in story:
             story = f"{page_id}_{story}"
+        # Instagram placement: reuse the real Instagram post so likes/views land on the grid,
+        # instead of Meta making a separate ad copy. Falls back to the copy if no IG post is found.
+        ig_media = ad.get("ig_media_id")
+        if not ig_media and ad.get("post") and c.get("instagram_id") and "instagram" in ad.get("targeting", {}).get("platforms", ["facebook", "instagram"]):
+            ig_media = find_ig_media(ad["post"])
+            if ig_media:
+                ad["ig_media_id"] = ig_media
+                save(ad)
         if ad.get("creative", "boost") == "boost":
             spec = {"name": f"{ad['name']} creative", "object_story_id": story}
             if c.get("instagram_id"):
                 spec["instagram_user_id"] = c["instagram_id"]
+            if ig_media:
+                spec["source_instagram_media_id"] = str(ig_media)
         else:
             if not video:
                 sys.exit("link creative needs a video post")
@@ -429,6 +461,8 @@ def create(ad_id):
                 },
                 "url_tags": f"utm_source=meta&utm_medium=paid&utm_campaign={ad_id}",
             }
+            if ig_media and ad.get("cta") != "GET_QUOTE":
+                spec["source_instagram_media_id"] = str(ig_media)
         cr = api("POST", f"{act()}/adcreatives", spec)
         r = api("POST", f"{act()}/ads", {
             "name": f"{ad['name']} ad",
