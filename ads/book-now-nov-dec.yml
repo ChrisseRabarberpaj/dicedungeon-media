@@ -12,7 +12,6 @@ end: '2026-12-15T23:59:00+02:00'
 targeting:
   radius_km: 25
   age_min: 20
-  age_max: 60
   platforms:
   - facebook
   - instagram
