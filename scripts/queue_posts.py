@@ -216,6 +216,9 @@ def main():
         channels = yaml.safe_load(fh)
 
     sent = 0
+    only = None
+    if a.post and ":" in a.post:
+        a.post, only = a.post.split(":", 1)   # e.g. 03-pikkujoulut:tiktok -> one channel only
     for post in load_posts(a.post):
         if not post.get("approved") and not (a.draft or a.update or a.unschedule):
             print(f"skip {post['id']}: not approved")
@@ -225,7 +228,9 @@ def main():
         if not post.get("media") and set(post["channels"]) & {"instagram", "tiktok"}:
             print(f"skip {post['id']}: Instagram/TikTok need media, none set")
             continue
-        for name in post["channels"]:
+        for name in list(post["channels"]):
+            if only and name != only:
+                continue
             prev = post["queued"].get(name, "")
             if a.unschedule:
                 # pull a scheduled post back to a Buffer draft (nothing is deleted)
@@ -239,7 +244,12 @@ def main():
                 res = gql(EDIT, {"input": inp})["editPost"]
                 if "post" in res:
                     post["queued"][name] = "draft:" + prev
-                    post["approved"] = False
+                    if only:
+                        # just this channel goes manual; the others stay scheduled
+                        post["channels"].remove(name)
+                        post.setdefault("manual", []).append(name)
+                    else:
+                        post["approved"] = False
                     save(post)
                     print(f"unscheduled {post['id']} -> {name}: {prev} is now a Buffer draft")
                     sent += 1
