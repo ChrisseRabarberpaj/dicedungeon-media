@@ -1,7 +1,3 @@
-# ONE consolidated Book now campaign (per the 28 Oct marketing review): one ad set, several creatives,
-# Advantage+ audience across Helsinki metro with the warm audiences as suggestions, ~5 €/day.
-# Replaces 03-pikkujoulu-ask, 36-gm-friends-book, 09-birthdays-book and 12-december-book.
-# Each creative is added as its reel goes live on the Page (run `launch` again; already-built ads are skipped).
 name: DD Book now Nov-Dec
 approved: true
 creative: link
@@ -17,22 +13,41 @@ targeting:
   radius_km: 25
   age_min: 20
   age_max: 60
-  platforms: [facebook, instagram]
+  platforms:
+  - facebook
+  - instagram
   advantage_audience: true
-  custom_audiences:          # suggestions, not a filter
-  - '120248705780640434'   # DD video viewers 50% - 365d
-  - '120248705787660434'   # DD Instagram engagers - 365d
-  - '120248705800350434'   # DD website visitors - 30d
+  custom_audiences:
+  - '120248705780640434'
+  - '120248705787660434'
+  - '120248705800350434'
 ads:
-- post: 03-pikkujoulut        # live on the Page Fri 30 Oct 18:00
-  message: |
-    Pikkujoulut omalla porukalla: varaa marraskuu nyt. / Pikkujoulu season. A private room in Töölö, Helsinki, yours for 6 hours: games, lights, sound, bring your own food and drinks. 200 € for the whole group. November Fridays are going.
-- post: 36-gm-night-friends   # live Tue 3 Nov
-  message: |
-    D&D-ilta kavereiden kanssa: pelinjohtaja, oma huone Töölössä ja viisi tuntia seikkailua, kokemusta ei tarvita. 600 € koko porukalle, enintään 7 pelaajaa. / D&D night with friends: a Game Master, a private room in Töölö and five hours of adventure, no experience needed. 600 € for the whole group, up to 7 players.
-- post: 09-birthdays          # live Fri 13 Nov
-  message: |
-    Synttärit ilman baarijonoa: yksityinen pelihuone Töölössä kuudeksi tunniksi, pelit, valot ja äänet, omat eväät mukaan. 200 € koko porukalle. / Birthday coming up? A private games room in Töölö for six hours: games, lights, sound, bring your own food and drinks. 200 € for the whole group.
-- post: 07-combat             # live Mon 9 Nov; December weekends angle
-  message: |
-    Joulukuun viikonloput täyttyvät. Yksityinen pelihuone Töölössä: 6 tuntia 200 €, tai pelinjohtajan vetämä seikkailu 600 €. / December weekends are filling up. A private games room in Töölö: 6 hours for 200 €, or a Game Master-led adventure for 600 €. Book your date now.
+- post: 03-pikkujoulut
+  message: 'Pikkujoulut omalla porukalla: varaa marraskuu nyt. / Pikkujoulu season.
+    A private room in Töölö, Helsinki, yours for 6 hours: games, lights, sound, bring
+    your own food and drinks. 200 € for the whole group. November Fridays are going.
+
+    '
+- post: 36-gm-night-friends
+  message: 'D&D-ilta kavereiden kanssa: pelinjohtaja, oma huone Töölössä ja viisi
+    tuntia seikkailua, kokemusta ei tarvita. 600 € koko porukalle, enintään 7 pelaajaa.
+    / D&D night with friends: a Game Master, a private room in Töölö and five hours
+    of adventure, no experience needed. 600 € for the whole group, up to 7 players.
+
+    '
+- post: 09-birthdays
+  message: 'Synttärit ilman baarijonoa: yksityinen pelihuone Töölössä kuudeksi tunniksi,
+    pelit, valot ja äänet, omat eväät mukaan. 200 € koko porukalle. / Birthday coming
+    up? A private games room in Töölö for six hours: games, lights, sound, bring your
+    own food and drinks. 200 € for the whole group.
+
+    '
+- post: 07-combat
+  message: 'Joulukuun viikonloput täyttyvät. Yksityinen pelihuone Töölössä: 6 tuntia
+    200 €, tai pelinjohtajan vetämä seikkailu 600 €. / December weekends are filling
+    up. A private games room in Töölö: 6 hours for 200 €, or a Game Master-led adventure
+    for 600 €. Book your date now.
+
+    '
+ids:
+  campaign: '120248970858370434'
