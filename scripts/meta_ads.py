@@ -394,10 +394,11 @@ def create(ad_id):
             "age_min": t.get("age_min", 18),
             "age_max": t.get("age_max", 65),
             "publisher_platforms": t.get("platforms", ["facebook", "instagram"]),
-            "targeting_automation": {"advantage_audience": 0},
+            "targeting_automation": {"advantage_audience": 1 if t.get("advantage_audience") else 0},
         }
         if t.get("custom_audiences"):
-            # warm audiences (video viewers, Instagram engagers, site visitors); Meta reaches anyone in ANY of them
+            # warm audiences (video viewers, Instagram engagers, site visitors).
+            # With advantage_audience they are suggestions Meta expands from; without it a hard filter.
             targeting["custom_audiences"] = [{"id": str(a)} for a in t["custom_audiences"]]
         r = api("POST", f"{act()}/adsets", {
             "name": f"{ad['name']} ad set",
@@ -417,8 +418,32 @@ def create(ad_id):
         save(ad)
         print("ad set", r["id"])
 
-    if not ids.get("ad"):
-        story, video = ad.get("fb_post_id"), ad.get("video_id")
+    for entry in (ad.get("ads") or [None]):
+        build_ad(ad, ad_id, entry, ids, c, page_id)
+    print(f"{ad_id}: built and PAUSED. Review it in Ads Manager, then set approved: true and run activate.")
+
+
+def build_ad(ad, ad_id, entry, ids, c, page_id):
+    """Create one ad in the ad set. entry=None means the classic single-ad file; otherwise one item of ads:."""
+    if entry is None:
+        key, sub = "ad", ad
+    else:
+        key, sub = f"ad:{entry['post']}", {**ad, **entry}
+        sub.pop("ads", None)
+    if ids.get(key):
+        return
+    if True:
+        story, video = sub.get("fb_post_id"), sub.get("video_id")
+        if not story and sub.get("post"):
+            story, video = find_published(page_id, sub["post"])
+            if not story:
+                print(f"posts/{sub['post']} is not on the Facebook Page yet; skipped for now")
+                return
+            if entry is None:
+                ad["fb_post_id"], ad["video_id"] = story, video
+            else:
+                entry["fb_post_id"], entry["video_id"] = story, video
+            save(ad)
         if not story and ad.get("post"):
             story, video = find_published(page_id, ad["post"])
             if not story:
@@ -430,14 +455,15 @@ def create(ad_id):
             story = f"{page_id}_{story}"
         # Instagram placement: reuse the real Instagram post so likes/views land on the grid,
         # instead of Meta making a separate ad copy. Falls back to the copy if no IG post is found.
-        ig_media = ad.get("ig_media_id")
-        if not ig_media and ad.get("post") and c.get("instagram_id") and "instagram" in ad.get("targeting", {}).get("platforms", ["facebook", "instagram"]):
-            ig_media = find_ig_media(ad["post"])
+        ig_media = sub.get("ig_media_id")
+        if not ig_media and sub.get("post") and c.get("instagram_id") and "instagram" in ad.get("targeting", {}).get("platforms", ["facebook", "instagram"]):
+            ig_media = find_ig_media(sub["post"])
             if ig_media:
-                ad["ig_media_id"] = ig_media
+                (ad if entry is None else entry)["ig_media_id"] = ig_media
                 save(ad)
-        if ad.get("creative", "boost") == "boost":
-            spec = {"name": f"{ad['name']} creative", "object_story_id": story}
+        label = f"{ad['name']} {sub.get('post', '')}".strip()
+        if sub.get("creative", "boost") == "boost":
+            spec = {"name": f"{label} creative", "object_story_id": story}
             if c.get("instagram_id"):
                 spec["instagram_user_id"] = c["instagram_id"]
             if ig_media:
@@ -446,9 +472,9 @@ def create(ad_id):
             if not video:
                 sys.exit("link creative needs a video post")
             thumb = api("GET", str(video), {"fields": "picture"}).get("picture")
-            message = ad.get("message") or post_text(ad["post"]).split("\n\n#")[0].strip()
+            message = sub.get("message") or post_text(sub["post"]).split("\n\n#")[0].strip()
             spec = {
-                "name": f"{ad['name']} creative",
+                "name": f"{label} creative",
                 "object_story_spec": {
                     "page_id": page_id,
                     "instagram_user_id": c.get("instagram_id"),
@@ -456,24 +482,23 @@ def create(ad_id):
                         "video_id": str(video),
                         "image_url": thumb,
                         "message": message,
-                        "call_to_action": cta(ad, page_id),
+                        "call_to_action": cta(sub, page_id),
                     },
                 },
-                "url_tags": f"utm_source=meta&utm_medium=paid&utm_campaign={ad_id}",
+                "url_tags": f"utm_source=meta&utm_medium=paid&utm_campaign={ad_id}&utm_content={sub.get('post', 'ad')}",
             }
-            if ig_media and ad.get("cta") != "GET_QUOTE":
+            if ig_media and sub.get("cta") != "GET_QUOTE":
                 spec["source_instagram_media_id"] = str(ig_media)
         cr = api("POST", f"{act()}/adcreatives", spec)
         r = api("POST", f"{act()}/ads", {
-            "name": f"{ad['name']} ad",
+            "name": f"{label} ad",
             "adset_id": ids["adset"],
             "creative": {"creative_id": cr["id"]},
             "status": "PAUSED",
         })
-        ids["ad"] = r["id"]
+        ids[key] = r["id"]
         save(ad)
-        print("ad", r["id"])
-    print(f"{ad_id}: built and PAUSED. Review it in Ads Manager, then set approved: true and run activate.")
+        print("ad", key, r["id"])
 
 
 def set_status(ad_id, status):
@@ -486,7 +511,8 @@ def set_status(ad_id, status):
         sys.exit(f"{ad_id} has no campaign yet; run create first")
     if status == "ACTIVE" and ad.get("approved") is not True:
         sys.exit(f"{ad_id} is not approved: true, so it stays paused")
-    order = ["ad", "adset", "campaign"] if status == "PAUSED" else ["campaign", "adset", "ad"]
+    ad_keys = [k for k in ids if k == "ad" or k.startswith("ad:")]
+    order = ad_keys + ["adset", "campaign"] if status == "PAUSED" else ["campaign", "adset"] + ad_keys
     for k in order:
         if ids.get(k):
             api("POST", str(ids[k]), {"status": status})

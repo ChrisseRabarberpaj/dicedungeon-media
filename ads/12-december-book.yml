@@ -1,6 +1,7 @@
+# MERGED 28 Oct into ads/book-now-nov-dec.yml. Do not launch.
 # December weekends (room 200 € or GM 600 €). Go given 26 Oct. Book now, pixel-tracked (Amelia events on /booking/).
 name: DD December weekends 21 Nov-15 Dec
-approved: true
+approved: false
 post: 07-combat
 creative: link
 link: https://dicedungeon.fi/booking/

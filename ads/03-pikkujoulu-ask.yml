@@ -1,6 +1,7 @@
+# MERGED 28 Oct into ads/book-now-nov-dec.yml. Do not launch.
 # Ask (Book now, pixel-tracked): pikkujoulu room reel (6 h, 200 €) as a link ad to the booking page. Go given 21 Oct.
 name: DD Pikkujoulu ask 30 Oct-15 Nov
-approved: true
+approved: false
 post: 03-pikkujoulut
 creative: link
 link: https://dicedungeon.fi/booking/

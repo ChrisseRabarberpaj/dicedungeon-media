@@ -1,6 +1,7 @@
+# MERGED 28 Oct into ads/book-now-nov-dec.yml. Do not launch.
 # Birthdays (room 6 h, 200 €). Replaces the 09-birthdays-warmup views ad. Go given 26 Oct. Book now, pixel-tracked (Amelia events on /booking/).
 name: DD Birthdays book 14 Nov-6 Dec
-approved: true
+approved: false
 post: 09-birthdays
 creative: link
 link: https://dicedungeon.fi/booking/
