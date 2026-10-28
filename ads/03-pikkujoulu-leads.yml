@@ -48,7 +48,10 @@ ids:
   campaign: '120248956998810434'
   adset: '120248956999880434'
   retired:
-  - '120248958330210434'   # first ad, standard form; paused when the new one goes live
+  - '120248958330210434'
+  ad: '120248970843420434'
 fb_post_id: '727370017119939_122192959322933048'
 video_id: '1453864943359632'
-form_id_old: '1451311043801381'   # original form, replaced 28 Oct
+form_id_old: '1451311043801381'
+ig_media_id: '18074668055767776'
+form_id: '1669490684757076'
