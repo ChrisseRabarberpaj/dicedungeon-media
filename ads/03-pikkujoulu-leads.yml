@@ -25,10 +25,11 @@ targeting:
   - facebook
   - instagram
 form:
-  name: Pikkujoulu tarjouspyyntö 2026
+  name: Pikkujoulu tarjouspyyntö 2026 (higher intent)
+  higher_intent: true
   locale: fi_FI
   privacy_url: https://dicedungeon.fi/privacy-policy
-  intro_title: Pyydä tarjous / Ask for a quote
+  intro_title: Pyydä tarjous joulukuulle / Ask for a December quote
   intro_text: Kerro ryhmästä ja toivotusta päivästä, niin lähetämme tarjouksen sähköpostiin.
     / Tell us about your group and date, and we'll email you an offer.
   thanks_title: Kiitos! / Thank you!
@@ -46,7 +47,8 @@ form:
 ids:
   campaign: '120248956998810434'
   adset: '120248956999880434'
-  ad: '120248958330210434'
+  retired:
+  - '120248958330210434'   # first ad, standard form; paused when the new one goes live
 fb_post_id: '727370017119939_122192959322933048'
 video_id: '1453864943359632'
-form_id: '1451311043801381'
+form_id_old: '1451311043801381'   # original form, replaced 28 Oct

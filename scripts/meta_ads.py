@@ -342,6 +342,8 @@ def lead_form(ad, page_id):
         "context_card": {"title": f["intro_title"], "style": "PARAGRAPH_STYLE", "content": [f["intro_text"]]},
         "thank_you_page": {"title": f["thanks_title"], "body": f["thanks_body"],
                            "button_type": "VIEW_WEBSITE", "button_text": "dicedungeon.fi", "website_url": ad["link"]},
+        # Higher Intent form: adds a review step before submit, fewer accidental leads
+        "is_optimized_for_quality": bool(f.get("higher_intent")),
     }, token=page_token(page_id))
     ad["form_id"] = r["id"]
     save(ad)
@@ -517,6 +519,9 @@ def set_status(ad_id, status):
         if ids.get(k):
             api("POST", str(ids[k]), {"status": status})
             print(f"{k} {ids[k]} -> {status}")
+    for old in ids.get("retired") or []:
+        api("POST", str(old), {"status": "PAUSED"})
+        print(f"retired ad {old} -> PAUSED")
 
 
 def set_budget(ad_id):
