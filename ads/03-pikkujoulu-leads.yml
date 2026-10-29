@@ -4,11 +4,10 @@ post: 03b-tiimipaiva
 creative: link
 link: https://dicedungeon.fi/booking/
 cta: GET_QUOTE
-message: 'Pikkujoulut tai tiimipäivä? Pyydä tarjous: 5 tunnin pelinjohtajan vetämä
-  seikkailu yksityisessä huoneessa Töölössä, tarina räätälöidään tiimillenne. 750
-  € + alv koko porukalle, lasku yritykselle. / Pikkujoulu or team day? A 5-hour Game
-  Master-led adventure tailored to your team, 750 € + VAT for the whole group, invoiced.
-  Ask for a quote.
+message: 'Pikkujoulut tai tiimipäivä? Pyydä tarjous: 5 tunnin pelinjohtajan vetämä seikkailu yksityisessä
+  huoneessa Töölössä, tarina räätälöidään tiimillenne. 750 € + alv koko porukalle, lasku yritykselle.
+  / Pikkujoulu or team day? A 5-hour Game Master-led adventure tailored to your team, 750 € + VAT for
+  the whole group, invoiced. Ask for a quote.
 
   '
 objective: OUTCOME_LEADS
@@ -30,8 +29,8 @@ form:
   locale: fi_FI
   privacy_url: https://dicedungeon.fi/privacy-policy
   intro_title: Pyydä tarjous joulukuulle / Ask for a December quote
-  intro_text: Kerro ryhmästä ja toivotusta päivästä, niin lähetämme tarjouksen sähköpostiin.
-    / Tell us about your group and date, and we'll email you an offer.
+  intro_text: Kerro ryhmästä ja toivotusta päivästä, niin lähetämme tarjouksen sähköpostiin. / Tell us
+    about your group and date, and we'll email you an offer.
   thanks_title: Kiitos! / Thank you!
   thanks_body: Vastaamme sähköpostilla pian. / We'll reply by email soon.
   questions:
@@ -55,3 +54,14 @@ video_id: '1453864943359632'
 form_id_old: '1451311043801381'
 ig_media_id: '18074668055767776'
 form_id: '1669490684757076'
+ads:
+- post: 44-tiimi-ilta
+  creative: link
+  link: https://dicedungeon.fi/booking/
+  cta: GET_QUOTE
+  message: Tiimi-ilta töiden jälkeen? Pelinjohtajan vetämä 3 tunnin seikkailu yksityisessä huoneessa Töölössä,
+    500 € + alv koko porukalle (tai tiimipäivä 5 h, 750 € + alv). Lasku yritykselle. Pyydä tarjous. /
+    Team evening after work? A Game Master-led 3-hour adventure in our private room in Töölö, 500 € +
+    VAT for the whole group (or the 5-hour Team Day, 750 € + VAT). Invoiced. Ask for a quote.
+  note: Build only after posts/44-tiimi-ilta is live on the Facebook Page (planned 4 Nov). Runs in the
+    same ad set as the 03b Team Day ad; Meta splits budget between the two.
