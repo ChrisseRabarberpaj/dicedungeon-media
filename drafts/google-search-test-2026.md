@@ -8,7 +8,7 @@ Conversion: Amelia booking-start event (already firing to the pixel) mirrored to
 ## Ad group 1: Pikkujoulut / tiimipäivä (company)
 Keywords (phrase match): "pikkujoulut helsinki", "pikkujoulu ideat", "pikkujoulut pienelle ryhmälle", "tiimipäivä helsinki", "tyhy päivä helsinki", "tyky päivä helsinki", "virkistyspäivä helsinki", "team building helsinki", "team day helsinki", "pikkujoulu aktiviteetti", "yrityksen pikkujoulut ohjelma".
 Negatives: ravintola, pikkujoulumenu, catering, ilmainen, lahja, laulut, vaatteet.
-Headlines: "Pikkujoulut 2–7 hengen tiimille" / "D&D-seikkailu pelinjohtajan kanssa" / "Yksityinen huone Töölössä" / "750 € + alv koko porukalle" / "Vapaita päiviä joulukuussa"
+Headlines: "Pikkujoulut 2–7 hengen tiimille" / "D&D-seikkailu pelinjohtajan kanssa" / "Yksityinen huone Töölössä" / "750 € + alv koko porukalle" / "Tiimi-ilta 3 h, 500 € + alv" / "Vapaita päiviä joulukuussa"
 Descriptions: "5 tuntia pelinjohtajan vetämää seikkailua, tarina räätälöidään tiimille. Kokemusta ei tarvita, lasku yritykselle." / "Ei keilahallia, ei luottamusharjoituksia. Oma huone, valot ja äänet, kaikki samassa tarinassa."
 
 ## Ad group 2: Pelihuone / D&D (consumer)
