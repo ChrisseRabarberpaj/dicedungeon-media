@@ -1,0 +1,15 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+id: 44-tiimi-ilta
+approved: false
+channels:
+- instagram
+- facebook
+- tiktok
+when: '2026-11-04T17:30:00+02:00'
+media_note: 'Team Evening reel (17 s). Source: DD reels/branded/v5/44 Team evening.mp4. Music DDjazz_10 @ 1:00. Post manually on LinkedIn too.'
+media:
+- media/posts/44-tiimi-ilta.mp4
+text: |
+  Tiimi-ilta töiden jälkeen: kolme tuntia, pelinjohtaja, oma huone Töölössä. / The short version of our Team Day. A Game Master runs a three-hour role-playing adventure for your team, 6 to 9 pm, in our private room in Töölö. Nobody needs experience. Up to 7 players, 500 € + VAT, invoiced to the company. booking@talecraftgames.com
+
+  #dicedungeon #helsinki #dnd #ttrpg #roolipelit #tiimi-ilta #tyhy #afterwork #pikkujoulut
