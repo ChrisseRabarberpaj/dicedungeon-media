@@ -128,3 +128,101 @@ function dd_gift_coupon_create(WP_REST_Request $req) {
     $wpdb->query('COMMIT');
     return ['id' => $id, 'code' => $code, 'service_id' => $service, 'expires' => $expires, 'created' => true];
 }
+
+/* ---------------------------------------------------------------------------
+ * Instant delivery: Stripe calls /wp-json/dd/v1/stripe-hook when a checkout completes,
+ * we check Stripe's signature and start the GitHub gift card job right away.
+ * The 15-minute schedule stays as a backup.
+ * Secrets are pasted in Tools > Gift cards and stored in wp_options, never shown again.
+ * ------------------------------------------------------------------------- */
+add_action('rest_api_init', function () {
+    register_rest_route('dd/v1', '/stripe-hook', [
+        'methods'             => 'POST',
+        'permission_callback' => '__return_true',   // Stripe signature is the auth
+        'callback'            => 'dd_gift_stripe_hook',
+    ]);
+});
+
+function dd_gift_stripe_hook(WP_REST_Request $req) {
+    $secret  = get_option('dd_gift_stripe_whsec', '');
+    $payload = $req->get_body();
+    $sig     = $req->get_header('stripe-signature');
+    if (!$secret || !$sig) return new WP_Error('no', 'Not configured', ['status' => 400]);
+
+    $t = null; $v1 = [];
+    foreach (explode(',', $sig) as $part) {
+        [$k, $v] = array_pad(explode('=', trim($part), 2), 2, '');
+        if ($k === 't') $t = $v;
+        if ($k === 'v1') $v1[] = $v;
+    }
+    $expected = hash_hmac('sha256', $t . '.' . $payload, $secret);
+    $ok = $t && abs(time() - (int) $t) < 600;
+    if ($ok) { $ok = false; foreach ($v1 as $s) if (hash_equals($expected, $s)) $ok = true; }
+    if (!$ok) return new WP_Error('sig', 'Bad signature', ['status' => 400]);
+
+    $event = json_decode($payload, true);
+    $type  = $event['type'] ?? '';
+    if ($type !== 'checkout.session.completed' && $type !== 'checkout.session.async_payment_succeeded') {
+        return ['ignored' => $type];
+    }
+
+    $token = get_option('dd_gift_github_token', '');
+    $res = wp_remote_post(
+        'https://api.github.com/repos/ChrisseRabarberpaj/dicedungeon-media/actions/workflows/giftcards.yml/dispatches',
+        [
+            'timeout' => 15,
+            'headers' => [
+                'Authorization'        => 'Bearer ' . $token,
+                'Accept'               => 'application/vnd.github+json',
+                'X-GitHub-Api-Version' => '2022-11-28',
+                'User-Agent'           => 'dicedungeon-giftcards',
+                'Content-Type'         => 'application/json',
+            ],
+            'body' => wp_json_encode(['ref' => 'main', 'inputs' => ['action' => 'run']]),
+        ]
+    );
+    $code = is_wp_error($res) ? $res->get_error_message() : wp_remote_retrieve_response_code($res);
+    update_option('dd_gift_last_hook', current_time('mysql') . ' ' . $type . ' -> GitHub ' . $code, false);
+    return ['started' => $code === 204, 'github' => $code];
+}
+
+add_action('admin_menu', function () {
+    add_management_page('Gift cards', 'Gift cards', 'manage_options', 'dd-gift-cards', 'dd_gift_settings_page');
+});
+
+function dd_gift_settings_page() {
+    if (!current_user_can('manage_options')) return;
+    if (isset($_POST['dd_gift_save']) && check_admin_referer('dd_gift_settings')) {
+        foreach (['dd_gift_github_token', 'dd_gift_stripe_whsec'] as $k) {
+            $v = trim(preg_replace('/\s+/', '', wp_unslash($_POST[$k] ?? '')));
+            if ($v !== '') update_option($k, $v, false);
+        }
+        echo '<div class="notice notice-success"><p>Saved.</p></div>';
+    }
+    $has = fn($k) => get_option($k, '') ? '<span style="color:#1a7f37">saved ✓</span>' : '<span style="color:#b32d2e">missing</span>';
+    $sales = array_reverse(array_values(get_option('dd_gift_sales', [])));
+    ?>
+    <div class="wrap">
+      <h1>Gift cards</h1>
+      <form method="post" style="max-width:640px">
+        <?php wp_nonce_field('dd_gift_settings'); ?>
+        <p><label><b>GitHub token</b> (<?php echo $has('dd_gift_github_token'); ?>)<br>
+          <input type="password" name="dd_gift_github_token" autocomplete="off" style="width:100%" placeholder="github_pat_... (leave empty to keep)"></label></p>
+        <p><label><b>Stripe webhook signing secret</b> (<?php echo $has('dd_gift_stripe_whsec'); ?>)<br>
+          <input type="password" name="dd_gift_stripe_whsec" autocomplete="off" style="width:100%" placeholder="whsec_... (leave empty to keep)"></label></p>
+        <p><button class="button button-primary" name="dd_gift_save" value="1">Save</button></p>
+        <p>Webhook URL for Stripe: <code><?php echo esc_html(rest_url('dd/v1/stripe-hook')); ?></code><br>
+          Last webhook: <?php echo esc_html(get_option('dd_gift_last_hook', 'none yet')); ?></p>
+      </form>
+      <h2>Sales (<?php echo count($sales); ?>)</h2>
+      <table class="widefat striped"><thead><tr><th>Paid</th><th>Card</th><th>Delivery</th><th>Code</th><th>Buyer</th><th>For</th><th>Address</th></tr></thead><tbody>
+      <?php foreach ($sales as $s): ?>
+        <tr><td><?php echo esc_html(substr($s['paid_at'] ?? '', 0, 16)); ?></td><td><?php echo esc_html($s['product'] ?? ''); ?></td>
+        <td><?php echo esc_html($s['delivery'] ?? ''); ?></td><td><code><?php echo esc_html($s['code'] ?? ''); ?></code></td>
+        <td><?php echo esc_html(($s['buyer_name'] ?? '') . ' ' . ($s['buyer_email'] ?? '')); ?></td><td><?php echo esc_html($s['recipient'] ?? ''); ?></td>
+        <td style="white-space:pre-line"><?php echo esc_html($s['shipping'] ?? ''); ?></td></tr>
+      <?php endforeach; ?>
+      </tbody></table>
+    </div>
+    <?php
+}
