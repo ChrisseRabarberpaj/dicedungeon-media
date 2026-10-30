@@ -76,3 +76,34 @@ function dd_trp_post(WP_REST_Request $req) {
     if (function_exists('do_action')) do_action('litespeed_purge_all');
     return ['table' => $t, 'updated' => $updated, 'inserted' => $inserted, 'skipped' => $skipped];
 }
+
+/* ---------------------------------------------------------------------------
+ * Finnish page titles and meta descriptions (Yoast). TranslatePress free leaves
+ * these in English, so map them here. Map lives in option dd_fi_seo (en => fi),
+ * set with POST /wp-json/dd/v1/trp {"seo": {...}}.
+ * ------------------------------------------------------------------------- */
+function dd_fi_seo($s) {
+    global $TRP_LANGUAGE;
+    if (!is_string($s) || $s === '' || ($TRP_LANGUAGE ?? '') !== 'fi') return $s;
+    $map = get_option('dd_fi_seo', []);
+    $key = trim(html_entity_decode($s, ENT_QUOTES, 'UTF-8'));
+    return isset($map[$key]) ? $map[$key] : $s;
+}
+foreach (['wpseo_title', 'wpseo_metadesc', 'wpseo_opengraph_title', 'wpseo_opengraph_desc',
+          'wpseo_twitter_title', 'wpseo_twitter_description', 'pre_get_document_title'] as $f) {
+    add_filter($f, 'dd_fi_seo', 99);
+}
+add_action('rest_api_init', function () {
+    register_rest_route('dd/v1', '/trp-seo', [
+        'methods' => 'POST',
+        'permission_callback' => function () { return current_user_can('manage_options'); },
+        'callback' => function (WP_REST_Request $req) {
+            $in = $req->get_json_params()['seo'] ?? [];
+            $map = get_option('dd_fi_seo', []);
+            foreach ($in as $en => $fi) $map[trim(wp_strip_all_tags($en))] = wp_strip_all_tags($fi);
+            update_option('dd_fi_seo', $map, false);
+            do_action('litespeed_purge_all');
+            return ['ok' => true, 'count' => count($map)];
+        },
+    ]);
+});
