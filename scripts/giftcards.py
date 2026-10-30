@@ -126,7 +126,7 @@ def sale_from_session(sess, link):
     paid = dt.datetime.fromtimestamp(sess["created"], dt.timezone.utc)
     return {
         "session": sess["id"],
-        "code": ("LAHJA-" if link.get("lang") == "fi" else "GIFT-") + code_for(sess["id"]),
+        "code": ("LAHJA-" if (sess.get("client_reference_id") or link.get("lang")) == "fi" else "GIFT-") + code_for(sess["id"]),
         "product": link["product"],
         "delivery": link["delivery"],
         "amount": f"{(sess.get('amount_total') or 0) / 100:.2f} {str(sess.get('currency', 'eur')).upper()}",
@@ -138,7 +138,8 @@ def sale_from_session(sess, link):
         "shipping": shipping_of(sess),
         "paid_at": paid.isoformat(),
         "expires": (paid + dt.timedelta(days=VALID_DAYS)).date().isoformat(),
-        "lang": link.get("lang", "en"),
+        # the Finnish site can reuse the same links with ?client_reference_id=fi
+        "lang": sess.get("client_reference_id") if sess.get("client_reference_id") in ("fi", "en") else link.get("lang", "en"),
     }
 
 
