@@ -5,7 +5,8 @@ name: Gift cards
 # talecraftmanagement (with the address if it has to be posted).
 # A failed run makes GitHub email the repo owner.
 on:
-  # schedule goes in at launch:  - cron: '7,22,37,52 * * * *'
+  schedule:
+    - cron: '7,22,37,52 * * * *'
   workflow_dispatch:
     inputs:
       action:
