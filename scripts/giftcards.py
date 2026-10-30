@@ -96,9 +96,16 @@ def code_for(session_id):
     return "LAHJA-" + s
 
 
+FIELD_LABELS = {"kenelle": "kenelle", "viesti": "tervehdys", "kenelta": "kenelt"}
+
+
 def field(sess, key):
+    """Stripe dashboard picks the field keys itself, so match on key or on the label's start."""
+    want = FIELD_LABELS[key]
     for f in sess.get("custom_fields") or []:
-        if f.get("key") == key:
+        k = (f.get("key") or "").lower()
+        label = ((f.get("label") or {}).get("custom") or "").lower()
+        if k.startswith(want) or label.startswith(want):
             return ((f.get("text") or {}).get("value") or "").strip()
     return ""
 
