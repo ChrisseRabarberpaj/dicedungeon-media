@@ -3,13 +3,13 @@
  * Dice Dungeon gift cards: lets the GitHub gift card job create one Amelia coupon per sold card.
  * Install as a WPCode "PHP Snippet", Auto Insert, Run Everywhere.
  *
- * POST /wp-json/dd/v1/gift-coupon   {"code":"LAHJA-7K3QX2","service_id":1,"expires":"2027-10-30"}
- * GET  /wp-json/dd/v1/gift-coupon?code=LAHJA-7K3QX2   (is it used?)
+ * POST /wp-json/dd/v1/gift-coupon   {"code":"GIFT-7K3QX2","service_id":1,"expires":"2027-10-30"}
+ * GET  /wp-json/dd/v1/gift-coupon?code=GIFT-7K3QX2   (is it used?)
  * GET  /wp-json/dd/v1/gift-sale?session=cs_...     (has this Stripe payment been handled?)
  * POST /wp-json/dd/v1/gift-sale  {...}              (mark it handled, keeps the sales log here, not on GitHub)
  *
  * Only an administrator can call it (the job logs in with the "github-giftcards" application password).
- * It can only make 100 % single-use coupons, only for these four services, only with LAHJA- codes.
+ * It can only make 100 % single-use coupons, only for these four services, only with GIFT-/LAHJA- codes.
  * It never edits or deletes existing coupons or bookings.
  */
 
@@ -82,8 +82,8 @@ function dd_gift_coupon_create(WP_REST_Request $req) {
     $service = (int) $req->get_param('service_id');
     $expires = sanitize_text_field($req->get_param('expires'));
 
-    if (!preg_match('/^LAHJA-[A-Z0-9]{4,10}$/', $code))
-        return new WP_Error('bad_code', 'Code must look like LAHJA-XXXXXX', ['status' => 400]);
+    if (!preg_match('/^(LAHJA|GIFT)-[A-Z0-9]{4,10}$/', $code))
+        return new WP_Error('bad_code', 'Code must look like GIFT-XXXXXX or LAHJA-XXXXXX', ['status' => 400]);
     // 1 = Dice Dungeon 6 hours, 7 = 12 hours, 2 = Half Shot (3 Hours), 3 = One Shot (5 Hours)
     if (!in_array($service, [1, 7, 2, 3], true))
         return new WP_Error('bad_service', 'Service not allowed', ['status' => 400]);

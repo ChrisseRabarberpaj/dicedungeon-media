@@ -1,10 +1,10 @@
 {
-  "plink_1UWLiFEhOamhdmxIHxzakiV7": {"product": "room6",  "delivery": "digital", "url": "https://buy.stripe.com/3cI9AT5yB5O13g33EVfAc08"},
-  "plink_1UWLkSEhOamhdmxIB5qn57hs": {"product": "room6",  "delivery": "post",    "url": "https://buy.stripe.com/4gM6oH0eha4hdUHb7nfAc09"},
-  "plink_1UWLlxEhOamhdmxIrxw7Vr5h": {"product": "room12", "delivery": "digital", "url": "https://buy.stripe.com/3cI14nf9b90dbMz6R7fAc0a"},
-  "plink_1UWLqOEhOamhdmxI022Tdkz0": {"product": "room12", "delivery": "post",    "url": "https://buy.stripe.com/6oU5kD8KN5O17wj6R7fAc0d"},
-  "plink_1UWLn9EhOamhdmxIB17UErh4": {"product": "gm3",    "delivery": "digital", "url": "https://buy.stripe.com/dRm7sLe5790d5ob5N3fAc0b"},
-  "plink_1UWLrZEhOamhdmxIQsK5mxVp": {"product": "gm3",    "delivery": "post",    "url": "https://buy.stripe.com/fZu8wP9ORdgt8An7VbfAc0e"},
-  "plink_1UWLojEhOamhdmxIDm6zLHQx": {"product": "gm5",    "delivery": "digital", "url": "https://buy.stripe.com/3cIeVd2mp1xLaIv1wNfAc0c"},
-  "plink_1UWLsfEhOamhdmxIoX2efB8U": {"product": "gm5",    "delivery": "post",    "url": "https://buy.stripe.com/bJe9AT0ehdgt6sfb7nfAc0f"}
+  "plink_1UWLiFEhOamhdmxIHxzakiV7": {"product": "room6", "delivery": "digital", "url": "https://buy.stripe.com/3cI9AT5yB5O13g33EVfAc08", "lang": "en"},
+  "plink_1UWLkSEhOamhdmxIB5qn57hs": {"product": "room6", "delivery": "post", "url": "https://buy.stripe.com/4gM6oH0eha4hdUHb7nfAc09", "lang": "en"},
+  "plink_1UWLlxEhOamhdmxIrxw7Vr5h": {"product": "room12", "delivery": "digital", "url": "https://buy.stripe.com/3cI14nf9b90dbMz6R7fAc0a", "lang": "en"},
+  "plink_1UWLqOEhOamhdmxI022Tdkz0": {"product": "room12", "delivery": "post", "url": "https://buy.stripe.com/6oU5kD8KN5O17wj6R7fAc0d", "lang": "en"},
+  "plink_1UWLn9EhOamhdmxIB17UErh4": {"product": "gm3", "delivery": "digital", "url": "https://buy.stripe.com/dRm7sLe5790d5ob5N3fAc0b", "lang": "en"},
+  "plink_1UWLrZEhOamhdmxIQsK5mxVp": {"product": "gm3", "delivery": "post", "url": "https://buy.stripe.com/fZu8wP9ORdgt8An7VbfAc0e", "lang": "en"},
+  "plink_1UWLojEhOamhdmxIDm6zLHQx": {"product": "gm5", "delivery": "digital", "url": "https://buy.stripe.com/3cIeVd2mp1xLaIv1wNfAc0c", "lang": "en"},
+  "plink_1UWLsfEhOamhdmxIoX2efB8U": {"product": "gm5", "delivery": "post", "url": "https://buy.stripe.com/bJe9AT0ehdgt6sfb7nfAc0f", "lang": "en"}
 }

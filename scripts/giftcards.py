@@ -93,7 +93,7 @@ def code_for(session_id):
     for _ in range(6):
         n, r = divmod(n, len(ALPHABET))
         s += ALPHABET[r]
-    return "LAHJA-" + s
+    return s
 
 
 FIELD_LABELS = {"kenelle": "kenelle", "viesti": "tervehdys", "kenelta": "kenelt"}
@@ -125,7 +125,7 @@ def sale_from_session(sess, link):
     paid = dt.datetime.fromtimestamp(sess["created"], dt.timezone.utc)
     return {
         "session": sess["id"],
-        "code": code_for(sess["id"]),
+        "code": ("LAHJA-" if link.get("lang") == "fi" else "GIFT-") + code_for(sess["id"]),
         "product": link["product"],
         "delivery": link["delivery"],
         "amount": f"{(sess.get('amount_total') or 0) / 100:.2f} {str(sess.get('currency', 'eur')).upper()}",
@@ -137,6 +137,7 @@ def sale_from_session(sess, link):
         "shipping": shipping_of(sess),
         "paid_at": paid.isoformat(),
         "expires": (paid + dt.timedelta(days=VALID_DAYS)).date().isoformat(),
+        "lang": link.get("lang", "en"),
     }
 
 
@@ -148,56 +149,66 @@ html,body{margin:0;padding:0;background:#0A0808}@page{size:91mm 61.1mm;margin:0}
 font-family:'Alegreya',Georgia,serif;color:#ECE8E2;page-break-after:always}</style>"""
 
 
-def front_html(p):
+T = {
+    "fi": {"label": "LAHJAKORTTI", "for_you": "SINULLE", "code": "Koodi", "valid": "Voimassa {d} asti",
+           "or_mail": "tai lähetä koodi: booking@talecraftgames.com",
+           "how": "Varaa: dicedungeon.fi/booking → <i>{s}</i> → syötä koodi maksuvaiheessa.",
+           "gm": "Varaa vähintään 5 päivää etukäteen, vahvistamme ajan."},
+    "en": {"label": "GIFT CARD", "for_you": "FOR YOU", "code": "Code", "valid": "Valid until {d}",
+           "or_mail": "or email the code to booking@talecraftgames.com",
+           "how": "Book at dicedungeon.fi/booking → pick <i>{s}</i> → enter the code at checkout.",
+           "gm": "Book at least 5 days ahead, we confirm the date."},
+}
+
+
+def fmt_date(iso, lang="fi"):
+    y, m, d = (int(x) for x in iso.split("-"))
+    if lang == "en":
+        return f"{d} {['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][m-1]} {y}"
+    return f"{d}.{m}.{y}"
+
+
+def front_html(p, lang):
+    t, c = T[lang], p[lang]
     return f"""<div class="card" style="padding:22px">
 <img src="{p['image']}" style="position:absolute;left:0;top:0;width:344px;height:231px;object-fit:cover;object-position:{p['pos']}">
 <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,8,8,.55) 0%,rgba(10,8,8,.15) 38%,rgba(10,8,8,.6) 62%,rgba(10,8,8,.92) 100%)"></div>
 <div style="position:relative;width:100%;height:100%;box-sizing:border-box;border:1.5px solid #F5CB5C;border-radius:4px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between">
-<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px"><div style="font-size:12px;letter-spacing:3px;font-weight:700;color:#F5CB5C">LAHJAKORTTI</div><img src="logo2.svg" style="width:74px;height:auto"></div>
-<div style="display:flex;flex-direction:column;gap:4px"><div style="font-family:'Almendra SC',Georgia,serif;font-size:34px;line-height:1;color:#fff">{p['head']}</div><div style="font-size:13px">{p['sub']}</div></div>
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px"><div style="font-size:12px;letter-spacing:3px;font-weight:700;color:#F5CB5C">{t['label']}</div><img src="logo2.svg" style="width:74px;height:auto"></div>
+<div style="display:flex;flex-direction:column;gap:4px"><div style="font-family:'Almendra SC',Georgia,serif;font-size:34px;line-height:1;color:#fff">{c['head']}</div><div style="font-size:13px">{c['sub']}</div></div>
 </div></div>"""
 
 
-def fmt_date(iso):
-    y, m, d = iso.split("-")
-    return f"{int(d)}.{int(m)}.{y}"
-
-
-def back_html(p, sale):
-    e = html.escape
+def back_html(p, sale, lang):
+    e, t = html.escape, T[lang]
     to = sale.get("recipient") or ""
-    head = f"{e(to.upper())}" if to else "SINULLE · FOR YOU"
-    msg = sale.get("message") or ""
-    frm = sale.get("sender") or ""
+    head = (("FOR " if lang == "en" else "") + e(to.upper())) if to else t["for_you"]
+    msg, frm = sale.get("message") or "", sale.get("sender") or ""
     greet = ""
     if msg or frm:
         greet = f"""<div style="font-size:12.5px;line-height:1.3;font-style:italic;padding-right:80px">{e(msg)}{' – ' + e(frm) if frm else ''}</div>"""
+    how = t["how"].format(s=e(p["service"]))
     if p["gm"]:
-        how = (f"Varaa: dicedungeon.fi/booking → <i>{e(p['service'])}</i> → koodi maksuvaiheeseen. "
-               "Varaa 5 pv etukäteen, vahvistamme ajan.<br><span style=\"color:#B9B2A8\">Book 5 days ahead, "
-               "we confirm the date.</span>")
-    else:
-        how = (f"Varaa: dicedungeon.fi/booking → <i>{e(p['service'])}</i> → koodi maksuvaiheeseen."
-               f"<br><span style=\"color:#B9B2A8\">Book online, pick <i>{e(p['service'])}</i>, enter the code.</span>")
+        how += f"<br><span style=\"color:#B9B2A8\">{t['gm']}</span>"
     return f"""<div class="card" style="padding:18px 22px;display:flex;flex-direction:column;gap:5px">
 <div style="font-size:11px;letter-spacing:3px;font-weight:700;color:#F5CB5C;padding-right:80px">{head}</div>
 {greet}
 <div style="font-size:11px;line-height:1.32;padding-right:80px;margin-top:2px">{how}</div>
-<div style="display:flex;align-items:baseline;gap:10px;margin-top:auto"><span style="font-size:12px">Koodi</span><span style="font-size:21px;font-weight:700;letter-spacing:2.5px;color:#F5CB5C">{e(sale['code'])}</span></div>
-<div style="font-size:9.5px;color:#B9B2A8">Voimassa {fmt_date(sale['expires'])} asti · tai lähetä koodi: booking@talecraftgames.com</div>
+<div style="display:flex;align-items:baseline;gap:10px;margin-top:auto"><span style="font-size:12px">{t['code']}</span><span style="font-size:21px;font-weight:700;letter-spacing:2.5px;color:#F5CB5C">{e(sale['code'])}</span></div>
+<div style="font-size:9.5px;color:#B9B2A8">{t['valid'].format(d=fmt_date(sale['expires'], lang))} · {t['or_mail']}</div>
 <img src="qr_booking.png" style="position:absolute;right:22px;top:18px;width:64px;height:64px;background:#fff;padding:3px;border-radius:3px">
 </div>"""
 
 
 def render(sale, outdir):
-    """Writes <code>.pdf (front + back, card size) and <code>.png (front over back, for WhatsApp)."""
+    """Writes <code>-print.pdf (front + back, card size) and <code>-WhatsApp.png (front over back)."""
     from playwright.sync_api import sync_playwright
-    p = PRODUCTS[sale["product"]]
+    p, lang = PRODUCTS[sale["product"]], sale.get("lang", "en")
     outdir = Path(outdir)
-    pdf, png = outdir / f"{sale['code']}.pdf", outdir / f"{sale['code']}.png"
-    page_html = f"<!doctype html><html><head><meta charset='utf-8'>{FONTS}</head><body>{front_html(p)}{back_html(p, sale)}</body></html>"
+    pdf, png = outdir / f"{sale['code']}-print.pdf", outdir / f"{sale['code']}-WhatsApp.png"
+    page_html = f"<!doctype html><html><head><meta charset='utf-8'>{FONTS}</head><body>{front_html(p, lang)}{back_html(p, sale, lang)}</body></html>"
     stack_html = (f"<!doctype html><html><head><meta charset='utf-8'>{FONTS}</head><body style='padding:12px;background:#1a1414'>"
-                  f"<div style='display:flex;flex-direction:column;gap:12px'>{front_html(p)}{back_html(p, sale)}</div></body></html>")
+                  f"<div style='display:flex;flex-direction:column;gap:12px'>{front_html(p, lang)}{back_html(p, sale, lang)}</div></body></html>")
     with tempfile.TemporaryDirectory() as tmp:
         tmp = Path(tmp)
         for f in ASSETS.iterdir():
@@ -218,24 +229,20 @@ def render(sale, outdir):
 
 # ---------------------------------------------------------------- email
 def buyer_email(sale):
-    p = PRODUCTS[sale["product"]]
-    first = (sale["buyer_name"].split() or ["!"])[0]
-    exp = fmt_date(sale["expires"])
+    p, lang = PRODUCTS[sale["product"]], sale.get("lang", "en")
+    first = (sale["buyer_name"].split() or [""])[0]
+    exp = fmt_date(sale["expires"], lang)
     post = sale["delivery"] == "post"
-    gm_fi = ("\nSeikkailuissa pyyntö kannattaa tehdä vähintään 5 päivää etukäteen. Varmistamme pelinjohtajan ja "
-             "vahvistamme ajan sähköpostilla.\n") if p["gm"] else ""
-    gm_en = ("\nFor adventures, send the request at least 5 days ahead. We find the Game Master and confirm "
-             "the date by email.\n") if p["gm"] else ""
-    post_fi = ("\nPostitamme kortin 1-2 arkipäivän sisällä osoitteeseen:\n" + sale["shipping"] +
-               "\n\nLiitteenä on myös digiversio, jos haluat antaa lahjan jo ennen kuin posti tuo sen.\n") if post else \
-              "\nKortti on liitteenä PDF:nä (tulostettavaksi) ja kuvana (helppo lähettää esim. WhatsAppissa).\n"
-    post_en = ("\nWe'll post the card within 1-2 working days to the address above. The digital version is "
-               "attached too, in case you want to give it before the post arrives.\n") if post else \
-              "\nThe card is attached as a PDF (for printing) and as an image (easy to send on WhatsApp).\n"
-    body = f"""Hei {first}!
+    if lang == "fi":
+        gm = ("\nSeikkailuissa pyyntö kannattaa tehdä vähintään 5 päivää etukäteen. Varmistamme pelinjohtajan ja "
+              "vahvistamme ajan sähköpostilla.\n") if p["gm"] else ""
+        deliv = ("\nPostitamme kortin 1-2 arkipäivän sisällä osoitteeseen:\n" + sale["shipping"] +
+                 "\n\nLiitteenä on myös digiversio, jos haluat antaa lahjan jo ennen kuin posti tuo sen.\n") if post else \
+                "\nKortti on liitteenä PDF:nä tulostettavaksi ja kuvana, jonka voi lähettää esim. WhatsAppissa.\n"
+        body = f"""Hei {first}!
 
-Kiitos ostosta! Tässä lahjakortti: {p['fi']}.
-{post_fi}
+Kiitos ostosta! Tässä lahjakortti: {p['fi']['long']}.
+{deliv}
 Koodi: {sale['code']}
 Voimassa: {exp} asti
 
@@ -243,33 +250,36 @@ Näin lahjan saaja käyttää sen:
 1. Varaa aika osoitteessa https://dicedungeon.fi/booking/
 2. Valitse "{p['service']}"
 3. Syötä koodi maksuvaiheen alennuskenttään, hinta menee nollaan.
-{gm_fi}
+{gm}
 Jos jokin mietityttää, vastaa tähän viestiin.
 
 Christoffer
 Dice Dungeon, Caloniuksenkatu 9 D 65, Töölö
+"""
+        return "Dice Dungeon -lahjakortti: " + p["fi"]["head"], body
+    gm = ("\nFor adventures, send the booking request at least 5 days ahead. We line up the Game Master and "
+          "confirm the date by email.\n") if p["gm"] else ""
+    deliv = ("\nWe'll post the card within 1-2 working days to:\n" + sale["shipping"] +
+             "\n\nThe digital version is attached too, in case you want to give it before the post arrives.\n") if post else \
+            "\nThe card is attached twice: a PDF to print, and an image that's easy to send on WhatsApp.\n"
+    body = f"""Hi {first}!
 
----
-
-Hi {first}!
-
-Thanks for your order! Here's your gift card: {p['en']}.
-{post_en}
+Thanks for your order! Here's your gift card: {p['en']['long']}.
+{deliv}
 Code: {sale['code']}
 Valid until: {exp}
 
-How to use it:
+How the recipient uses it:
 1. Book at https://dicedungeon.fi/booking/
 2. Pick "{p['service']}"
-3. Enter the code in the coupon field at checkout, the price goes to zero.
-{gm_en}
+3. Enter the code in the coupon field at checkout. The price goes to zero.
+{gm}
 Questions? Just reply to this email.
 
 Christoffer
-Dice Dungeon
+Dice Dungeon, Caloniuksenkatu 9 D 65, Helsinki
 """
-    subj = "Dice Dungeon -lahjakortti / gift card: " + p["head"]
-    return subj, body
+    return "Your Dice Dungeon gift card: " + p["en"]["head"], body
 
 
 def owner_email(sale):
@@ -277,7 +287,7 @@ def owner_email(sale):
     post = sale["delivery"] == "post"
     lines = [
         ("POSTITETTAVA, tulosta liite ja postita:\n\n" + sale["shipping"] + "\n") if post else "Digitaalinen, lähti ostajalle automaattisesti.\n",
-        f"Tuote: {p['head']} ({p['service']})",
+        f"Tuote: {p['fi']['head']} ({p['service']})",
         f"Koodi: {sale['code']} (Amelia-kuponki luotu, 100 %, 1 käyttö)",
         f"Voimassa: {fmt_date(sale['expires'])}",
         f"Maksettu: {sale['amount']}",
@@ -287,7 +297,7 @@ def owner_email(sale):
         f"Keneltä: {sale['sender'] or '-'}",
         f"Stripe: {sale['session']}",
     ]
-    subj = ("POSTITA: " if post else "") + f"Lahjakortti myyty: {p['head']} ({sale['code']})"
+    subj = ("POSTITA: " if post else "") + f"Lahjakortti myyty: {p['fi']['head']} ({sale['code']})"
     return subj, "\n".join(lines) + "\n"
 
 
@@ -299,7 +309,7 @@ def send(to, subj, body, attachments, reply_to=REPLY_TO):
         path = Path(path)
         sub = "pdf" if path.suffix == ".pdf" else "png"
         mt = "application" if sub == "pdf" else "image"
-        m.add_attachment(path.read_bytes(), maintype=mt, subtype=sub, filename="Dice-Dungeon-lahjakortti" + path.suffix)
+        m.add_attachment(path.read_bytes(), maintype=mt, subtype=sub, filename="Dice-Dungeon-gift-card-" + path.name.split("-", 2)[-1])
     with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=ssl.create_default_context()) as s:
         s.login(GMAIL_USER, secret("GMAIL_APP_PASSWORD"))
         s.send_message(m)
@@ -340,7 +350,7 @@ def handle(sale, workdir):
     if sale["buyer_email"]:
         send(sale["buyer_email"], *buyer_email(sale), [pdf, png])
     send(OWNER, *owner_email(sale), [pdf, png], reply_to=sale["buyer_email"] or REPLY_TO)
-    rec = {k: v for k, v in sale.items() if k != "expires"}
+    rec = {k: v for k, v in sale.items() if k not in ("expires", "lang")}
     rec["handled_at"] = dt.datetime.now(dt.timezone.utc).isoformat()
     code, res = wp("POST", "/gift-sale", rec)
     if code != 200:
@@ -364,19 +374,19 @@ def cmd_run(_):
 
 def demo_sale(product, delivery="digital"):
     today = dt.date.today()
-    return {"session": "cs_test_demo", "code": "LAHJA-7K3QX2", "product": product, "delivery": delivery,
+    return {"session": "cs_test_demo", "code": "GIFT-7K3QX2", "product": product, "delivery": delivery,
             "amount": f"{PRODUCTS[product]['price'] + (5 if delivery == 'post' else 0)}.00 EUR",
             "buyer_name": "Mikko Testinen", "buyer_email": "", "recipient": "Anna",
-            "message": "Hyvää joulua! Nyt pääset vihdoin pelaamaan.", "sender": "Mikko",
+            "message": "Merry Christmas! Time to finally roll some dice.", "sender": "Mikko",
             "shipping": "Anna Testinen\nTestikatu 1 A 2\n00100 Helsinki\nFI" if delivery == "post" else "",
             "paid_at": dt.datetime.now(dt.timezone.utc).isoformat(),
-            "expires": (today + dt.timedelta(days=VALID_DAYS)).isoformat()}
+            "expires": (today + dt.timedelta(days=VALID_DAYS)).isoformat(), "lang": "en"}
 
 
 def cmd_demo(a):
     out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
     for k in PRODUCTS:
-        s = demo_sale(k); s["code"] = "LAHJA-" + k.upper().ljust(6, "X")[:6]
+        s = demo_sale(k); s["code"] = "GIFT-" + k.upper().ljust(6, "X")[:6]
         if k == "room12":
             s["recipient"] = s["message"] = s["sender"] = ""
         pdf, png = render(s, out)
