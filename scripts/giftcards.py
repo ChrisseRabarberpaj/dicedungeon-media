@@ -285,21 +285,24 @@ Dice Dungeon, Caloniuksenkatu 9 D 65, Helsinki
 
 
 def owner_email(sale):
+    """Note to the owner, always in English."""
     p = PRODUCTS[sale["product"]]
     post = sale["delivery"] == "post"
+    card_lang = "Finnish" if sale.get("lang") == "fi" else "English"
     lines = [
-        ("POSTITETTAVA, tulosta liite ja postita:\n\n" + sale["shipping"] + "\n") if post else "Digitaalinen, lähti ostajalle automaattisesti.\n",
-        f"Tuote: {p['fi']['head']} ({p['service']})",
-        f"Koodi: {sale['code']} (Amelia-kuponki luotu, 100 %, 1 käyttö)",
-        f"Voimassa: {fmt_date(sale['expires'])}",
-        f"Maksettu: {sale['amount']}",
-        f"Ostaja: {sale['buyer_name']} <{sale['buyer_email']}>",
-        f"Kenelle: {sale['recipient'] or '-'}",
-        f"Tervehdys: {sale['message'] or '-'}",
-        f"Keneltä: {sale['sender'] or '-'}",
+        ("TO POST: print the attachment and mail it to:\n\n" + sale["shipping"] + "\n") if post else "Digital, already emailed to the buyer automatically.\n",
+        f"Card: {p['en']['head']} ({p['service']})",
+        f"Card language: {card_lang}",
+        f"Code: {sale['code']} (Amelia coupon created, 100 %, single use)",
+        f"Valid until: {fmt_date(sale['expires'], 'en')}",
+        f"Paid: {sale['amount']}",
+        f"Buyer: {sale['buyer_name']} <{sale['buyer_email']}>",
+        f"To: {sale['recipient'] or '-'}",
+        f"Greeting: {sale['message'] or '-'}",
+        f"From: {sale['sender'] or '-'}",
         f"Stripe: {sale['session']}",
     ]
-    subj = ("POSTITA: " if post else "") + f"Lahjakortti myyty: {p['fi']['head']} ({sale['code']})"
+    subj = ("TO POST: " if post else "") + f"Gift card sold: {p['en']['head']} ({sale['code']})"
     return subj, "\n".join(lines) + "\n"
 
 
@@ -403,7 +406,7 @@ def cmd_test(a):
         pdf, png = render(s, work)
         send(a.to, *buyer_email(s), [pdf, png])
         subj, body = owner_email(s)
-        send(a.to, "[TESTI] " + subj, body, [pdf, png])
+        send(a.to, "[TEST] " + subj, body, [pdf, png])
     print("sent test to", a.to)
 
 
