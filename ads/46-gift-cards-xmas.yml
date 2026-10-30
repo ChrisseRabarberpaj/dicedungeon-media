@@ -1,0 +1,30 @@
+# Gift card ad for Christmas. Needs post 46 published first, then 'create'.
+name: DD Gift cards Xmas
+approved: false
+creative: link
+link: https://dicedungeon.fi/lahjakortti/
+cta: SHOP_NOW
+objective: OUTCOME_TRAFFIC
+optimization_goal: LANDING_PAGE_VIEWS
+destination_type: WEBSITE
+budget_eur: 120
+start: '2026-11-12T18:00:00+02:00'
+end: '2026-12-21T23:59:00+02:00'
+targeting:
+  radius_km: 25
+  age_min: 22
+  platforms:
+  - facebook
+  - instagram
+  advantage_audience: true
+  custom_audiences:
+  - '120248705780640434'
+  - '120248705787660434'
+  - '120248705800350434'
+ads:
+- post: 46-gift-cards
+  message: 'Joululahjaksi pelipäivä: Dice Dungeonin lahjakortti sähköpostiin minuuteissa
+    tai postitse. / Give a game night this Christmas. Dice Dungeon gift cards from
+    200 €, by email in minutes or posted to your door.
+
+    '
