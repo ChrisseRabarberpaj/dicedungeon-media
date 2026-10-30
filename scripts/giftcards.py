@@ -320,7 +320,7 @@ def pending_sales():
     out = []
     for link_id, link in LINKS.items():
         for sess in stripe_sessions(link_id):
-            if sess.get("payment_status") != "paid":
+            if sess.get("payment_status") not in ("paid", "no_payment_required"):
                 continue
             code, _ = wp("GET", "/gift-sale", params={"session": sess["id"]})
             if code == 404:
