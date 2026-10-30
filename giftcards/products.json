@@ -1,0 +1,38 @@
+{
+  "room6": {
+    "service_id": 1,
+    "service": "Dice Dungeon 6 hours",
+    "price": 200,
+    "image": "01014.jpg", "pos": "50% 22%",
+    "head": "6 h pelikerta", "sub": "koko porukalle · for the whole group",
+    "fi": "6 tunnin pelikerta koko porukalle", "en": "a 6 hour game session for the whole group",
+    "gm": false
+  },
+  "room12": {
+    "service_id": 7,
+    "service": "Dice Dungeon 12 hours",
+    "price": 300,
+    "image": "01473.jpg", "pos": "50% 72%",
+    "head": "12 h pelikerta", "sub": "koko päivä koko porukalle · a full day",
+    "fi": "12 tunnin pelipäivä koko porukalle", "en": "a 12 hour game day for the whole group",
+    "gm": false
+  },
+  "gm3": {
+    "service_id": 2,
+    "service": "Half Shot (3 Hours)",
+    "price": 400,
+    "image": "00770.jpg", "pos": "58% 45%",
+    "head": "Seikkailu 3 h", "sub": "pelinjohtajan kanssa · with a Game Master",
+    "fi": "3 tunnin seikkailu pelinjohtajan kanssa", "en": "a 3 hour adventure with a Game Master",
+    "gm": true
+  },
+  "gm5": {
+    "service_id": 3,
+    "service": "One Shot (5 Hours)",
+    "price": 600,
+    "image": "roompurple.jpg", "pos": "50% 40%",
+    "head": "Seikkailu 5 h", "sub": "pelinjohtajan kanssa · with a Game Master",
+    "fi": "5 tunnin seikkailu pelinjohtajan kanssa", "en": "a 5 hour adventure with a Game Master",
+    "gm": true
+  }
+}

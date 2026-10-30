@@ -1,0 +1,55 @@
+name: Gift cards
+
+# Every 15 min: any paid gift card in Stripe that isn't handled yet gets an Amelia
+# coupon, a card (PDF + image) and an email to the buyer, plus a copy to
+# talecraftmanagement (with the address if it has to be posted).
+# A failed run makes GitHub email the repo owner.
+on:
+  # schedule goes in at launch:  - cron: '7,22,37,52 * * * *'
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "run = handle paid cards, check = read-only count, test = send a sample email (dummy code, no coupon)"
+        type: choice
+        options: [run, check, test]
+        default: run
+      product:
+        description: "test only: room6 / room12 / gm3 / gm5"
+        default: room6
+      delivery:
+        description: "test only: digital / post"
+        default: digital
+      to:
+        description: "test only: where to send the sample"
+        default: talecraftmanagement@gmail.com
+
+concurrency: giftcards
+
+jobs:
+  giftcards:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      STRIPE_API_KEY: ${{ secrets.STRIPE_API_KEY }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+      GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Anything to do?
+        id: check
+        if: ${{ inputs.action != 'test' }}
+        run: python scripts/giftcards.py check
+      - name: Install card renderer
+        if: ${{ inputs.action == 'test' || (inputs.action != 'check' && steps.check.outputs.pending != '0') }}
+        run: |
+          pip install playwright==1.49.1
+          python -m playwright install --with-deps chromium
+      - name: Handle paid cards
+        if: ${{ inputs.action != 'test' && inputs.action != 'check' && steps.check.outputs.pending != '0' }}
+        run: python scripts/giftcards.py run
+      - name: Send sample
+        if: ${{ inputs.action == 'test' }}
+        run: python scripts/giftcards.py test --product "${{ inputs.product }}" --delivery "${{ inputs.delivery }}" --to "${{ inputs.to }}"
