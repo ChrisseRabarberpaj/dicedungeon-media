@@ -1,0 +1,25 @@
+name: amelia-cron
+
+# Amelia scheduled notifications (next-day reminder, follow up with PALUU15)
+# only go out when something calls this endpoint regularly. The site has no
+# server cron, so GitHub does it. Every 15 min as Amelia recommends; GitHub
+# may delay scheduled runs by a few minutes, which is fine here.
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Trigger Amelia scheduled notifications
+        run: |
+          code=$(curl -sS -o /tmp/out.txt -w '%{http_code}' \
+            -A 'dicedungeon-cron (github actions)' \
+            'https://dicedungeon.fi/wp-admin/admin-ajax.php?action=wpamelia_api&call=/notifications/scheduled/send')
+          echo "HTTP $code"
+          head -c 500 /tmp/out.txt; echo
+          test "$code" = "200"
