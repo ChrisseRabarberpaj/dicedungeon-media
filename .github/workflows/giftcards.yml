@@ -20,6 +20,9 @@ on:
       delivery:
         description: "test only: digital / post"
         default: digital
+      lang:
+        description: "test only: en / fi"
+        default: en
       to:
         description: "test only: where to send the sample"
         default: talecraftmanagement@gmail.com
@@ -53,4 +56,4 @@ jobs:
         run: python scripts/giftcards.py run
       - name: Send sample
         if: ${{ inputs.action == 'test' }}
-        run: python scripts/giftcards.py test --product "${{ inputs.product }}" --delivery "${{ inputs.delivery }}" --to "${{ inputs.to }}"
+        run: python scripts/giftcards.py test --product "${{ inputs.product }}" --delivery "${{ inputs.delivery }}" --to "${{ inputs.to }}" --lang "${{ inputs.lang }}"

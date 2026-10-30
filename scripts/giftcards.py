@@ -374,15 +374,15 @@ def cmd_run(_):
     sys.exit(1 if failed else 0)
 
 
-def demo_sale(product, delivery="digital"):
+def demo_sale(product, delivery="digital", lang="en"):
     today = dt.date.today()
-    return {"session": "cs_test_demo", "code": "GIFT-7K3QX2", "product": product, "delivery": delivery,
+    return {"session": "cs_test_demo", "code": ("LAHJA-" if lang == "fi" else "GIFT-") + "7K3QX2", "product": product, "delivery": delivery,
             "amount": f"{PRODUCTS[product]['price'] + (5 if delivery == 'post' else 0)}.00 EUR",
             "buyer_name": "Mikko Testinen", "buyer_email": "", "recipient": "Anna",
             "message": "Merry Christmas! Time to finally roll some dice.", "sender": "Mikko",
             "shipping": "Anna Testinen\nTestikatu 1 A 2\n00100 Helsinki\nFI" if delivery == "post" else "",
             "paid_at": dt.datetime.now(dt.timezone.utc).isoformat(),
-            "expires": (today + dt.timedelta(days=VALID_DAYS)).isoformat(), "lang": "en"}
+            "expires": (today + dt.timedelta(days=VALID_DAYS)).isoformat(), "lang": lang}
 
 
 def cmd_demo(a):
@@ -396,7 +396,9 @@ def cmd_demo(a):
 
 
 def cmd_test(a):
-    s = demo_sale(a.product, a.delivery); s["buyer_email"] = a.to
+    s = demo_sale(a.product, a.delivery, a.lang); s["buyer_email"] = a.to
+    if a.lang == "fi":
+        s["message"] = "Hyvää joulua! Nyt heitetään noppaa."
     with tempfile.TemporaryDirectory() as work:
         pdf, png = render(s, work)
         send(a.to, *buyer_email(s), [pdf, png])
@@ -412,6 +414,7 @@ if __name__ == "__main__":
     sp.add_parser("run").set_defaults(f=cmd_run)
     d = sp.add_parser("demo"); d.add_argument("--out", default="giftcard_demo"); d.set_defaults(f=cmd_demo)
     t = sp.add_parser("test"); t.add_argument("--product", default="room6"); t.add_argument("--delivery", default="digital")
-    t.add_argument("--to", default=OWNER); t.set_defaults(f=cmd_test)
+    t.add_argument("--to", default=OWNER); t.add_argument("--lang", default="en", choices=["en", "fi"])
+    t.set_defaults(f=cmd_test)
     a = ap.parse_args()
     a.f(a)
