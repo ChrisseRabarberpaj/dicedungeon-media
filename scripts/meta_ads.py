@@ -489,8 +489,8 @@ def build_ad(ad, ad_id, entry, ids, c, page_id):
                 },
                 "url_tags": f"utm_source=meta&utm_medium=paid&utm_campaign={ad_id}&utm_content={sub.get('post', 'ad')}",
             }
-            if ig_media and sub.get("cta") != "GET_QUOTE":
-                spec["source_instagram_media_id"] = str(ig_media)
+            # Meta (30 Oct 2026) rejects object_story_spec + source_instagram_media_id together
+            # ("ambiguous promoted object"), so link creatives always use the ad copy of the video.
         cr = api("POST", f"{act()}/adcreatives", spec)
         r = api("POST", f"{act()}/ads", {
             "name": f"{label} ad",
