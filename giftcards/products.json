@@ -9,7 +9,8 @@
     "fi": {
       "head": "6 h pelikerta",
       "sub": "koko porukalle",
-      "long": "6 tunnin pelikerta koko porukalle"
+      "long": "6 tunnin pelikerta koko porukalle",
+      "service": "Dice Dungeon 6 tuntia"
     },
     "en": {
       "head": "Half Day (6h)",
@@ -27,7 +28,8 @@
     "fi": {
       "head": "12 h pelikerta",
       "sub": "koko päivä koko porukalle",
-      "long": "12 tunnin pelipäivä koko porukalle"
+      "long": "12 tunnin pelipäivä koko porukalle",
+      "service": "Dice Dungeon 12 tuntia"
     },
     "en": {
       "head": "Full Day (12h)",
@@ -45,7 +47,8 @@
     "fi": {
       "head": "Seikkailu 3 h",
       "sub": "pelinjohtajan kanssa",
-      "long": "3 tunnin seikkailu pelinjohtajan kanssa"
+      "long": "3 tunnin seikkailu pelinjohtajan kanssa",
+      "service": "Half Shot (3 tuntia)"
     },
     "en": {
       "head": "Half Shot (3h)",
@@ -63,7 +66,8 @@
     "fi": {
       "head": "Seikkailu 5 h",
       "sub": "pelinjohtajan kanssa",
-      "long": "5 tunnin seikkailu pelinjohtajan kanssa"
+      "long": "5 tunnin seikkailu pelinjohtajan kanssa",
+      "service": "One Shot (5 tuntia)"
     },
     "en": {
       "head": "One Shot (5h)",

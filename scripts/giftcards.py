@@ -154,7 +154,7 @@ font-family:'Alegreya',Georgia,serif;color:#ECE8E2;page-break-after:always}</sty
 T = {
     "fi": {"label": "LAHJAKORTTI", "for_you": "SINULLE", "code": "Koodi", "valid": "Voimassa {d} asti",
            "or_mail": "tai lähetä koodi: booking@talecraftgames.com",
-           "how": "Varaa: dicedungeon.fi/booking → <i>{s}</i> → syötä koodi maksuvaiheessa.",
+           "how": "Varaa: dicedungeon.fi/fi/booking → <i>{s}</i> → syötä koodi maksuvaiheessa.",
            "gm": "Varaa vähintään 5 päivää etukäteen, vahvistamme ajan."},
     "en": {"label": "GIFT CARD", "for_you": "FOR YOU", "code": "Code", "valid": "Valid until {d}",
            "or_mail": "or email the code to booking@talecraftgames.com",
@@ -189,7 +189,7 @@ def back_html(p, sale, lang):
     greet = ""
     if msg or frm:
         greet = f"""<div style="font-size:12.5px;line-height:1.3;font-style:italic;padding-right:80px">{e(msg)}{' – ' + e(frm) if frm else ''}</div>"""
-    how = t["how"].format(s=e(p["service"]))
+    how = t["how"].format(s=e(p[lang].get("service", p["service"])))
     if p["gm"]:
         how += f"<br><span style=\"color:#B9B2A8\">{t['gm']}</span>"
     return f"""<div class="card" style="padding:18px 22px;display:flex;flex-direction:column;gap:5px">
@@ -198,7 +198,7 @@ def back_html(p, sale, lang):
 <div style="font-size:11px;line-height:1.32;padding-right:80px;margin-top:2px">{how}</div>
 <div style="display:flex;align-items:baseline;gap:10px;margin-top:auto"><span style="font-size:12px">{t['code']}</span><span style="font-size:21px;font-weight:700;letter-spacing:2.5px;color:#F5CB5C">{e(sale['code'])}</span></div>
 <div style="font-size:9.5px;color:#B9B2A8">{t['valid'].format(d=fmt_date(sale['expires'], lang))} · {t['or_mail']}</div>
-<img src="qr_booking.png" style="position:absolute;right:22px;top:18px;width:64px;height:64px;background:#fff;padding:3px;border-radius:3px">
+<img src="{'qr_booking_fi.png' if lang == 'fi' else 'qr_booking.png'}" style="position:absolute;right:22px;top:18px;width:64px;height:64px;background:#fff;padding:3px;border-radius:3px">
 </div>"""
 
 
@@ -249,8 +249,8 @@ Koodi: {sale['code']}
 Voimassa: {exp} asti
 
 Näin lahjan saaja käyttää sen:
-1. Varaa aika osoitteessa https://dicedungeon.fi/booking/
-2. Valitse "{p['service']}"
+1. Varaa aika osoitteessa https://dicedungeon.fi/fi/booking/
+2. Valitse "{p['fi'].get('service', p['service'])}"
 3. Syötä koodi maksuvaiheen alennuskenttään, hinta menee nollaan.
 {gm}
 Jos jokin mietityttää, vastaa tähän viestiin.
