@@ -96,7 +96,8 @@ def code_for(session_id):
     return s
 
 
-FIELD_LABELS = {"kenelle": "kenelle", "viesti": "tervehdys", "kenelta": "kenelt"}
+FIELD_LABELS = {"kenelle": ("kenelle", "recipient", "to"), "viesti": ("tervehdys", "message", "greeting"),
+                "kenelta": ("kenelt", "from")}
 
 
 def field(sess, key):
@@ -105,7 +106,7 @@ def field(sess, key):
     for f in sess.get("custom_fields") or []:
         k = (f.get("key") or "").lower()
         label = ((f.get("label") or {}).get("custom") or "").lower()
-        if k.startswith(want) or label.startswith(want):
+        if k.startswith(want) or label.startswith(want):  # want is a tuple of prefixes
             return ((f.get("text") or {}).get("value") or "").strip()
     return ""
 
