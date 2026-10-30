@@ -80,7 +80,7 @@ function dd_trp_post(WP_REST_Request $req) {
 /* ---------------------------------------------------------------------------
  * Finnish page titles and meta descriptions (Yoast). TranslatePress free leaves
  * these in English, so map them here. Map lives in option dd_fi_seo (en => fi),
- * set with POST /wp-json/dd/v1/trp {"seo": {...}}.
+ * set with POST /wp-json/dd/v1/trp-seo {"seo": {...}}.
  * ------------------------------------------------------------------------- */
 function dd_fi_seo($s) {
     global $TRP_LANGUAGE;
