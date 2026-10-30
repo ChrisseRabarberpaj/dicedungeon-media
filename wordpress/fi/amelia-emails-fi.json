@@ -1,0 +1,34 @@
+{
+  "1": {
+    "subject": "%service_name% on vahvistettu",
+    "content": "<p>Moi %customer_full_name%,<br><br><span>Dice Dungeon -varauksenne on vahvistettu.</span><br><br><span>&#127922; Pelikerta: %service_name%</span><br><span>&#128197; Päivä: %appointment_date%</span><br><span>⏰ Aika: %appointment_start_time% - %appointment_end_time%</span><br><br><span>Kannattaa tulla paikalle muutamaa minuuttia etuajassa, niin porukka ehtii asettua ja peli pääsee alkamaan ajoissa.</span><br><br><span>Jos varausta pitää muuttaa tai se pitää perua, ole yhteydessä etukäteen.</span><br><br><span>Nähdään Dice Dungeonissa!</span><br><br><span>Christoffer, Dice Dungeon</span></p>"
+  },
+  "2": {
+    "subject": "%service_name%: varauspyyntö vastaanotettu",
+    "content": "<p>Moi %customer_full_name%,<br><br><span>Varauspyyntönne (<strong>%service_name%</strong>) Dice Dungeoniin on vastaanotettu.</span><br><br><span>&#128197; Päivä: %appointment_date%</span><br><span>⏰ Aika: %appointment_start_time% - %appointment_end_time%</span><br><br><span>Pelikerta odottaa vielä vahvistusta. Tarkistamme pelinjohtajan saatavuuden ja lähetämme vahvistuksen sähköpostilla, yleensä vuorokauden sisällä ja viimeistään kahden arkipäivän kuluessa. Maksua pyydetään vasta, kun pelikerta on vahvistettu.</span><br><br><span>Jos sinulla on kysyttävää tai haluat muuttaa jotain, vastaa tähän viestiin.</span><br><br><span>Tervetuloa Dice Dungeoniin!</span><br><br><span>Christoffer, Dice Dungeon</span></p>"
+  },
+  "3": {
+    "subject": "%service_name%: varausta ei voitu vahvistaa",
+    "content": "<p>Moi %customer_full_name%,<br><br><span>Valitettavasti emme voi vahvistaa varaustanne: %service_name%, %appointment_date_time%, %location_address%.</span><br><br><span>Yleensä syynä on, että pelinjohtaja ei ole vapaana toivottuna aikana. Jos haluatte, ehdotamme mielellämme toista aikaa, vastaa vain tähän viestiin.</span><br><br><span>Christoffer, Dice Dungeon</span></p>"
+  },
+  "4": {
+    "subject": "%service_name%: varaus peruttu",
+    "content": "<p>Moi %customer_full_name%,<br><br><span>Varauksenne on peruttu: %service_name%, %appointment_date_time%, %location_address%.</span><br><br><span>Jos peruutus tuli yllätyksenä tai haluatte varata uuden ajan, vastaa tähän viestiin tai varaa suoraan osoitteessa <a href=\"https://dicedungeon.fi/fi/booking/\">dicedungeon.fi/fi/booking</a>.</span><br><br><span>Christoffer, Dice Dungeon</span></p>"
+  },
+  "5": {
+    "subject": "%service_name%: varauksen aika on muuttunut",
+    "content": "<p>Moi %customer_full_name%,<br><br><span>Varauksenne (%service_name%) aika on muuttunut. Uusi aika on <strong>%appointment_date% klo %appointment_start_time%</strong>, paikkana %location_name%.</span><br><br><span>Jos uusi aika ei sovi, vastaa tähän viestiin, niin katsotaan toinen.</span><br><br><span>Christoffer, Dice Dungeon</span></p>"
+  },
+  "6": {
+    "subject": "Muistutus: %service_name% huomenna",
+    "content": "<p>Moi %customer_full_name%,<br><br><span>Pieni muistutus: %service_name% on huomenna klo %appointment_start_time%.</span><br><br><span>Osoite: Caloniuksenkatu 9 D 65, 00100 Helsinki (Töölö). Soittakaa portilla Dice Dungeonin ovikelloa, niin päästän teidät sisään. Omat eväät ja juomat ovat tervetulleita.</span><br><br><span>Nähdään huomenna!</span><br><br><span>Christoffer, Dice Dungeon</span></p>"
+  },
+  "7": {
+    "subject": "Kiitos käynnistä! 15 % seuraavasta peli-illasta",
+    "content": "<p>Moi %customer_first_name%,</p><p></p><p>Kiitos käynnistä Dice Dungeonissa! Toivottavasti peli-ilta oli onnistunut.</p><p></p><p>Jos haluatte tulla uudestaan, tässä pieni kiitos: koodilla <strong>PALUU15</strong> saat 15 % alennusta huonevarauksesta (6 h tai 12 h). Koodi toimii kerran per asiakas, 31.3.2027 asti. Syötä se varauksen alennuskoodikenttään: <a href=\"https://dicedungeon.fi/fi/booking/\">dicedungeon.fi/fi/booking</a></p><p></p><p>Vinkki: maanantaista torstaihin 6 tunnin huone maksaa vain 120 € (Arkipäiväpeli), ja koodi toimii siihenkin.</p><p></p><p>Tervetuloa uudestaan!</p><p>Christoffer, Dice Dungeon</p>"
+  },
+  "8": {
+    "subject": "Hyvää syntymäpäivää!",
+    "content": "<p>Moi %customer_first_name%,<br><br><span>Hyvää syntymäpäivää Dice Dungeonin väeltä! Jos haluat juhlia pelien äärellä, huone on varattavissa osoitteessa <a href=\"https://dicedungeon.fi/fi/booking/\">dicedungeon.fi/fi/booking</a>.</span><br><br><span>Christoffer, Dice Dungeon</span></p>"
+  }
+}
