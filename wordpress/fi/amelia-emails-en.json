@@ -1,0 +1,30 @@
+{
+  "1": {
+    "subject": "%service_name% is confirmed",
+    "content": "<p>Hi %customer_full_name%,<br><br><span>Your Dice Dungeon session has been confirmed.</span><br><br><span>&#127922; Session: %service_name%</span><br><span>&#128197; Date: %appointment_date%</span><br><span>⏰ Time: %appointment_start_time% - %appointment_end_time%</span><br><br><span>We recommend arriving a few minutes early so your group can get settled and start your session on time.</span><br><br><span>If you need to modify or cancel your booking, please contact us in advance.</span><br><br><span>See you soon at Dice Dungeon!</span><br><br><span>Christoffer, Dice Dungeon</span></p>"
+  },
+  "2": {
+    "subject": "%service_name%: booking request received",
+    "content": "<p>Hi %customer_full_name%,<br><br><span>Your booking request for <strong>%service_name%</strong> at Dice Dungeon has been received.</span><br><br><span>&#128197; Date: %appointment_date%</span><br><span>⏰ Time: %appointment_start_time% - %appointment_end_time%</span><br><br><span>Your session is waiting for confirmation. We'll check the Game Master's availability and send you a confirmation by email, usually within a day and at most within two business days. Payment is only requested once the session is confirmed.</span><br><br><span>If you have any questions or need to make changes, simply reply to this email.</span><br><br><span>We look forward to welcoming you to Dice Dungeon!</span><br><br><span>Christoffer, Dice Dungeon</span></p>"
+  },
+  "3": {
+    "subject": "%service_name%: we couldn't confirm your booking",
+    "content": "<p>Hi %customer_full_name%,<br><br><span>Unfortunately we can't confirm your booking: %service_name%, %appointment_date_time%, %location_address%.</span><br><br><span>Usually this means the Game Master isn't available at the requested time. If you'd like, we're happy to suggest another time, just reply to this email.</span><br><br><span>Christoffer, Dice Dungeon</span></p>"
+  },
+  "4": {
+    "subject": "%service_name%: booking cancelled",
+    "content": "<p>Hi %customer_full_name%,<br><br><span>Your booking has been cancelled: %service_name%, %appointment_date_time%, %location_address%.</span><br><br><span>If this comes as a surprise, or you'd like to book a new time, reply to this email or book directly at <a href=\"https://dicedungeon.fi/booking/\">dicedungeon.fi/booking</a>.</span><br><br><span>Christoffer, Dice Dungeon</span></p>"
+  },
+  "5": {
+    "subject": "%service_name%: your booking time has changed",
+    "content": "<p>Hi %customer_full_name%,<br><br><span>The time of your booking (%service_name%) has changed. The new time is <strong>%appointment_date% at %appointment_start_time%</strong>, at %location_name%.</span><br><br><span>If the new time doesn't work for you, reply to this email and we'll find another.</span><br><br><span>Christoffer, Dice Dungeon</span></p>"
+  },
+  "6": {
+    "subject": "Reminder: %service_name% tomorrow",
+    "content": "<p>Hi %customer_full_name%,<br><br><span>A quick reminder: %service_name% is tomorrow at %appointment_start_time%.</span><br><br><span>Address: Caloniuksenkatu 9 D 65, 00100 Helsinki (Töölö). Ring the Dice Dungeon doorbell at the gate and I'll let you in. Your own snacks and drinks are welcome.</span><br><br><span>See you tomorrow!</span><br><br><span>Christoffer, Dice Dungeon</span></p>"
+  },
+  "8": {
+    "subject": "Happy birthday!",
+    "content": "<p>Hi %customer_first_name%,<br><br><span>Happy birthday from all of us at Dice Dungeon! If you'd like to celebrate around a gaming table, the room is yours to book at <a href=\"https://dicedungeon.fi/booking/\">dicedungeon.fi/booking</a>.</span><br><br><span>Christoffer, Dice Dungeon</span></p>"
+  }
+}
