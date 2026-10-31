@@ -37,16 +37,22 @@ Check this before drafting anything new. Never email a company that is already h
 | 2026-05-12 | Aivan | business@aivan.fi | |
 | 2026-05-12 | Agency Leroy | janne@agencyleroy.com | |
 
-## Nov 2026 batch 1: Gmail drafts created 31 Oct (Christoffer sends from booking@)
+## Nov 2026 batch 1: sent 31 Oct 2026 from booking@
 | Drafted | Company | Address | Sent | Reply |
 |---|---|---|---|---|
-| 2026-10-31 | Redhill Games | info@redhillgames.com | | |
-| 2026-10-31 | All Hats | contact@allhats.gg | | |
-| 2026-10-31 | Swarmia | hello@swarmia.com | | |
-| 2026-10-31 | Singa | info@singa.com | | |
-| 2026-10-31 | Nordkapp | hello@nordkapp.fi | | |
-| 2026-10-31 | Sherpa | booking@sherpa.fi | | |
-| 2026-10-31 | Playa Architects | info@playa.fi | | |
-| 2026-10-31 | Sulake | contact@sulake.com | | |
-| 2026-10-31 | Evermade | hello@evermade.fi | | |
-| 2026-10-31 | Hion Digital | info@hiondigital.com | | |
+| 2026-10-31 | Redhill Games | info@redhillgames.com | 2026-10-31 | |
+| 2026-10-31 | All Hats | contact@allhats.gg | 2026-10-31 | |
+| 2026-10-31 | Swarmia | hello@swarmia.com | 2026-10-31 | |
+| 2026-10-31 | Singa | info@singa.com | 2026-10-31 | |
+| 2026-10-31 | Nordkapp | hello@nordkapp.fi | 2026-10-31 | |
+| 2026-10-31 | Sherpa | booking@sherpa.fi | 2026-10-31 | |
+| 2026-10-31 | Playa Architects | info@playa.fi | 2026-10-31 | |
+| 2026-10-31 | Sulake | contact@sulake.com | 2026-10-31 | |
+| 2026-10-31 | Evermade | hello@evermade.fi | 2026-10-31 | |
+| 2026-10-31 | Hion Digital | info@hiondigital.com | 2026-10-31 (twice: 12:43 and 13:07, by accident) | |
+
+## Past customers (do not cold-email)
+| Company | Note |
+|---|---|
+| Tesseract Games | booked earlier |
+| Finago | booked (Nov 2026) |
