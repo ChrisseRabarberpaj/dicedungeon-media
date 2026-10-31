@@ -1,19 +1,16 @@
 # Pikkujoulu / Tiimi-ilta outreach prospects, Nov 2026
 
 Compiled 29 Oct 2026 from each company's own website (general contact addresses only, no guessed patterns).
-Sizes are estimates. Log sends in drafts/outreach-log.md (date, company, address, reply).
+Sizes are estimates. Log sends in drafts/outreach-log.md (date, company, address, reply). Kuuasema, Werklig, TSTO and Kokoro & Moi were removed: already emailed in Apr/May 2026 (see the log).
 
 ## First ten
 | # | Company | What | Where | ~Size | Email |
 |---|---|---|---|---|---|
-| 1 | Kuuasema | game dev studio | Kamppi, Lapinlahdenkatu 1 C | 30 | info@kuuasema.com |
 | 2 | Redhill Games | game studio | Töölönlahdenkatu 2 | 40 | info@redhillgames.com |
 | 3 | All Hats | Roblox studio | Helsinki | 5 | contact@allhats.gg |
 | 4 | Swarmia | dev-tool SaaS | Kamppi, Lapinlahdenkatu 16 | 40 | hello@swarmia.com |
 | 5 | Singa | karaoke software | Kamppi, Eerikinkatu 36 | 40 | info@singa.com |
 | 6 | Nordkapp | design agency | Sörnäinen, Kaikukatu 2 C | 20 | hello@nordkapp.fi |
-| 7 | Werklig | brand design | Hakaniemi, Siltasaarenkatu 18 | 20 | info@werklig.com |
-| 8 | Tsto | graphic design studio | Kallio, Castréninkatu 10 | 8 | contact@tsto.org |
 | 9 | Sherpa | creative agency | Punavuori, Roobertinkatu 11 A | 15 | booking@sherpa.fi |
 | 10 | Playa Architects | architects | Kamppi, Annankatu 31-33 E | 20 | info@playa.fi |
 
@@ -30,7 +27,6 @@ Sizes are estimates. Log sends in drafts/outreach-log.md (date, company, address
 | 18 | Hellon | service design | Hakaniemi, Siltasaarenkatu 12 | 50 | helsinki@hellon.com |
 | 19 | Kuudes | design/brand | Kamppi, Kalevankatu 4 | 40 | hello@kuudes.com |
 | 20 | Pentagon Design | industrial design | Sörnäinen, Vilhonvuorenkatu 11 A | 25 | info@pentagondesign.fi |
-| 21 | Kokoro & Moi | brand/design | Helsinki | 10 | info@kokoromoi.com |
 | 22 | Manifesto | PR agency | Hakaniemi, Siltasaarenkatu 18 | 30 | info@manifesto.fi |
 | 23 | Netprofile | tech PR | Eteläranta 14 | 25 | hello@netprofile.fi |
 | 24 | Kaiku Helsinki | communications | Kamppi, Lönnrotinkatu 11 | 40 | sales@kaiku.fi |
