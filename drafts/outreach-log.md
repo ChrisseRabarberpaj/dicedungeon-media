@@ -55,4 +55,4 @@ Check this before drafting anything new. Never email a company that is already h
 | Company | Note |
 |---|---|
 | Tesseract Games | booked earlier |
-| Finago | booked (Nov 2026) |
+| Finago | booked recently (per Christoffer, 31 Oct 2026) |
