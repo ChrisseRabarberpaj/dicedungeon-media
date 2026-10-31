@@ -375,7 +375,6 @@
  "Subscriptions are billed monthly and require a minimum commitment of 6 months.": "Jäsenyydet laskutetaan kuukausittain, ja vähimmäissitoumus on 6 kuukautta.",
  "Subscription payments are non-refundable.": "Jäsenyysmaksuja ei hyvitetä.",
  "Each billing cycle includes one 6-hour booking credit.": "Jokainen laskutusjakso sisältää yhden 6 tunnin varauskerran.",
- "Unused credits may roll over while the subscription remains active.": "Käyttämättömät kerrat voivat siirtyä seuraaville kuukausille niin kauan kuin jäsenyys on voimassa.",
  "Credits have no cash value and cannot be exchanged for refunds.": "Kerroilla ei ole rahallista arvoa, eikä niistä makseta hyvitystä.",
  "Cancelling the subscription before the minimum term does not remove the remaining payment obligation.": "Jäsenyyden irtisanominen ennen vähimmäiskauden loppua ei poista jäljellä olevaa maksuvelvollisuutta.",
  "6. GM Services": "6. Pelinjohtajapalvelut",
@@ -613,5 +612,6 @@
  "Always Active": "Aina käytössä",
  "Show more": "Näytä lisää",
  "Show less": "Näytä vähemmän",
- "No cookies to display.": "Ei näytettäviä evästeitä."
+ "No cookies to display.": "Ei näytettäviä evästeitä.",
+ "Unused credits roll over while the subscription remains active.": "Käyttämättömät kerrat siirtyvät seuraaville kuukausille niin kauan kuin jäsenyys on voimassa."
 }
