@@ -11,7 +11,7 @@ Moi [etunimi]!
 
 Pyöritän Dice Dungeonia, yksityistä pelihuonetta Töölössä (Caloniuksenkatu 9). Teemme yrityksille pikkujouluja ja tiimipäiviä, joissa ammattipelinjohtaja vetää 3 tai 5 tunnin D&D-seikkailun teidän tiimille räätälöitynä. Kokemusta ei tarvita, pelinjohtaja hoitaa säännöt.
 
-Joulukuussa on vielä vapaita arki-iltoja. Hinta on 500 € + alv (3 h, tiimi-ilta) tai 750 € + alv (5 h, tiimipäivä) koko porukalle (2–7 hlö), lasku yritykselle. Omat juomat ja ruoat saa tuoda, tai järjestetään catering lisähintaan.
+Joulukuussa on vielä vapaita arki-iltoja. Hinta on 450 € + alv (3 h, tiimi-ilta) tai 650 € + alv (5 h, tiimipäivä) koko porukalle (2–7 hlö), lasku yritykselle. Omat juomat ja ruoat saa tuoda, tai järjestetään catering lisähintaan.
 
 Jos pikkujoulut on jo sovittu, tammikuun "uuden vuoden tiimipäivä" toimii yhtä hyvin.
 
@@ -25,7 +25,7 @@ Hi [first name]!
 
 I run Dice Dungeon, a private tabletop games room in Töölö (Caloniuksenkatu 9). We host company pikkujoulut and team days: a professional Game Master runs a 3- or 5-hour D&D adventure built around your team. No experience needed, the GM handles the rules.
 
-We still have free weekday evenings in December. 500 € + VAT (3 h team evening) or 750 € + VAT (5 h team day) for the whole group (2–7 people), invoiced to the company. Bring your own food and drinks, or we can arrange catering.
+We still have free weekday evenings in December. 450 € + VAT (3 h team evening) or 650 € + VAT (5 h team day) for the whole group (2–7 people), invoiced to the company. Bring your own food and drinks, or we can arrange catering.
 
 If your pikkujoulut are already sorted, a January "new year team day" works just as well.
 
