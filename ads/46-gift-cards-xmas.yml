@@ -1,6 +1,6 @@
 # Gift card ad for Christmas. Needs post 46 published first, then 'create'.
 name: DD Gift cards Xmas
-approved: false
+approved: true
 creative: link
 link: https://dicedungeon.fi/lahjakortti/
 cta: SHOP_NOW
