@@ -51,13 +51,13 @@ ads:
     for 600 €. Book your date now.
 
     '
-ids:
-  campaign: '120248970858370434'
-  adset: '120248970879390434'
-  ad:03-pikkujoulut: '120249048631250434'
 - post: 45-arkipaivapeli
   message: 'Arkipäiväpeli: maanantaista torstaihin koko huone 6 tunniksi 120 €. / Weekday game day: any
     6 hours Monday to Thursday, the whole private room in Töölö for 120 €. Board games, poker or D&D.
 
     '
   note: Build after posts/45-arkipaivapeli is live on the Facebook Page (draft for now, Christoffer said yes to draft + ad on 31 Oct). Shares the Book now budget.
+ids:
+  campaign: '120248970858370434'
+  adset: '120248970879390434'
+  ad:03-pikkujoulut: '120249048631250434'
