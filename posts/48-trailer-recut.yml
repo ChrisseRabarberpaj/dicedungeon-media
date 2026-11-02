@@ -4,14 +4,14 @@ approved: false
 channels:
 - tiktok
 when: '2026-11-19T18:00:00+02:00'
-media_note: 'TikTok re-cut of 00h (25 Oct, stuck at 0 views). Same voice-over, 4 % punch-in, "POV: you found Helsinki''s secret game room" hook for the first 2.5 s, trimmed to 25.8 s. Post only if the 4 Nov TikTok check shows views are back.'
+media_note: 'TikTok re-post of 00h (25 Oct, stuck at 0 views). v2 (2 Nov): no text overlay (Christoffer disliked the POV hook); same voice-over, 4 % punch-in, trimmed to 25.8 s. Post only if the 4 Nov TikTok check shows views are back.'
 media:
-- media/posts/48-trailer-recut.mp4
+- media/posts/48-trailer-recut-v2.mp4
 text: |
-  POV: löysit Helsingin salaisen pelihuoneen 🎲 Koko huone teidän porukalle Töölössä, valot ja äänet vaihtuvat pelin mukaan. Ensimmäinen varaus -30 % koodilla EKAKERTA30 (30.11. asti).
+  Helsingin salainen pelihuone 🎲 Koko huone teidän porukalle Töölössä, valot ja äänet vaihtuvat pelin mukaan. Ensimmäinen varaus -30 % koodilla EKAKERTA30 (30.11. asti).
 
-  POV: you found Helsinki's secret game room. The whole room for your group in Töölö, with lights and sound that follow the game. First booking 30 % off with EKAKERTA30 until 30 Nov. dicedungeon.fi
+  Helsinki's hidden game room. The whole room for your group in Töölö, with lights and sound that follow the game. First booking 30 % off with EKAKERTA30 until 30 Nov. dicedungeon.fi
 
-  #helsinki #lautapelit #roolipelit #dnd #ttrpg #boardgames #thingstodoinhelsinki #dicedungeon #pov
+  #helsinki #lautapelit #roolipelit #dnd #ttrpg #boardgames #thingstodoinhelsinki #dicedungeon
 queued:
   tiktok: draft:6ae8bb3ef1669be3eac2bf62

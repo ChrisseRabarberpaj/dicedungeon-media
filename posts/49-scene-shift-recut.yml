@@ -4,9 +4,9 @@ approved: false
 channels:
 - tiktok
 when: '2026-11-22T18:00:00+02:00'
-media_note: 'TikTok re-cut of 01-scene-shift (26 Oct, stuck at 0 views). Re-ordered to open on the tavern-to-dungeon light switch, 2 % punch-in, new music (DDjazz_10 dancing saxophone dark jazz from 1:00), 15.6 s. Post only if the 4 Nov TikTok check shows views are back.'
+media_note: 'TikTok re-post of 01-scene-shift (26 Oct, stuck at 0 views). v2 (2 Nov): original edit order (v1 re-order had bad cuts), new music DDjazz_10 from 2:36.6 so beats land on the cuts at 3.0 / 5.25 / 7.45 / 13.4 s, 2 % punch-in, 17 s. Post only if the 4 Nov TikTok check shows views are back.'
 media:
-- media/posts/49-scene-shift-recut.mp4
+- media/posts/49-scene-shift-recut-v2.mp4
 text: |
   Tavernasta luolastoon yhdellä napautuksella. Valot ja äänet vaihtuvat yhdessä, ja koko huone on teidän porukan. Töölö, Helsinki.
 
