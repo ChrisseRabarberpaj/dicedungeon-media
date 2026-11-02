@@ -1,0 +1,17 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+id: 47-ekakerta30
+approved: false
+channels:
+- instagram
+- facebook
+- tiktok
+when: '2026-11-07T12:00:00+02:00'
+media_note: 'First-booking offer EKAKERTA30 (Amelia coupon id 30, 30 % off room 6 h / 12 h, 1 per customer, valid 2-30 Nov 2026). Video: DD reels/branded/v4 music/Extra Arena.mp4 (15 s, "Tonight''s battlefield", end card "Bring your party").'
+media:
+- media/posts/47-ekakerta30.mp4
+text: |
+  Ensimmäinen kerta Dice Dungeonissa? Koko pelihuone teidän porukalle 30 % halvemmalla koodilla EKAKERTA30. Koodi on voimassa ensimmäiseen varaukseen, kun varaat 30.11. mennessä. Viikonloppuna 140 € (normaalisti 200 €), arkisin 84 € (normaalisti 120 €).
+
+  First time at Dice Dungeon? Get the whole room for your group 30 % off with code EKAKERTA30. Valid for your first booking, book by 30 November. Weekends 140 € instead of 200 €, Monday to Thursday 84 € instead of 120 €. dicedungeon.fi/booking
+
+  #dicedungeon #helsinki #lautapelit #roolipelit #boardgames #dnd #ttrpg #thingstodoinhelsinki
