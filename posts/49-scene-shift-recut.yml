@@ -1,0 +1,16 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+id: 49-scene-shift-recut
+approved: false
+channels:
+- tiktok
+when: '2026-11-22T18:00:00+02:00'
+media_note: 'TikTok re-cut of 01-scene-shift (26 Oct, stuck at 0 views). Re-ordered to open on the tavern-to-dungeon light switch, 2 % punch-in, new music (DDjazz_10 dancing saxophone dark jazz from 1:00), 15.6 s. Post only if the 4 Nov TikTok check shows views are back.'
+media:
+- media/posts/49-scene-shift-recut.mp4
+text: |
+  Tavernasta luolastoon yhdellä napautuksella. Valot ja äänet vaihtuvat yhdessä, ja koko huone on teidän porukan. Töölö, Helsinki.
+
+  Cosy tavern to dungeon in one tap. Lights and sound change together, and the whole room is yours for the night. Töölö, Helsinki. dicedungeon.fi
+
+  #dicedungeon #helsinki #dnd #ttrpg #lautapelit #roolipelit #boardgames #pikkujoulut
+queued: {}
