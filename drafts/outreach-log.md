@@ -56,3 +56,13 @@ Check this before drafting anything new. Never email a company that is already h
 |---|---|
 | Tesseract Games | booked earlier |
 | Finago | booked recently (per Christoffer, 31 Oct 2026) |
+
+## Nov 2026 collabs: Gmail drafts created 2 Nov (Finnish, from booking@, not sent yet)
+| Drafted | Org | Address | Sent | Reply |
+|---|---|---|---|---|
+| 2026-11-02 | Dynamo Ohjelmapalvelut Oy (team-building agency, partner-venue angle) | myynti@dynamo-ohjelmapalvelut.fi | | |
+| 2026-11-02 | Alter Ego ry (Univ. of Helsinki roleplaying assoc.) | hallitus@alterego.fi | | |
+| 2026-11-02 | ORC, Otaniemi Roleplaying Club (Aalto) | orc@list.ayy.fi | | |
+| 2026-11-02 | IESAF (Facebook group post, English, Christoffer posts himself) | - | | |
+
+Language rule: Finnish by default; English only when the name or audience is clearly international.
