@@ -57,13 +57,17 @@ Check this before drafting anything new. Never email a company that is already h
 | Tesseract Games | booked earlier |
 | Finago | booked recently (per Christoffer, 31 Oct 2026) |
 
-## Nov 2026 collabs: Gmail drafts created 2 Nov (Finnish, from booking@, not sent yet)
+## Nov 2026 collabs: sent 2 Nov 2026 from booking@ (Finnish)
 | Drafted | Org | Address | Sent | Reply |
 |---|---|---|---|---|
-| 2026-11-02 | Dynamo Ohjelmapalvelut Oy (team-building agency, partner-venue angle) | myynti@dynamo-ohjelmapalvelut.fi | | |
-| 2026-11-02 | Alter Ego ry (Univ. of Helsinki roleplaying assoc.), code ALTEREGO50 | hallitus@alterego.fi | | |
-| 2026-11-02 | ORC, Otaniemi Roleplaying Club (Aalto), code ORC50 | orc@list.ayy.fi | | |
+| 2026-11-02 | Dynamo Ohjelmapalvelut Oy (team-building agency, partner-venue angle) | myynti@dynamo-ohjelmapalvelut.fi | 2026-11-02 | |
+| 2026-11-02 | Alter Ego ry (Univ. of Helsinki roleplaying assoc.), code ALTEREGO50 | hallitus@alterego.fi | 2026-11-02 | |
+| 2026-11-02 | ORC, Otaniemi Roleplaying Club (Aalto), code ORC50 | orc@list.ayy.fi | 2026-11-02 | |
 | 2026-11-02 | IESAF (Facebook group post, English, Christoffer posts himself) | - | | |
 
 Language rule: Finnish by default; English only when the name or audience is clearly international.
 Amelia coupons (2 Nov): ALTEREGO50 (id 28) and ORC50 (id 29), 50 %, 1 use, 1 per customer, services 6 h + 12 h room, valid to 31.1.2027.
+
+Groupfinder (groupfinder.eu/.gg, Estonian TTRPG group-finding site): they emailed booking@ about their free partner program. Replied 2 Nov to info@groupfinder.eu: yes, venue is a private paid room (120/200 €), offered poster on the entrance door, asked poster size and what they need for the page.
+
+Public first-booking offer: Amelia coupon EKAKERTA30 (id 30), 30 % off the room (6 h / 12 h), 1 per customer, limit 100, valid 2-30 Nov 2026. Re-open for January. Post + Book Now ad line not done yet.
