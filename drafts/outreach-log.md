@@ -61,8 +61,9 @@ Check this before drafting anything new. Never email a company that is already h
 | Drafted | Org | Address | Sent | Reply |
 |---|---|---|---|---|
 | 2026-11-02 | Dynamo Ohjelmapalvelut Oy (team-building agency, partner-venue angle) | myynti@dynamo-ohjelmapalvelut.fi | | |
-| 2026-11-02 | Alter Ego ry (Univ. of Helsinki roleplaying assoc.) | hallitus@alterego.fi | | |
-| 2026-11-02 | ORC, Otaniemi Roleplaying Club (Aalto) | orc@list.ayy.fi | | |
+| 2026-11-02 | Alter Ego ry (Univ. of Helsinki roleplaying assoc.), code ALTEREGO50 | hallitus@alterego.fi | | |
+| 2026-11-02 | ORC, Otaniemi Roleplaying Club (Aalto), code ORC50 | orc@list.ayy.fi | | |
 | 2026-11-02 | IESAF (Facebook group post, English, Christoffer posts himself) | - | | |
 
 Language rule: Finnish by default; English only when the name or audience is clearly international.
+Amelia coupons (2 Nov): ALTEREGO50 (id 28) and ORC50 (id 29), 50 %, 1 use, 1 per customer, services 6 h + 12 h room, valid to 31.1.2027.
