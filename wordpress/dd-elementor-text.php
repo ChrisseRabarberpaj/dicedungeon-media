@@ -20,6 +20,26 @@ add_action('rest_api_init', function () {
     ]);
 });
 
+// GET/POST /wp-json/dd/v1/seo  {"id":123,"key":"_yoast_wpseo_metadesc","value":"..."}  (Yoast title/description only)
+add_action('rest_api_init', function () {
+    $allowed = function () { return current_user_can('manage_options'); };
+    register_rest_route('dd/v1', '/seo', [
+        ['methods' => 'GET', 'permission_callback' => $allowed, 'callback' => function (WP_REST_Request $r) {
+            $id = (int) $r->get_param('id');
+            return ['id' => $id, 'title' => get_post_meta($id, '_yoast_wpseo_title', true), 'metadesc' => get_post_meta($id, '_yoast_wpseo_metadesc', true)];
+        }],
+        ['methods' => 'POST', 'permission_callback' => $allowed, 'callback' => function (WP_REST_Request $r) {
+            $p = $r->get_json_params();
+            $key = (string) ($p['key'] ?? '');
+            if (!in_array($key, ['_yoast_wpseo_metadesc', '_yoast_wpseo_title'], true)) return new WP_Error('key', 'Only Yoast title/metadesc', ['status' => 400]);
+            $id = (int) ($p['id'] ?? 0);
+            update_post_meta($id, '_dd_seo_backup_' . time() . $key, get_post_meta($id, $key, true));
+            update_post_meta($id, $key, sanitize_text_field((string) ($p['value'] ?? '')));
+            return ['id' => $id, 'key' => $key, 'saved' => true];
+        }],
+    ]);
+});
+
 function dd_el_walk($els, &$out) {
     foreach ((array) $els as $e) {
         if (($e['elType'] ?? '') === 'widget') {
@@ -31,6 +51,9 @@ function dd_el_walk($els, &$out) {
                     $txt[$k] = $v;
                 }
             }
+            foreach ($s as $k => $v) {
+                if (is_array($v) && isset($v['url']) && is_string($v['url'])) $txt[$k . '.url'] = $v['url'];
+            }
             $out[] = ['id' => $e['id'], 'type' => $e['widgetType'] ?? '', 'text' => $txt];
         }
         if (!empty($e['elements'])) dd_el_walk($e['elements'], $out);
@@ -39,7 +62,12 @@ function dd_el_walk($els, &$out) {
 
 function dd_el_set(&$els, $wid, $key, $val, &$done) {
     foreach ($els as &$e) {
-        if (($e['id'] ?? '') === $wid && isset($e['settings'][$key])) { $e['settings'][$key] = $val; $done++; }
+        if (($e['id'] ?? '') === $wid) {
+            if (strpos($key, '.') !== false) {            // e.g. "link.url" for button/flip-box links
+                [$k1, $k2] = explode('.', $key, 2);
+                if (isset($e['settings'][$k1]) && is_array($e['settings'][$k1])) { $e['settings'][$k1][$k2] = $val; $done++; }
+            } elseif (isset($e['settings'][$key])) { $e['settings'][$key] = $val; $done++; }
+        }
         if (!empty($e['elements'])) dd_el_set($e['elements'], $wid, $key, $val, $done);
     }
     unset($e);
