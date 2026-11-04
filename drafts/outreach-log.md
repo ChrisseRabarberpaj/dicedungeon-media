@@ -71,3 +71,5 @@ Amelia coupons (2 Nov): ALTEREGO50 (id 28) and ORC50 (id 29), 50 %, 1 use, 1 per
 Groupfinder (groupfinder.eu/.gg, Estonian TTRPG group-finding site): they emailed booking@ about their free partner program. Replied 2 Nov to info@groupfinder.eu: yes, venue is a private paid room (120/200 €), offered poster on the entrance door, asked poster size and what they need for the page.
 
 Public first-booking offer: Amelia coupon EKAKERTA30 (id 30), 30 % off the room (6 h / 12 h), 1 per customer, limit 100, valid 2-30 Nov 2026. Re-open for January. Post + Book Now ad line not done yet.
+
+Venuu (4 Nov 2026): onboarding call with Jesse done 11:00. Sent him (from personal Gmail, Venuu thread) the Drive photo folder incl. new "Tila (pelkkä huone)" subfolder and the new price list: room 6 h 120/200, 12 h 200/300 (Mon-Thu/Fri-Sun), GM 3 h 450 / 5 h 600 incl. VAT, company team evening 450 + VAT, team day 600 + VAT. Venuu contract 2.9: Venuu prices must be same or lower than direct.
