@@ -59,9 +59,9 @@ ads:
   creative: link
   link: https://dicedungeon.fi/booking/
   cta: GET_QUOTE
-  message: Tiimi-ilta töiden jälkeen? Pelinjohtajan vetämä 3 tunnin seikkailu yksityisessä huoneessa Töölössä,
-    450 € + alv koko porukalle (tai tiimipäivä 5 h, 600 € + alv). Lasku yritykselle. Pyydä tarjous. /
-    Team evening after work? A Game Master-led 3-hour adventure in our private room in Töölö, 450 € +
-    VAT for the whole group (or the 5-hour Team Day, 600 € + VAT). Invoiced. Ask for a quote.
+  message: Uusi, edullisempi hinta! Tiimi-ilta töiden jälkeen? Pelinjohtajan vetämä 3 tunnin seikkailu yksityisessä
+    huoneessa Töölössä, 450 € + alv koko porukalle (tai tiimipäivä 5 h, 600 € + alv). Lasku yritykselle. Pyydä tarjous. /
+    New, lower price! Team evening after work? A Game Master-led 3-hour adventure in our private room in Töölö,
+    450 € + VAT for the whole group (or the 5-hour Team Day, 600 € + VAT). Invoiced. Ask for a quote.
   note: Build only after posts/44-tiimi-ilta is live on the Facebook Page (planned 4 Nov). Runs in the
     same ad set as the 03b Team Day ad; Meta splits budget between the two.
