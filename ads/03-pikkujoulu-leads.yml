@@ -4,10 +4,11 @@ post: 03b-tiimipaiva
 creative: link
 link: https://dicedungeon.fi/booking/
 cta: GET_QUOTE
-message: 'Pikkujoulut tai tiimipäivä? Pyydä tarjous: 5 tunnin pelinjohtajan vetämä seikkailu yksityisessä
-  huoneessa Töölössä, tarina räätälöidään tiimillenne. 750 € + alv koko porukalle, lasku yritykselle.
-  / Pikkujoulu or team day? A 5-hour Game Master-led adventure tailored to your team, 750 € + VAT for
-  the whole group, invoiced. Ask for a quote.
+message: 'Pikkujoulut tai tiimipäivä? Pyydä tarjous: 5 tunnin pelinjohtajan vetämä
+  seikkailu yksityisessä huoneessa Töölössä, tarina räätälöidään tiimillenne. 750
+  € + alv koko porukalle, lasku yritykselle. / Pikkujoulu or team day? A 5-hour Game
+  Master-led adventure tailored to your team, 750 € + VAT for the whole group, invoiced.
+  Ask for a quote.
 
   '
 objective: OUTCOME_LEADS
@@ -29,8 +30,8 @@ form:
   locale: fi_FI
   privacy_url: https://dicedungeon.fi/privacy-policy
   intro_title: Pyydä tarjous joulukuulle / Ask for a December quote
-  intro_text: Kerro ryhmästä ja toivotusta päivästä, niin lähetämme tarjouksen sähköpostiin. / Tell us
-    about your group and date, and we'll email you an offer.
+  intro_text: Kerro ryhmästä ja toivotusta päivästä, niin lähetämme tarjouksen sähköpostiin.
+    / Tell us about your group and date, and we'll email you an offer.
   thanks_title: Kiitos! / Thank you!
   thanks_body: Vastaamme sähköpostilla pian. / We'll reply by email soon.
   questions:
@@ -49,6 +50,7 @@ ids:
   retired:
   - '120248958330210434'
   ad: '120248970843420434'
+  ad:44-tiimi-ilta: '120249197357830434'
 fb_post_id: '727370017119939_122192959322933048'
 video_id: '1453864943359632'
 form_id_old: '1451311043801381'
@@ -59,9 +61,12 @@ ads:
   creative: link
   link: https://dicedungeon.fi/booking/
   cta: GET_QUOTE
-  message: Uusi, edullisempi hinta! Tiimi-ilta töiden jälkeen? Pelinjohtajan vetämä 3 tunnin seikkailu yksityisessä
-    huoneessa Töölössä, 450 € + alv koko porukalle (tai tiimipäivä 5 h, 600 € + alv). Lasku yritykselle. Pyydä tarjous. /
-    New, lower price! Team evening after work? A Game Master-led 3-hour adventure in our private room in Töölö,
-    450 € + VAT for the whole group (or the 5-hour Team Day, 600 € + VAT). Invoiced. Ask for a quote.
-  note: Build only after posts/44-tiimi-ilta is live on the Facebook Page (planned 4 Nov). Runs in the
-    same ad set as the 03b Team Day ad; Meta splits budget between the two.
+  message: Uusi, edullisempi hinta! Tiimi-ilta töiden jälkeen? Pelinjohtajan vetämä
+    3 tunnin seikkailu yksityisessä huoneessa Töölössä, 450 € + alv koko porukalle
+    (tai tiimipäivä 5 h, 600 € + alv). Lasku yritykselle. Pyydä tarjous. / New, lower
+    price! Team evening after work? A Game Master-led 3-hour adventure in our private
+    room in Töölö, 450 € + VAT for the whole group (or the 5-hour Team Day, 600 €
+    + VAT). Invoiced. Ask for a quote.
+  note: Build only after posts/44-tiimi-ilta is live on the Facebook Page (planned
+    4 Nov). Runs in the same ad set as the 03b Team Day ad; Meta splits budget between
+    the two.
