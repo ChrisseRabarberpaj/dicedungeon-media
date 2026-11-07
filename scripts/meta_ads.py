@@ -467,7 +467,21 @@ def build_ad(ad, ad_id, entry, ids, c, page_id):
                 (ad if entry is None else entry)["ig_media_id"] = ig_media
                 save(ad)
         label = f"{ad['name']} {sub.get('post', '')}".strip()
-        if sub.get("creative", "boost") == "boost":
+        cr = None
+        if sub.get("creative") == "post_cta" and ig_media:
+            # The real Instagram post plus a button: likes and comments land on the grid post.
+            cr = api("POST", f"{act()}/adcreatives", {
+                "name": f"{label} creative (IG post + CTA)",
+                "object_id": page_id,
+                "instagram_user_id": c.get("instagram_id"),
+                "source_instagram_media_id": str(ig_media),
+                "call_to_action": cta(sub, page_id),
+                "url_tags": f"utm_source=meta&utm_medium=paid&utm_campaign={ad_id}&utm_content={sub.get('post', 'ad')}",
+            }, soft=True)
+            print("creative: real IG post + CTA" if cr else "creative: IG post + CTA refused, using link copy")
+        if cr:
+            pass
+        elif sub.get("creative", "boost") == "boost":
             spec = {"name": f"{label} creative", "object_story_id": story}
             if c.get("instagram_id"):
                 spec["instagram_user_id"] = c["instagram_id"]
@@ -494,7 +508,8 @@ def build_ad(ad, ad_id, entry, ids, c, page_id):
             }
             # Meta (30 Oct 2026) rejects object_story_spec + source_instagram_media_id together
             # ("ambiguous promoted object"), so link creatives always use the ad copy of the video.
-        cr = api("POST", f"{act()}/adcreatives", spec)
+        if not cr:
+            cr = api("POST", f"{act()}/adcreatives", spec)
         r = api("POST", f"{act()}/ads", {
             "name": f"{label} ad",
             "adset_id": ids["adset"],
