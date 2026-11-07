@@ -38,6 +38,7 @@ ads:
 
     '
 - post: 09-birthdays
+  hold: true  # birthdays push from 14 Nov
   message: 'Synttärit ilman baarijonoa: yksityinen pelihuone Töölössä kuudeksi tunniksi,
     pelit, valot ja äänet, omat eväät mukaan. 200 € koko porukalle. / Birthday coming
     up? A private games room in Töölö for six hours: games, lights, sound, bring your
@@ -45,6 +46,7 @@ ads:
 
     '
 - post: 07-combat
+  hold: true  # December push from 21 Nov
   message: 'Joulukuun viikonloput täyttyvät. Yksityinen pelihuone Töölössä: 6 tuntia
     200 €, tai pelinjohtajan vetämä seikkailu 600 €. / December weekends are filling
     up. A private games room in Töölö: 6 hours for 200 €, or a Game Master-led adventure
@@ -52,6 +54,7 @@ ads:
 
     '
 - post: 45-arkipaivapeli
+  hold: true  # post goes live 15 Nov
   message: 'Arkipäiväpeli: maanantaista torstaihin koko huone 6 tunniksi 120 €. / Weekday game day: any
     6 hours Monday to Thursday, the whole private room in Töölö for 120 €. Board games, poker or D&D.
 

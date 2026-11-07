@@ -434,6 +434,9 @@ def build_ad(ad, ad_id, entry, ids, c, page_id):
         sub.pop("ads", None)
     if ids.get(key):
         return
+    if entry is not None and entry.get("hold"):
+        print(f"{key}: hold: true, not built yet")
+        return
     if True:
         story, video = sub.get("fb_post_id"), sub.get("video_id")
         if not story and sub.get("post"):
