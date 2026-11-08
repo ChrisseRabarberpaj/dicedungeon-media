@@ -5,7 +5,7 @@ channels:
 - instagram
 - facebook
 - tiktok
-when: '2026-11-03T18:00:00+02:00'
+when: '2026-11-08T18:00:00+02:00'  # IG only (FB + TikTok went out 3 Nov; IG was refused by Buffer's 10-post limit on 22 Oct)
 media_note: 42 GM night friends reel (script version, steady "No experience needed" shot).
 media:
 - media/posts/36-gm-night-friends.mp4
