@@ -446,7 +446,8 @@ def build_ad(ad, ad_id, entry, ids, c, page_id):
     if entry is None:
         key, sub = "ad", ad
     else:
-        key, sub = f"ad:{entry['post']}", {**ad, **entry}
+        key = f"ad:{entry['post']}" + (f":{entry['variant']}" if entry.get("variant") else "")
+        sub = {**ad, **entry}
         sub.pop("ads", None)
     if ids.get(key):
         return
@@ -484,7 +485,14 @@ def build_ad(ad, ad_id, entry, ids, c, page_id):
                 save(ad)
         label = f"{ad['name']} {sub.get('post', '')}".strip()
         cr = None
-        if sub.get("creative") == "post_cta" and ig_media:
+        # Rule (Christoffer, 8 Nov 2026): ads always run on the real post, never a separate copy.
+        # Button ads ("link" or "post_cta") use the real Instagram post + CTA. No IG post yet -> skip;
+        # Meta refuses -> stop. A copy is only made when the entry says creative: copy explicitly.
+        if sub.get("creative") in ("link", "post_cta"):
+            if not ig_media:
+                print(f"{key}: posts/{sub.get('post')} is not on Instagram yet; skipped (real posts only)")
+                return
+        if sub.get("creative") in ("link", "post_cta") and ig_media:
             # The real Instagram post plus a button: likes and comments land on the grid post.
             cr = api("POST", f"{act()}/adcreatives", {
                 "name": f"{label} creative (IG post + CTA)",
@@ -494,7 +502,9 @@ def build_ad(ad, ad_id, entry, ids, c, page_id):
                 "call_to_action": cta(sub, page_id),
                 "url_tags": f"utm_source=meta&utm_medium=paid&utm_campaign={ad_id}&utm_content={sub.get('post', 'ad')}",
             }, soft=True)
-            print("creative: real IG post + CTA" if cr else "creative: IG post + CTA refused, using link copy")
+            if not cr:
+                sys.exit(f"{key}: Meta refused the real-post creative; nothing built (real posts only)")
+            print("creative: real IG post + CTA")
         if cr:
             pass
         elif sub.get("creative", "boost") == "boost":
@@ -503,9 +513,9 @@ def build_ad(ad, ad_id, entry, ids, c, page_id):
                 spec["instagram_user_id"] = c["instagram_id"]
             if ig_media:
                 spec["source_instagram_media_id"] = str(ig_media)
-        else:
+        else:  # creative: copy (explicit only)
             if not video:
-                sys.exit("link creative needs a video post")
+                sys.exit("copy creative needs a video post")
             thumb = api("GET", str(video), {"fields": "picture"}).get("picture")
             message = sub.get("message") or post_text(sub["post"]).split("\n\n#")[0].strip()
             spec = {
