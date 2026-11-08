@@ -192,6 +192,22 @@ def daily(days, match):
     summary(lines)
 
 
+def by_ad(days):
+    """Read-only: per-ad numbers from (today - days) through today, active campaigns only."""
+    since = (dt.date.today() - dt.timedelta(days=days)).isoformat()
+    until = dt.date.today().isoformat()
+    rows = get_all(f"{act()}/insights", {
+        "level": "ad",
+        "fields": "campaign_name,ad_id,ad_name,spend,impressions,reach,inline_link_clicks,actions",
+        "time_range": {"since": since, "until": until}, "limit": 500,
+    })
+    lines = [f"## Per ad {since} to {until}", "", "| Ad | Spend € | Reach | Link clicks | Landing views | Leads |", "|---|---|---|---|---|---|"]
+    for r in sorted(rows, key=lambda r: -float(r.get("spend", 0))):
+        acts = {a["action_type"]: a["value"] for a in r.get("actions", [])}
+        lines.append(f"| {r['ad_name'][:55]} {r['ad_id']} | {float(r.get('spend', 0)):.2f} | {r.get('reach')} | {r.get('inline_link_clicks', 0)} | {acts.get('landing_page_view', 0)} | {acts.get('lead', 0)} |")
+    summary(lines)
+
+
 def report(days):
     since = (dt.date.today() - dt.timedelta(days=days)).isoformat()
     until = (dt.date.today() - dt.timedelta(days=1)).isoformat()
@@ -558,7 +574,7 @@ def set_budget(ad_id):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("action", choices=["check", "report", "posts", "create", "launch", "pause", "activate", "budget", "daily"])
+    ap.add_argument("action", choices=["check", "report", "posts", "create", "launch", "pause", "activate", "budget", "daily", "ads"])
     ap.add_argument("--ad", default="")
     ap.add_argument("--days", type=int, default=7)
     a = ap.parse_args()
@@ -566,6 +582,8 @@ def main():
         check()
     elif a.action == "report":
         report(a.days)
+    elif a.action == "ads":
+        by_ad(a.days)
     elif a.action == "daily":
         daily(a.days, a.ad or "")
     elif a.action == "posts":
