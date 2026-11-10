@@ -1,0 +1,94 @@
+<!-- wp:html -->
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;700&family=Almendra+SC&display=swap" rel="stylesheet">
+<style>
+.ddl{--bg:#120c09;--panel:#1d1410;--gold:#d9b46a;--ink:#f3e9d8;--mute:#bfae94;--red:#8c1d18;background:var(--bg);color:var(--ink);font-family:Alegreya,Georgia,serif;font-size:19px;line-height:1.55;margin:0 calc(50% - 50vw);}
+.ddl *{box-sizing:border-box}
+.ddl h1,.ddl h2{font-family:'Almendra SC',Georgia,serif;color:var(--gold);font-weight:400;line-height:1.1;margin:0 0 .4em}
+.ddl h1{font-size:clamp(40px,7vw,72px)}
+.ddl h2{font-size:clamp(28px,4vw,40px)}
+.ddl-hero{position:relative;min-height:78vh;display:flex;align-items:flex-end;padding:48px 16px;background:linear-gradient(180deg,rgba(18,12,9,.15) 0%,rgba(18,12,9,.55) 55%,var(--bg) 100%),url('https://dicedungeon.fi/wp-content/uploads/2026/10/Dice_Dungeon-Web_06-scaled-1.jpg') center/cover}
+.ddl-wrap{max-width:1040px;margin:0 auto;width:100%}
+.ddl-sub{font-size:clamp(20px,2.4vw,26px);max-width:640px;margin:0 0 20px}
+.ddl-chips{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 24px}
+.ddl-chip{border:1px solid var(--gold);color:var(--gold);padding:6px 14px;border-radius:999px;font-size:17px}
+.ddl-chip.price{background:var(--gold);color:#1a120c;font-weight:700}
+.ddl-btn{display:inline-block;background:var(--red);color:#fff !important;text-decoration:none;padding:14px 28px;border:1px solid var(--gold);border-radius:4px;font-family:'Almendra SC',serif;font-size:22px;letter-spacing:.04em}
+.ddl-btn:hover{filter:brightness(1.15)}
+.ddl-sec{padding:56px 16px}
+.ddl-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.ddl-step{background:var(--panel);border:1px solid #3a2a1f;padding:22px;border-radius:6px}
+.ddl-step b{display:block;font-family:'Almendra SC',serif;color:var(--gold);font-size:30px;margin-bottom:6px}
+.ddl-photos{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ddl-photos img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:4px;display:block}
+.ddl-reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.ddl-review{background:var(--panel);border-left:3px solid var(--gold);padding:20px;border-radius:4px}
+.ddl-stars{color:var(--gold);letter-spacing:2px}
+.ddl-review cite{display:block;color:var(--mute);font-style:normal;margin-top:10px;font-size:16px}
+.ddl-rating{color:var(--mute);margin:-6px 0 22px}
+.ddl-book{background:var(--panel);border:1px solid #3a2a1f;border-radius:6px;padding:24px}
+.ddl-faq dt{color:var(--gold);font-weight:700;margin-top:14px}
+.ddl-faq dd{margin:4px 0 0}
+.ddl-mute{color:var(--mute)}
+.ddl a{color:var(--gold)}
+@media (max-width:760px){.ddl-steps,.ddl-reviews{grid-template-columns:1fr}.ddl-photos{grid-template-columns:repeat(3,1fr)}.ddl{font-size:18px}.ddl-hero{min-height:70vh}}
+</style>
+<div class="ddl">
+  <section class="ddl-hero"><div class="ddl-wrap">
+    <h1>D&amp;D night with friends</h1>
+    <p class="ddl-sub">A Game Master, a private room in Töölö and five hours of adventure. Never played? Perfect, the Game Master handles the rules.</p>
+    <div class="ddl-chips"><span class="ddl-chip price">600 € for the whole group</span><span class="ddl-chip">5 hours</span><span class="ddl-chip">2–7 players</span><span class="ddl-chip">Töölö, Helsinki</span></div>
+    <a class="ddl-btn" href="#book">Pick your date</a>
+  </div></section>
+
+  <section class="ddl-sec"><div class="ddl-wrap">
+    <h2>How it works</h2>
+    <div class="ddl-steps">
+      <div class="ddl-step"><b>1</b>Pick a date below and send the booking. The Game Master confirms within a day or two, and you pay once it's confirmed.</div>
+      <div class="ddl-step"><b>2</b>Before the night, the Game Master checks which language you want to play in and what kind of adventure your group likes.</div>
+      <div class="ddl-step"><b>3</b>Ring the doorbell, the Game Master welcomes you, and the room is yours. Lights and sound are set. Snacks and drinks welcome.</div>
+    </div>
+  </div></section>
+
+  <section class="ddl-sec" style="padding-top:0"><div class="ddl-wrap">
+    <div class="ddl-photos">
+      <img src="https://dicedungeon.fi/wp-content/uploads/2026/10/DSC01405-scaled-1-683x1024.jpg" alt="Dungeon tiles on the lit game table">
+      <img src="https://dicedungeon.fi/wp-content/uploads/2026/03/DSC01167-683x1024.jpg" alt="Friends laughing at the table">
+      <img src="https://dicedungeon.fi/wp-content/uploads/2026/03/DSC01460-683x1024.jpg" alt="A group playing in the Dice Dungeon room">
+    </div>
+  </div></section>
+
+  <section class="ddl-sec" style="padding-top:0"><div class="ddl-wrap">
+    <h2>What players say</h2>
+    <p class="ddl-rating"><span class="ddl-stars">★★★★★</span> 5.0 on Google</p>
+    <div class="ddl-reviews">
+      <div class="ddl-review"><span class="ddl-stars">★★★★★</span><p>“The room feels straight out of Game of Thrones and the vibe is very exciting with all the ambient lighting and surround sound music effects.”</p><cite>Nicolas U., Google</cite></div>
+      <div class="ddl-review"><span class="ddl-stars">★★★★★</span><p>“Awesome DnD experience ensured here! Loved it!”</p><cite>Alexander N., Google</cite></div>
+      <div class="ddl-review"><span class="ddl-stars">★★★★★</span><p>“A very relaxed and fun experience, staff was great as well!”</p><cite>Oliver B., Google</cite></div>
+    </div>
+  </div></section>
+
+  <section class="ddl-sec" id="book" style="padding-top:0"><div class="ddl-wrap">
+    <h2>Pick your date</h2>
+    <p class="ddl-mute">Book at least 5 days ahead. Free cancellation until 48 hours before. Want a shorter game? The <a href="/booking/">Half Shot is 3 hours for 450 €</a>.</p>
+    <div class="ddl-book">
+<!-- /wp:html -->
+
+<!-- wp:shortcode -->
+[ameliastepbooking service=3]
+<!-- /wp:shortcode -->
+
+<!-- wp:html -->
+    </div>
+  </div></section>
+
+  <section class="ddl-sec" style="padding-top:0"><div class="ddl-wrap">
+    <h2>Questions</h2>
+    <dl class="ddl-faq">
+      <dt>Do we need to know D&amp;D?</dt><dd>No. Most groups have never played. The Game Master explains as you go.</dd>
+      <dt>How many can come?</dt><dd>2 to 7 players. The price is for the whole group.</dd>
+      <dt>Where is it?</dt><dd>Caloniuksenkatu 9 D 65, Töölö, Helsinki. A private room, only your group.</dd>
+      <dt>Is it for a company?</dt><dd>Team Day and Team Evening are the same adventure with an invoice afterwards. Pick them on the <a href="/booking/">booking page</a> under For Companies.</dd>
+    </dl>
+  </div></section>
+</div>
+<!-- /wp:html -->
