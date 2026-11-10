@@ -402,6 +402,24 @@ def cta(ad, page_id):
     return {"type": ad.get("cta", "BOOK_NOW"), "value": {"link": ad["link"]}}
 
 
+STANDARD_EVENTS = {"InitiateCheckout": "INITIATED_CHECKOUT", "Purchase": "PURCHASE", "Lead": "LEAD",
+                   "Schedule": "OTHER", "ViewContent": "CONTENT_VIEW", "AddToCart": "ADD_TO_CART",
+                   "CompleteRegistration": "COMPLETE_REGISTRATION", "Contact": "CONTACT"}
+
+
+def conversion_object(ad, c):
+    """promoted_object for a website conversion ad set: a standard pixel event or a custom event name."""
+    ev = ad["conversion_event"]
+    po = {"pixel_id": str(c["pixel_id"])}
+    t = STANDARD_EVENTS.get(ev)
+    if t and t != "OTHER":
+        po["custom_event_type"] = t
+    else:
+        po["custom_event_type"] = "OTHER"
+        po["custom_event_str"] = ev
+    return po
+
+
 def create(ad_id):
     ads = load_ads()
     if ad_id not in ads:
@@ -451,7 +469,8 @@ def create(ad_id):
             "name": f"{ad['name']} ad set",
             "campaign_id": ids["campaign"],
             "status": "PAUSED",
-            "lifetime_budget": int(round(float(ad["budget_eur"]) * 100)),
+            **({"daily_budget": int(round(float(ad["budget_eur"]) * 100))} if ad.get("budget_type") == "daily"
+               else {"lifetime_budget": int(round(float(ad["budget_eur"]) * 100))}),
             "start_time": to_unix(ad["start"], not_before_now=True),
             "end_time": to_unix(ad["end"]),
             "billing_event": "IMPRESSIONS",
@@ -460,6 +479,7 @@ def create(ad_id):
             "bid_strategy": "LOWEST_COST_WITHOUT_CAP",
             "targeting": targeting,
             **({"promoted_object": {"page_id": page_id}} if ad.get("form") else {}),
+            **({"promoted_object": conversion_object(ad, c)} if ad.get("conversion_event") else {}),
         })
         ids["adset"] = r["id"]
         save(ad)
@@ -606,9 +626,10 @@ def set_budget(ad_id):
     if not adset:
         print(f"{ad_id}: not created yet, budget {cents / 100:.2f} EUR will be used at launch")
         return
-    api("POST", adset, {"lifetime_budget": cents})
-    got = api("GET", adset, {"fields": "lifetime_budget,effective_status"})
-    print(f"{ad_id}: ad set {adset} lifetime budget now {int(got['lifetime_budget']) / 100:.2f} EUR ({got['effective_status']})")
+    key = "daily_budget" if ad.get("budget_type") == "daily" else "lifetime_budget"
+    api("POST", adset, {key: cents})
+    got = api("GET", adset, {"fields": f"{key},effective_status"})
+    print(f"{ad_id}: ad set {adset} {key} now {int(got[key]) / 100:.2f} EUR ({got['effective_status']})")
 
 
 def main():
