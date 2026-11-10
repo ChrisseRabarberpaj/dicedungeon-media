@@ -1,10 +1,9 @@
-# Gift card ad for Christmas. Needs post 46 published first, then 'create'.
 name: DD Gift cards Xmas
 approved: true
-creative: post_cta  # real posts only
+creative: post_cta
 link: https://dicedungeon.fi/lahjakortti/
 cta: SHOP_NOW
-objective: OUTCOME_SALES  # 10 Nov ad review: optimise for interested visitors, not cheap clicks
+objective: OUTCOME_SALES
 optimization_goal: OFFSITE_CONVERSIONS
 conversion_event: QualityVisit
 destination_type: WEBSITE
@@ -29,3 +28,10 @@ ads:
     200 €, by email in minutes or posted to your door.
 
     '
+  fb_post_id: '727370017119939_122195170652933048'
+  video_id: '1807652950487872'
+  ig_media_id: '18109179974624486'
+ids:
+  campaign: '120249276221460434'
+  adset: '120249276221870434'
+  ad:46-gift-cards: '120249276223850434'
