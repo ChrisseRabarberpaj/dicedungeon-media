@@ -208,6 +208,35 @@ def by_ad(days):
     summary(lines)
 
 
+def pixel_stats(days):
+    """Read-only: pixels on the account and which events fired, per day, plus custom conversions."""
+    import time
+    lines = ["## Pixel events"]
+    for px in get_all(f"{act()}/adspixels", {"fields": "id,name,last_fired_time"}):
+        lines.append(f"### {px.get('name')} {px['id']} last fired {px.get('last_fired_time')}")
+        r = api("GET", f"{px['id']}/stats", {"aggregation": "event", "start_time": int(time.time()) - days * 86400}, soft=True) or {}
+        tot = {}
+        for bucket in r.get("data", []):
+            for d in bucket.get("data", []):
+                tot[d["value"]] = tot.get(d["value"], 0) + int(d["count"])
+        for k, v in sorted(tot.items(), key=lambda x: -x[1]):
+            lines.append(f"- {k}: {v}")
+        r = api("GET", f"{px['id']}/stats", {"aggregation": "url", "start_time": int(time.time()) - days * 86400}, soft=True) or {}
+        urls = {}
+        for bucket in r.get("data", []):
+            for d in bucket.get("data", []):
+                u = d["value"].split("?")[0]
+                urls[u] = urls.get(u, 0) + int(d["count"])
+        lines.append("Top URLs:")
+        for k, v in sorted(urls.items(), key=lambda x: -x[1])[:12]:
+            lines.append(f"- {k}: {v}")
+    cc = get_all(f"{act()}/customconversions", {"fields": "id,name,custom_event_type,rule,last_fired_time"})
+    lines.append("### Custom conversions")
+    for c in cc:
+        lines.append(f"- {c['id']} {c.get('name')} {c.get('custom_event_type')} last fired {c.get('last_fired_time')} rule {c.get('rule')}")
+    summary(lines)
+
+
 def report(days):
     since = (dt.date.today() - dt.timedelta(days=days)).isoformat()
     until = (dt.date.today() - dt.timedelta(days=1)).isoformat()
@@ -584,7 +613,7 @@ def set_budget(ad_id):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("action", choices=["check", "report", "posts", "create", "launch", "pause", "activate", "budget", "daily", "ads"])
+    ap.add_argument("action", choices=["check", "report", "posts", "create", "launch", "pause", "activate", "budget", "daily", "ads", "pixel"])
     ap.add_argument("--ad", default="")
     ap.add_argument("--days", type=int, default=7)
     a = ap.parse_args()
@@ -592,6 +621,8 @@ def main():
         check()
     elif a.action == "report":
         report(a.days)
+    elif a.action == "pixel":
+        pixel_stats(a.days)
     elif a.action == "ads":
         by_ad(a.days)
     elif a.action == "daily":
