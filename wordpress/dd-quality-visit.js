@@ -1,5 +1,5 @@
 /* Dice Dungeon: "QualityVisit" pixel event for Meta ad optimisation (10 Nov 2026 ad review).
- * Install as a WPCode "JavaScript Snippet", Auto Insert, Site Wide Footer, logged-out visitors only.
+ * Install as a WPCode "JavaScript Snippet", Auto Insert, Site Wide Footer. Skips logged-in WordPress users.
  * Fires once per page view when a visitor either
  *   - clicks a booking / buy button (Amelia "amelia-button", or a link/button saying book, varaa, osta, buy), or
  *   - stays 45 s with the tab visible and scrolls at least 40 % of the page.
@@ -7,6 +7,7 @@
  * Also sends a GA4 event "quality_visit" if gtag is present.
  */
 (function () {
+  if (document.body && document.body.classList.contains('logged-in')) return;
   var fired = false, start = Date.now(), maxScroll = 0;
   function fire(reason) {
     if (fired) return;
