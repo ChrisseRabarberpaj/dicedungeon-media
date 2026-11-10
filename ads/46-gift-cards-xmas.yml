@@ -1,11 +1,12 @@
 # Gift card ad for Christmas. Needs post 46 published first, then 'create'.
 name: DD Gift cards Xmas
 approved: true
-creative: link
+creative: post_cta  # real posts only
 link: https://dicedungeon.fi/lahjakortti/
 cta: SHOP_NOW
-objective: OUTCOME_TRAFFIC
-optimization_goal: LANDING_PAGE_VIEWS
+objective: OUTCOME_SALES  # 10 Nov ad review: optimise for interested visitors, not cheap clicks
+optimization_goal: OFFSITE_CONVERSIONS
+conversion_event: QualityVisit
 destination_type: WEBSITE
 budget_eur: 120
 start: '2026-11-12T18:00:00+02:00'
