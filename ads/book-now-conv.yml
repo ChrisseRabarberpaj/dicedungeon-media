@@ -1,9 +1,10 @@
 name: DD Book now (conversions) Nov-Dec
 approved: true
-note: '10 Nov ad review: replaces the Traffic campaign book-now-nov-dec (pause that one when this goes
-  live). Optimises for the QualityVisit pixel event (45 s + scroll, or a booking button click) because
-  real bookings and InitiateCheckout are too rare for Meta to learn from. Budget = what was left of Book
-  now + the birthdays and December ads, folded into one ad set.'
+note: '10 Nov ad review: replaces the Traffic campaign book-now-nov-dec (pause that
+  one when this goes live). Optimises for the QualityVisit pixel event (45 s + scroll,
+  or a booking button click) because real bookings and InitiateCheckout are too rare
+  for Meta to learn from. Budget = what was left of Book now + the birthdays and December
+  ads, folded into one ad set.'
 creative: post_cta
 link: https://dicedungeon.fi/booking/
 cta: BOOK_NOW
@@ -28,9 +29,9 @@ targeting:
   - '120248705800350434'
 ads:
 - post: 03-pikkujoulut
-  message: 'Pikkujoulut omalla porukalla: varaa marraskuu nyt. / Pikkujoulu season. A private room in
-    Töölö, Helsinki, yours for 6 hours: games, lights, sound, bring your own food and drinks. 200 € for
-    the whole group. November Fridays are going.
+  message: 'Pikkujoulut omalla porukalla: varaa marraskuu nyt. / Pikkujoulu season.
+    A private room in Töölö, Helsinki, yours for 6 hours: games, lights, sound, bring
+    your own food and drinks. 200 € for the whole group. November Fridays are going.
 
     '
   fb_post_id: '727370017119939_122193397946933048'
@@ -41,31 +42,45 @@ ads:
   video_id: '1001691095576979'
   ig_media_id: '17993754747111691'
 - post: 44-tiimi-ilta
-  message: 'Uusi, edullisempi hinta! Tiimi-ilta töiden jälkeen? Pelinjohtajan vetämä 3 tunnin seikkailu
-    yksityisessä huoneessa Töölössä, 450 € + alv koko porukalle, kokemusta ei tarvita. Varaa päivä suoraan.
-    / New, lower price! Team evening after work? A 3-hour Game Master-led adventure in a private room
-    in Töölö, 450 € + VAT for the whole group, no experience needed. Book your date directly.
+  message: 'Uusi, edullisempi hinta! Tiimi-ilta töiden jälkeen? Pelinjohtajan vetämä
+    3 tunnin seikkailu yksityisessä huoneessa Töölössä, 450 € + alv koko porukalle,
+    kokemusta ei tarvita. Varaa päivä suoraan. / New, lower price! Team evening after
+    work? A 3-hour Game Master-led adventure in a private room in Töölö, 450 € + VAT
+    for the whole group, no experience needed. Book your date directly.
 
     '
   fb_post_id: '727370017119939_122194503122933048'
   video_id: '2611947385976877'
   ig_media_id: '18111508721582854'
 - post: 09-birthdays
-  message: 'Synttärit ilman baarijonoa: yksityinen pelihuone Töölössä kuudeksi tunniksi, pelit, valot
-    ja äänet, omat eväät mukaan. 200 € koko porukalle. / Birthday coming up? A private games room in Töölö
-    for six hours: games, lights, sound, bring your own food and drinks. 200 € for the whole group.
+  message: 'Synttärit ilman baarijonoa: yksityinen pelihuone Töölössä kuudeksi tunniksi,
+    pelit, valot ja äänet, omat eväät mukaan. 200 € koko porukalle. / Birthday coming
+    up? A private games room in Töölö for six hours: games, lights, sound, bring your
+    own food and drinks. 200 € for the whole group.
 
     '
 - post: 07-combat
-  message: 'Joulukuun viikonloput täyttyvät. Yksityinen pelihuone Töölössä: 6 tuntia 200 €, tai pelinjohtajan
-    vetämä seikkailu 600 €. / December weekends are filling up. A private games room in Töölö: 6 hours
-    for 200 €, or a Game Master-led adventure for 600 €. Book your date now.
+  message: 'Joulukuun viikonloput täyttyvät. Yksityinen pelihuone Töölössä: 6 tuntia
+    200 €, tai pelinjohtajan vetämä seikkailu 600 €. / December weekends are filling
+    up. A private games room in Töölö: 6 hours for 200 €, or a Game Master-led adventure
+    for 600 €. Book your date now.
 
     '
+  fb_post_id: '727370017119939_122195040368933048'
+  video_id: '1001705449662820'
+  ig_media_id: '18183690787437279'
 - post: 45-arkipaivapeli
-  message: 'Arkipäiväpeli: maanantaista torstaihin koko huone 6 tunniksi 120 €. / Weekday game day: any
-    6 hours Monday to Thursday, the whole private room in Töölö for 120 €. Board games, poker or D&D.
+  message: 'Arkipäiväpeli: maanantaista torstaihin koko huone 6 tunniksi 120 €. /
+    Weekday game day: any 6 hours Monday to Thursday, the whole private room in Töölö
+    for 120 €. Board games, poker or D&D.
 
     '
   hold: true
   note: Post goes live 15 Nov; remove hold then.
+ids:
+  campaign: '120249270984720434'
+  adset: '120249270986060434'
+  ad:03-pikkujoulut: '120249270988060434'
+  ad:36-gm-night-friends: '120249270988480434'
+  ad:44-tiimi-ilta: '120249270989200434'
+  ad:07-combat: '120249270991760434'
