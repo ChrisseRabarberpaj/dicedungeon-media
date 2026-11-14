@@ -178,16 +178,19 @@ def daily(days, match):
     until = dt.date.today().isoformat()
     rows = get_all(f"{act()}/insights", {
         "level": "campaign", "time_increment": 1,
-        "fields": "campaign_id,campaign_name,spend,impressions",
+        "fields": "campaign_id,campaign_name,spend,impressions,actions",
         "time_range": {"since": since, "until": until}, "limit": 500,
     })
-    lines = [f"## Daily spend {since} to {until}, campaigns matching '{match}'", "", "| Day | Campaign | Spend € | Impr. |", "|---|---|---|---|"]
+    lines = [f"## Daily spend {since} to {until}, campaigns matching '{match}'", "", "| Day | Campaign | Spend € | Impr. | Pixel custom conv. | Actions |", "|---|---|---|---|---|---|"]
     tot = 0.0
     for r in rows:
         if match.lower() not in r["campaign_name"].lower() or float(r.get("spend", 0)) == 0:
             continue
         tot += float(r["spend"])
-        lines.append(f"| {r['date_start']} | {r['campaign_name'][:40]} {r['campaign_id']} | {float(r['spend']):.2f} | {r.get('impressions')} |")
+        acts = {a["action_type"]: a["value"] for a in r.get("actions", [])}
+        conv = acts.get("offsite_conversion.fb_pixel_custom", "0")
+        other = ", ".join(f"{k}={v}" for k, v in acts.items() if "offsite" in k or "checkout" in k or "schedule" in k.lower())
+        lines.append(f"| {r['date_start']} | {r['campaign_name'][:40]} {r['campaign_id']} | {float(r['spend']):.2f} | {r.get('impressions')} | {conv} | {other} |")
     lines += ["", f"Total: {tot:.2f} €"]
     summary(lines)
 
