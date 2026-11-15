@@ -1,5 +1,4 @@
-# Re-queue of 09-birthdays for TikTok only. The 13 Nov TikTok post failed in Buffer
-# (media processing delay); IG and FB went live. Christoffer said go on 15 Nov.
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
 id: 09b-birthdays-tiktok
 approved: true
 channels:
@@ -11,3 +10,5 @@ text: |
   Synttärit ilman baarijonoa. / Birthday coming up? The room is yours for the evening: your games or ours, your playlist on the surround sound, nobody else in the room. 200 € for 6 hours split ten ways is 20 € each. dicedungeon.fi
 
   #dicedungeon #helsinki #dnd #ttrpg #lautapelit #roolipelit #boardgames #pikkujoulut
+queued:
+  tiktok: 6af94f6de86a5789a6f2c8b8
