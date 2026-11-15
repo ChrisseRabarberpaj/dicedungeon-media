@@ -1,5 +1,4 @@
-# TikTok-only re-queue of 10-door-bell-key. TikTok blocked posting until 18 Nov 16:05
-# (two strikes); Christoffer said go on 15 Nov to move it to 19 Nov.
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
 id: 10b-door-tiktok
 approved: true
 channels:
@@ -13,3 +12,5 @@ text: |
   Koodi KEY10: -10 % huonevarauksesta 23.11. asti. / Code KEY10: 10 % off a room booking until 23 Nov, one use per person.
 
   #dicedungeon #helsinki #dnd #ttrpg #lautapelit #roolipelit #boardgames #pikkujoulut
+queued:
+  tiktok: 6afa0114b9a106584ccb11d6
