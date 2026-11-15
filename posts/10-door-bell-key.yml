@@ -4,7 +4,6 @@ approved: true
 channels:
 - instagram
 - facebook
-- tiktok
 when: '2026-11-16T18:00:00+02:00'
 media_note: Website photo of the entrance door. A real door/bell/key shot from the venue visit would be better.
 media:
@@ -18,4 +17,6 @@ text: |
 queued:
   instagram: 6ad43bca0b0d72757a0633a1
   facebook: 6ad43bcaae173d6e00e4b309
-  tiktok: 6ad6e6a22fcafd0f184c1a36
+  tiktok: draft:6ad6e6a22fcafd0f184c1a36
+manual:
+- tiktok
