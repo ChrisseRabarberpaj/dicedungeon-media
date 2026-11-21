@@ -78,8 +78,9 @@ ads:
     for 120 €. Board games, poker or D&D.
 
     '
-  hold: true
-  note: Post goes live 15 Nov; remove hold then.
+  fb_post_id: '727370017119939_122195832914933048'
+  video_id: '1878274656661156'
+  ig_media_id: '18346354204275097'
 ids:
   campaign: '120249270984720434'
   adset: '120249270986060434'
