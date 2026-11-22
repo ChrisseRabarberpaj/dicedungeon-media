@@ -1,0 +1,80 @@
+<!-- wp:html -->
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;700&family=Almendra+SC&display=swap" rel="stylesheet">
+<style>
+.ddl{--bg:#120c09;--panel:#1d1410;--gold:#d9b46a;--ink:#f3e9d8;--mute:#bfae94;--red:#8c1d18;background:var(--bg);color:var(--ink);font-family:Alegreya,Georgia,serif;font-size:19px;line-height:1.55;margin:0 calc(50% - 50vw)}
+.ddl *{box-sizing:border-box}
+.ddl h1,.ddl h2{font-family:'Almendra SC',Georgia,serif;color:var(--gold);font-weight:400;line-height:1.1;margin:0 0 .4em}
+.ddl h1{font-size:clamp(40px,7vw,68px)}
+.ddl h2{font-size:clamp(28px,4vw,38px)}
+.ddl-hero{min-height:56vh;display:flex;align-items:flex-end;padding:48px 16px;background:linear-gradient(180deg,rgba(18,12,9,.2) 0%,rgba(18,12,9,.6) 55%,var(--bg) 100%),url('https://dicedungeon.fi/wp-content/uploads/2026/10/Dice_Dungeon-Web_06-scaled-1.jpg') center/cover}
+.ddl-wrap{max-width:880px;margin:0 auto;width:100%}
+.ddl-sub{font-size:clamp(20px,2.4vw,24px);max-width:620px;margin:0 0 20px}
+.ddl-chips{display:flex;flex-wrap:wrap;gap:10px}
+.ddl-chip{border:1px solid var(--gold);color:var(--gold);padding:6px 14px;border-radius:999px;font-size:17px}
+.ddl-chip.hi{background:var(--gold);color:#1a120c;font-weight:700}
+.ddl-sec{padding:48px 16px}
+.ddl-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.ddl-step{background:var(--panel);border:1px solid #3a2a1f;padding:20px;border-radius:6px}
+.ddl-step b{display:block;font-family:'Almendra SC',serif;color:var(--gold);font-size:28px;margin-bottom:4px}
+.ddl-mute{color:var(--mute)}
+.ddl-book{background:var(--panel);border:1px solid #3a2a1f;border-radius:6px;padding:10px}
+/* Amelia event widget: brand fonts (colours are swapped by the script at the bottom) */
+.amelia-v2-booking,.amelia-v2-booking *,.am-dialog-el,.am-dialog-el *{font-family:Alegreya,Georgia,serif !important}
+.am-ec{box-shadow:inset 8px 0 0 #8c1d18 !important;border:1px solid #5a4433 !important}
+@media (max-width:760px){.ddl-steps{grid-template-columns:1fr}.ddl{font-size:18px}}
+</style>
+<div class="ddl">
+<section class="ddl-hero"><div class="ddl-wrap">
+<h1>Film day</h1>
+<p class="ddl-sub">A free D&amp;D game with a Rolepeddlers Game Master while we film new material for Dice Dungeon. No experience needed.</p>
+<div class="ddl-chips"><span class="ddl-chip hi">Free</span><span class="ddl-chip">Sun 13 Dec</span><span class="ddl-chip">13:00–17:00</span><span class="ddl-chip">Töölö, Helsinki</span></div>
+</div></section>
+<section class="ddl-sec"><div class="ddl-wrap">
+<div class="ddl-steps">
+<div class="ddl-step"><b>1</b>Sign up below. The first 7 play, sign-ups 8–10 are reserves.</div>
+<div class="ddl-step"><b>2</b>We confirm your seat by Thursday 10 Dec, and you get a reminder the day before.</div>
+<div class="ddl-step"><b>3</b>Ring the doorbell at Caloniuksenkatu 9 D 65 at 13:00. The Game Master takes it from there.</div>
+</div>
+</div></section>
+<section class="ddl-sec" style="padding-top:0"><div class="ddl-wrap">
+<h2>Sign up</h2>
+<p class="ddl-mute">You'll be on camera, so signing up includes agreeing that we can use the footage in Dice Dungeon's marketing.</p>
+<div class="ddl-book">
+<!-- /wp:html -->
+
+<!-- wp:shortcode -->
+[ameliaeventslistbooking event=1]
+<!-- /wp:shortcode -->
+
+<!-- wp:html -->
+</div>
+</div></section>
+</div>
+<script>
+(function(){
+/* Button labels */
+var map={'Book event':'Sign up','Book Event':'Sign up','Read more':'Details','Varaa tapahtuma':'Ilmoittaudu','Lue lisää':'Tiedot'};
+function labels(root){var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),n;while(n=w.nextNode()){var t=n.nodeValue.trim();if(map[t])n.nodeValue=n.nodeValue.replace(t,map[t]);}}
+/* Amelia sets its colours as inline CSS variables, so swap them to Dice Dungeon colours */
+var P={'main-bgr':'#1d1410','inp-bgr':'#120c09','drop-bgr':'#241914'};
+function val(n,v){var l=v.toLowerCase(),rx=/rgba\(\s*\d+,\s*\d+,\s*\d+,/;
+ if(/rgba\(\s*(26,\s*44,\s*55|14,\s*25,\s*32),/.test(l))return v.replace(rx,'rgba(243, 233, 216,');
+ if(/rgba\(\s*(38,\s*92,\s*242|18,\s*70,\s*214),/.test(l))return v.replace(rx,'rgba(217, 180, 106,');
+ if(/rgba\(\s*209,\s*213,\s*215,/.test(l))return v.replace(rx,'rgba(90, 68, 51,');
+ for(var k in P)if(n.slice(-k.length)===k)return P[k];
+ if(/bgr$/.test(n))return '#241914';
+ if(/heading-text$/.test(n))return '#d9b46a';
+ if(/placeholder$/.test(n))return '#9c8b75';
+ if(/border$/.test(n))return '#5a4433';
+ if(/btn-sec$/.test(n))return '#3a2a1f';
+ if(/btn-sec-text$/.test(n))return '#f3e9d8';
+ if(/(btn-prim|btn-first)$/.test(n))return '#8c1d18';
+ if(/(primary|success)$/.test(n))return '#d9b46a';
+ if(/text$/.test(n)&&!/btn-prim-text$/.test(n))return '#f3e9d8';
+ return v;}
+function colours(){document.querySelectorAll('[style*="--am-"]').forEach(function(e){var s=e.getAttribute('style'),o=s.split(';').map(function(d){var m=d.match(/^\s*(--am-[a-z0-9-]+)\s*:\s*(.*)$/i);return m?m[1]+': '+val(m[1],m[2].trim()):d;}).join(';');if(o!==s)e.setAttribute('style',o);});}
+function run(){labels(document.body);colours();}
+document.addEventListener('DOMContentLoaded',function(){run();new MutationObserver(run).observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['style']});});
+})();
+</script>
+<!-- /wp:html -->
