@@ -155,11 +155,13 @@ T = {
     "fi": {"label": "LAHJAKORTTI", "for_you": "SINULLE", "code": "Koodi", "valid": "Voimassa {d} asti",
            "or_mail": "tai lähetä koodi: booking@talecraftgames.com",
            "how": "Varaa: dicedungeon.fi/fi/booking → <i>{s}</i> → syötä koodi maksuvaiheessa.",
-           "gm": "Varaa vähintään 5 päivää etukäteen, vahvistamme ajan."},
+           "gm": "Varaa vähintään 5 päivää etukäteen, vahvistamme ajan.",
+           "wd": "Ma–to hinta menee nollaan. Pe–su maksat erotuksen 80 €."},
     "en": {"label": "GIFT CARD", "for_you": "FOR YOU", "code": "Code", "valid": "Valid until {d}",
            "or_mail": "or email the code to booking@talecraftgames.com",
            "how": "Book at dicedungeon.fi/booking → pick <i>{s}</i> → enter the code at checkout.",
-           "gm": "Book at least 5 days ahead, we confirm the date."},
+           "gm": "Book at least 5 days ahead, we confirm the date.",
+           "wd": "Mon–Thu the price goes to zero. Fri–Sun you pay the 80 € difference."},
 }
 
 
@@ -192,6 +194,8 @@ def back_html(p, sale, lang):
     how = t["how"].format(s=e(p[lang].get("service", p["service"])))
     if p["gm"]:
         how += f"<br><span style=\"color:#B9B2A8\">{t['gm']}</span>"
+    if p.get("weekday"):
+        how += f"<br><span style=\"color:#B9B2A8\">{t['wd']}</span>"
     return f"""<div class="card" style="padding:18px 22px;display:flex;flex-direction:column;gap:5px">
 <div style="font-size:11px;letter-spacing:3px;font-weight:700;color:#F5CB5C;padding-right:80px">{head}</div>
 {greet}
@@ -236,6 +240,8 @@ def buyer_email(sale):
     exp = fmt_date(sale["expires"], lang)
     post = sale["delivery"] == "post"
     if lang == "fi":
+        wd = ("\n   Kortti kattaa arkipäivähinnan (ma–to 120 €). Perjantaista sunnuntaihin sen voi myös käyttää, "
+              "silloin maksetaan erotus 80 €.") if p.get("weekday") else ""
         gm = ("\nSeikkailuissa pyyntö kannattaa tehdä vähintään 5 päivää etukäteen. Varmistamme pelinjohtajan ja "
               "vahvistamme ajan sähköpostilla.\n") if p["gm"] else ""
         deliv = ("\nPostitamme kortin 1-2 arkipäivän sisällä osoitteeseen:\n" + sale["shipping"] +
@@ -251,7 +257,7 @@ Voimassa: {exp} asti
 Näin lahjan saaja käyttää sen:
 1. Varaa aika osoitteessa https://dicedungeon.fi/fi/booking/
 2. Valitse "{p['fi'].get('service', p['service'])}"
-3. Syötä koodi maksuvaiheen alennuskenttään, hinta menee nollaan.
+3. Syötä koodi maksuvaiheen alennuskenttään, hinta menee nollaan.{wd}
 {gm}
 Jos jokin mietityttää, vastaa tähän viestiin.
 
@@ -259,6 +265,8 @@ Christoffer
 Dice Dungeon, Caloniuksenkatu 9 D 65, Töölö
 """
         return "Dice Dungeon -lahjakortti: " + p["fi"]["head"], body
+    wd = ("\n   The card covers the weekday price (Mon–Thu, 120 €). It also works Friday to Sunday, "
+          "then you just pay the 80 € difference.") if p.get("weekday") else ""
     gm = ("\nFor adventures, send the booking request at least 5 days ahead. We line up the Game Master and "
           "confirm the date by email.\n") if p["gm"] else ""
     deliv = ("\nWe'll post the card within 1-2 working days to:\n" + sale["shipping"] +
@@ -274,7 +282,7 @@ Valid until: {exp}
 How the recipient uses it:
 1. Book at https://dicedungeon.fi/booking/
 2. Pick "{p['service']}"
-3. Enter the code in the coupon field at checkout. The price goes to zero.
+3. Enter the code in the coupon field at checkout. The price goes to zero.{wd}
 {gm}
 Questions? Just reply to this email.
 
@@ -293,7 +301,7 @@ def owner_email(sale):
         ("TO POST: print the attachment and mail it to:\n\n" + sale["shipping"] + "\n") if post else "Digital, already emailed to the buyer automatically.\n",
         f"Card: {p['en']['head']} ({p['service']})",
         f"Card language: {card_lang}",
-        f"Code: {sale['code']} (Amelia coupon created, 100 %, single use)",
+        f"Code: {sale['code']} (Amelia coupon created, " + (f"{p['deduction']} € off" if p.get('deduction') else "100 %") + ", single use)",
         f"Valid until: {fmt_date(sale['expires'], 'en')}",
         f"Paid: {sale['amount']}",
         f"Buyer: {sale['buyer_name']} <{sale['buyer_email']}>",
@@ -348,7 +356,8 @@ def cmd_check(_):
 
 def handle(sale, workdir):
     p = PRODUCTS[sale["product"]]
-    code, res = wp("POST", "/gift-coupon", {"code": sale["code"], "service_id": p["service_id"], "expires": sale["expires"]})
+    code, res = wp("POST", "/gift-coupon", {"code": sale["code"], "service_id": p["service_id"], "expires": sale["expires"],
+                                     **({"deduction": p["deduction"]} if p.get("deduction") else {})})
     if code != 200:
         raise RuntimeError(f"coupon failed {code}: {res}")
     pdf, png = render(sale, workdir)

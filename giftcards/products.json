@@ -7,15 +7,36 @@
     "pos": "50% 22%",
     "gm": false,
     "fi": {
-      "head": "6 h pelikerta",
-      "sub": "koko porukalle",
+      "head": "Viikonloppu 6 h",
+      "sub": "koko porukalle, mikä päivä tahansa",
       "long": "6 tunnin pelikerta koko porukalle",
       "service": "Dice Dungeon 6 tuntia"
     },
     "en": {
-      "head": "Half Day (6h)",
-      "sub": "the whole room for your group",
+      "head": "Weekend (6h)",
+      "sub": "the whole room, any day of the week",
       "long": "a 6-hour session in the Dice Dungeon room for the whole group"
+    }
+  },
+  "room6wd": {
+    "service_id": 1,
+    "service": "Dice Dungeon 6 hours",
+    "price": 120,
+    "deduction": 120,
+    "weekday": true,
+    "image": "01172.jpg",
+    "pos": "50% 30%",
+    "gm": false,
+    "fi": {
+      "head": "Arkipäivä 6 h",
+      "sub": "koko porukalle, ma–to",
+      "long": "6 tunnin arkipäiväpeli koko porukalle (ma–to)",
+      "service": "Dice Dungeon 6 tuntia"
+    },
+    "en": {
+      "head": "Weekday (6h)",
+      "sub": "the whole room, Monday to Thursday",
+      "long": "a 6-hour weekday session in the Dice Dungeon room for the whole group (Mon–Thu)"
     }
   },
   "room12": {
