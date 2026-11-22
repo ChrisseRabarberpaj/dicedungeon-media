@@ -9,7 +9,7 @@
  * POST /wp-json/dd/v1/gift-sale  {...}              (mark it handled, keeps the sales log here, not on GitHub)
  *
  * Only an administrator can call it (the job logs in with the "github-giftcards" application password).
- * It can only make 100 % single-use coupons, only for these four services, only with GIFT-/LAHJA- codes.
+ * It can only make single-use coupons (100 %, or a fixed amount for the weekday card), only for these four services, only with GIFT-/LAHJA- codes.
  * It never edits or deletes existing coupons or bookings.
  */
 
@@ -81,6 +81,10 @@ function dd_gift_coupon_create(WP_REST_Request $req) {
     $code    = strtoupper(sanitize_text_field($req->get_param('code')));
     $service = (int) $req->get_param('service_id');
     $expires = sanitize_text_field($req->get_param('expires'));
+    // Weekday card: a fixed € amount off instead of 100 % (only on the 6 h room, max 200 €).
+    $deduction = (int) $req->get_param('deduction');
+    if ($deduction < 0 || $deduction > 200 || ($deduction > 0 && $service !== 1))
+        return new WP_Error('bad_deduction', 'deduction only for service 1, 1-200 €', ['status' => 400]);
 
     if (!preg_match('/^(LAHJA|GIFT)-[A-Z0-9]{4,10}$/', $code))
         return new WP_Error('bad_code', 'Code must look like GIFT-XXXXXX or LAHJA-XXXXXX', ['status' => 400]);
@@ -101,8 +105,8 @@ function dd_gift_coupon_create(WP_REST_Request $req) {
     $cols = $wpdb->get_col("SHOW COLUMNS FROM $t");
     $want = [
         'code'                  => $code,
-        'discount'              => 100,
-        'deduction'             => 0,
+        'discount'              => $deduction > 0 ? 0 : 100,
+        'deduction'             => $deduction,
         'limit'                 => 1,
         'customerLimit'         => 1,
         'status'                => 'visible',
