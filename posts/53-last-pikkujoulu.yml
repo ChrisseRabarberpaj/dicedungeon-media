@@ -1,0 +1,14 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+id: 53-last-pikkujoulu
+approved: false
+channels:
+- instagram
+- facebook
+when: '2026-12-01T18:00:00+02:00'
+media_note: Reel v6 (16.2 s). Same unused shots as the unposted 16 Last pikkujoulu dates, new end card. Music DDjazz_12 @ 0:08. Has a champagne shot, so no TikTok.
+media:
+- media/posts/53-last-pikkujoulu.mp4
+text: |
+  Pikkujoulut vielä pitämättä? / Still planning pikkujoulut? A few December dates left. Five hours with a Game Master and the room to yourselves, 600 € for the group. Companies pay the same + VAT and get an invoice afterwards. dicedungeon.fi/booking
+
+  #dicedungeon #helsinki #dnd #ttrpg #lautapelit #roolipelit #boardgames #pikkujoulut

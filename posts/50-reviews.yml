@@ -1,0 +1,18 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+id: 50-reviews
+approved: false
+channels:
+- instagram
+- facebook
+when: '2026-11-24T18:00:00+02:00'
+media_note: 'Photo carousel. Quotes: @gogam.eu Instagram story (Nov 2026), Google reviews by Nicolas U., Oliver B., Alexander N. Photos: Web_06, DSC01405, DSC01146, DSC01297, DSC01153 (none used in earlier posts).'
+media:
+- media/posts/50-reviews-1.jpg
+- media/posts/50-reviews-2.jpg
+- media/posts/50-reviews-3.jpg
+- media/posts/50-reviews-4.jpg
+- media/posts/50-reviews-5.jpg
+text: |
+  Mitä pelaajat sanoo. / A few nice words people have left about the room lately, on Google and Instagram. Honestly, these make my week. Thanks @gogam.eu for coming to try it out! Your own night: dicedungeon.fi/booking
+
+  #dicedungeon #helsinki #dnd #ttrpg #lautapelit #roolipelit #boardgames #thingstodoinhelsinki

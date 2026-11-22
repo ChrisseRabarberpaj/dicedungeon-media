@@ -1,0 +1,15 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+id: 51-gift-reel
+approved: false
+channels:
+- instagram
+- facebook
+- tiktok
+when: '2026-11-26T18:00:00+02:00'
+media_note: Gift card reel v6 (15.6 s). Rebuilt from 15 Gift card with only unused shots (087_0047, C0928, C0916, C0937, 087_0052). Music DDjazz_11 @ 0:08. No alcohol or poker in frame.
+media:
+- media/posts/51-gift-reel.mp4
+text: |
+  Lahjaidea, joka ei jää kaappiin. / Stuck on a gift? Give them a night out with their own friends: the whole room for six hours, or an adventure with a Game Master. By email in minutes, or a printed card in the post. dicedungeon.fi/lahjakortti
+
+  #dicedungeon #helsinki #dnd #ttrpg #lahjaidea #joululahja #giftideas

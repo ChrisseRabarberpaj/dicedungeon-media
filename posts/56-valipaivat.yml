@@ -1,0 +1,15 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+id: 56-valipaivat
+approved: false
+channels:
+- instagram
+- facebook
+- tiktok
+when: '2026-12-17T18:00:00+02:00'
+media_note: Reel v6 (16 s). Rebuilt from 27 Valipaivat with C0933 instead of the shelf shot used in 05. Music DDjazz_15 @ 0:08. Board games only, TikTok safe.
+media:
+- media/posts/56-valipaivat.mp4
+text: |
+  Välipäivien suunnitelmat? / Between Christmas and New Year: Monday to Wednesday 28 to 30 Dec, the whole room for six hours, 120 €. Catan, Root and 50+ more on the shelf. dicedungeon.fi/booking
+
+  #dicedungeon #helsinki #dnd #ttrpg #lautapelit #roolipelit #boardgames #välipäivät

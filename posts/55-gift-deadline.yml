@@ -1,0 +1,14 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+id: 55-gift-deadline
+approved: false
+channels:
+- instagram
+- facebook
+when: '2026-12-08T18:00:00+02:00'
+media_note: Single image. Photo DSC01143 + gift card artwork. CHECK the posted-card order deadline (Mon 14 Dec) before approving.
+media:
+- media/posts/55-gift-deadline.jpg
+text: |
+  Lahjakortti postissa ehtii jouluksi, kun tilaat viimeistään ma 14.12. / Want a printed gift card under the tree? Order by Monday 14 Dec. Digital cards arrive by email in minutes, right up to Christmas Eve. dicedungeon.fi/lahjakortti
+
+  #dicedungeon #helsinki #dnd #ttrpg #lahjakortti #joululahja #christmasgift

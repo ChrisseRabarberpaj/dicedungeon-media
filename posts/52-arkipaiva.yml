@@ -1,0 +1,14 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+id: 52-arkipaiva
+approved: false
+channels:
+- instagram
+- facebook
+when: '2026-11-29T18:00:00+02:00'
+media_note: Single image. Photo DSC01172 (unused in earlier posts).
+media:
+- media/posts/52-arkipaiva.jpg
+text: |
+  Joulukuun arki-illat ovat vielä vapaina. / December weekdays still have plenty of free dates: any six hours Monday to Thursday, the whole room for 120 €. Board games, D&D or just a good evening with your people. dicedungeon.fi/booking
+
+  #dicedungeon #helsinki #dnd #ttrpg #lautapelit #roolipelit #boardgames

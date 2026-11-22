@@ -1,0 +1,14 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+id: 57-last-minute
+approved: false
+channels:
+- instagram
+- facebook
+when: '2026-12-20T18:00:00+02:00'
+media_note: Single image. Photo Web_05 + gift card artwork.
+media:
+- media/posts/57-last-minute.jpg
+text: |
+  Viime hetken lahja? / Last-minute gift sorted: a Dice Dungeon gift card lands in your inbox within minutes, ready to print or send on WhatsApp. dicedungeon.fi/lahjakortti
+
+  #dicedungeon #helsinki #dnd #ttrpg #joululahja #lastminutegift

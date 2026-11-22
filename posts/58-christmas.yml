@@ -1,0 +1,14 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+id: 58-christmas
+approved: false
+channels:
+- instagram
+- facebook
+when: '2026-12-24T10:00:00+02:00'
+media_note: Single image. Photo DSC01119 (unused in earlier posts).
+media:
+- media/posts/58-christmas.jpg
+text: |
+  Hyvää joulua! God jul! / Merry Christmas from Dice Dungeon. Thank you to everyone who came to play this year. See you at the table in 2027.
+
+  #dicedungeon #helsinki #hyvääjoulua #godjul #merrychristmas

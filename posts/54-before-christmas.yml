@@ -1,0 +1,14 @@
+# Set approved: true (or tell Claude 'go') to let the workflow queue it.
+id: 54-before-christmas
+approved: false
+channels:
+- instagram
+- facebook
+when: '2026-12-03T18:00:00+02:00'
+media_note: Reel v6 (15.6 s). Rebuilt from 24 Last dates before Christmas with only unused shots (087_0058, C0982, C0914, C0978, 087_0051). Music DDjazz_14 @ 0:08. Poker shot, so no TikTok.
+media:
+- media/posts/54-before-christmas.mp4
+text: |
+  Viimeiset vapaat päivät ennen joulua. / Last free dates before Christmas: six hours for 120 € Monday to Thursday, 200 € on weekends. Board games, D&D or a poker night, your call. dicedungeon.fi/booking
+
+  #dicedungeon #helsinki #dnd #ttrpg #lautapelit #roolipelit #boardgames
