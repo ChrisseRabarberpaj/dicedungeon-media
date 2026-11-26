@@ -23,20 +23,24 @@ targeting:
   - '120248705800350434'
 ads:
 - post: 46-gift-cards
-  message: 'Joululahjaksi pelipäivä: Dice Dungeonin lahjakortti sähköpostiin minuuteissa tai
-    postitse. / Give a game night this Christmas. Dice Dungeon gift cards from 200 €, by email
-    in minutes or posted to your door.
+  message: 'Joululahjaksi pelipäivä: Dice Dungeonin lahjakortti sähköpostiin minuuteissa
+    tai postitse. / Give a game night this Christmas. Dice Dungeon gift cards from
+    200 €, by email in minutes or posted to your door.
 
     '
   fb_post_id: '727370017119939_122195170652933048'
   video_id: '1807652950487872'
   ig_media_id: '18109179974624486'
   hold: true
-  note: 'Retired 26 Nov 2026: replaced by the 51 gift reel (Christoffer approved swapping the
-    gift ad to 51 once it is live).'
+  note: 'Retired 26 Nov 2026: replaced by the 51 gift reel (Christoffer approved swapping
+    the gift ad to 51 once it is live).'
 - post: 51-gift-reel
+  fb_post_id: '727370017119939_122197327118933048'
+  video_id: '1480013654329741'
+  ig_media_id: '18156570076469707'
 ids:
   campaign: '120249276221460434'
   adset: '120249276221870434'
   retired:
   - '120249276223850434'
+  ad:51-gift-reel: '120249516580770434'
